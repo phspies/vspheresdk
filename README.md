@@ -23,7 +23,20 @@ var rpdetails = await vsphere.VcenterSubModule.ResourcePoolModule.GetAsync(resou
 You can pass your own serialization settings as part of the client init code
 
 ```dotnet
-vSphereClient vsphere = new vSphereClient("vc01.lab.local", "administrator@vsphere.local", "VMware1!", false, new Newtonsoft.Json.JsonSerializerSettings() {  Formatting = Newtonsoft.Json.Formatting.None });
+vSphereClient vsphere = new vSphereClient(
+    "vc01.lab.local", 
+    "administrator@vsphere.local", 
+    "VMware1!", 
+    false, 
+    new Newtonsoft.Json.JsonSerializerSettings() {  
+        Error = (se, ev) => { ev.ErrorContext.Handled = true; },
+        DefaultValueHandling = DefaultValueHandling.Include,
+        TypeNameHandling = TypeNameHandling.Auto,
+        NullValueHandling = NullValueHandling.Ignore,
+        Formatting = Formatting.None,
+        ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+        Converters = new List<JsonConverter>() { new Newtonsoft.Json.Converters.StringEnumConverter() }
+    });
 
 ```
 
