@@ -1,0 +1,30 @@
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using NJsonSchema.Converters;
+using Newtonsoft.Json.Converters;
+using vspheresdk.{{rootmodule}}.Models.Enums;
+
+namespace vspheresdk.{{rootmodule}}.Models
+{
+    public class {{clz}} {{referenced}}
+    {
+        {{#properties.Values}}
+        /// <summary>
+        /// {{ToXmlDoc description "wrap"}}
+        /// </summary>
+        /// </summary>
+        {{#if isRequired}}
+        [JsonProperty(PropertyName = "{{name}}", Required = Required.AllowNull)]
+        {{#else}}
+        [JsonProperty(PropertyName = "{{name}}")]
+        {{/if}}
+        {{#IsEnumeration}}
+        [JsonConverter(typeof(StringEnumConverter))]
+        {{/IsEnumeration}}
+        public {{GetDotNetType . name clz}} {{GetDotNetName name "field"}} { get; set; }
+        {{/properties.Values}}
+    }
+}

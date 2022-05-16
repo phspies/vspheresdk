@@ -1,0 +1,15 @@
+﻿using System.Runtime.Serialization;
+
+namespace vspheresdk.{{rootmodule}}.Models.Enums
+{
+    /// <summary>
+    /// {{ToXmlDoc currentEnum.description}}
+    /// </summary>
+    public enum {{currentEnum.EnumName}}
+    {
+        {{#currentEnum.Values}}
+        [EnumMember(Value = "{{JsonEnumValue}}")]
+        {{EnumValue}} = {{EnumIndex}},
+        {{/currentEnum.Values}}
+    }
+}

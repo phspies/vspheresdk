@@ -1,0 +1,57 @@
+﻿using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+using Newtonsoft.Json;
+using System.Net;
+using vspheresdk;
+using vspheresdk.{{rootmodule}}.Models;
+
+namespace vspheresdk.{{rootmodule}}.Modules
+{
+    public class {{module}}Module
+    {
+        private RestClient restClient;
+        private int retry;
+        private int timeout;
+        private CancellationToken cancellationToken;
+
+        public {{module}}Module(RestClient Client, CancellationToken _cancellationToken, int _timeout, int _retry)
+        {
+            restClient = Client;
+            retry = _retry;
+            timeout = _timeout;
+            cancellationToken = _cancellationToken;
+        }
+        {{#operations}}
+        public async {{GetOperationReturnType . "full"}} {{GetMethodName .}}Async({{GetOperationPathParams .}})
+        {
+            {{#Item4.Parameters}}
+            {{#isRequired}}
+            ArgumentNullException.ThrowIfNull({{GetParameterPascalCase name}}, "{{GetParameterPascalCase name}} cannot be null");
+            {{/isRequired}}
+            {{/Item4.Parameters}}
+            StringBuilder {{GetMethodName .}}ServiceURL = new StringBuilder("{{ GetServiceUrl operations.Current }}");
+            var request = new RestRequest
+            {              
+                RequestFormat = DataFormat.Json,
+                Method = Method.{{GetOperationHttpMethod .}}
+            };
+            {{#Item4.Parameters}}
+            {{GetOperationPathInjectionCode . }}
+            {{/Item4.Parameters}}
+            request.Resource = {{GetMethodName .}}ServiceURL.ToString();
+            RestResponse{{GetOperationReturnType . "bare"}} response = await restClient.ExecuteTaskAsyncWithPolicy{{GetOperationReturnType . "bare"}}(request, cancellationToken, timeout, retry);
+            if (response.StatusCode != HttpStatusCode.OK)
+			{
+                var message = "HTTP {{GetOperationHttpMethod .}} operation to " + {{GetMethodName .}}ServiceURL.ToString() + " did not complete successfull";
+                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
+			}
+            {{GetOperationReturnType . "return"}}
+        }
+        {{/operations}}
+    }
+}

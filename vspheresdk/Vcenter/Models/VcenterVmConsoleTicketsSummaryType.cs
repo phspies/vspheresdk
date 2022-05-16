@@ -1,0 +1,21 @@
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.ComponentModel;
+using NJsonSchema.Converters;
+using Newtonsoft.Json.Converters;
+using vspheresdk.Vcenter.Models.Enums;
+
+namespace vspheresdk.Vcenter.Models
+{
+    public class VcenterVmConsoleTicketsSummaryType 
+    {
+        /// <summary>
+        /// Console ticket URI
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "ticket", Required = Required.AllowNull)]
+        public string Ticket { get; set; }
+    }
+}
