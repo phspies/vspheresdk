@@ -17,7 +17,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "authentication_method")]
-        public ContentLibrarySubscriptionInfoAuthenticationMethodType AuthenticationMethod { get; set; }
+        public ContentLibrarySubscriptionInfoAuthenticationMethodEnumType AuthenticationMethod { get; set; }
         /// <summary>
         /// Whether the library should participate in automatic library synchronization. In order for automatic synchronization to
         /// happen, the global {@link ConfigurationModel#automaticSyncEnabled} option must also be true. The subscription is still

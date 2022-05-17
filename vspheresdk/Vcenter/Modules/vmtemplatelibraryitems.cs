@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
-using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -38,7 +37,7 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CreateServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 201) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the source virtual machine is busy.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any of the resources needed to create the virtual machine template could not be allocated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the source virtual machine specified by link CreateSpecsourceVm does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
@@ -46,7 +45,6 @@ namespace vspheresdk.Vcenter.Modules
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user that requested the term operation cannot be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user that requested the term operation is not authorized to perform the term operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VcenterVmTemplateLibraryItemsInfoType> GetAsync(string TemplateLibraryItem)
         {
@@ -60,14 +58,13 @@ namespace vspheresdk.Vcenter.Modules
             GetServiceURL.Replace("{template_library_item}", System.Uri.EscapeDataString(Helpers.ConvertToString(TemplateLibraryItem, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<VcenterVmTemplateLibraryItemsInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterVmTemplateLibraryItemsInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the virtual machine templates configuration state cannot be accessed.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item could not be found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if any of the services involved in the term operation are unavailable.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user that requested the term operation cannot be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user that requested the term operation is not authorized to perform the term operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<string> DeployAsync(string TemplateLibraryItem, VcenterVmTemplateLibraryItemsDeployType RequestBody = null)
         {
@@ -82,7 +79,7 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = DeployServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if either a specified host or a specified datastore is in an invalid state for the deployment such as maintenance mode.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if there was an error in allocating any of the resources required by the term operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item specified by param.name templateLibraryItem cannot be found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
@@ -90,7 +87,6 @@ namespace vspheresdk.Vcenter.Modules
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user that requested the term operation cannot be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user that requested the term operation is not authorized to perform the term operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

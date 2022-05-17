@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceNetworkingDnsServersTestStatusType Status { get; set; }
+        public ApplianceNetworkingDnsServersTestStatusEnumType Status { get; set; }
         /// <summary>
         /// messages
         /// </summary>

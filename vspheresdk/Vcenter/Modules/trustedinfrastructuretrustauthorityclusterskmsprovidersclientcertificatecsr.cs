@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
-using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -41,13 +40,12 @@ namespace vspheresdk.Vcenter.Modules
             GetTaskServiceURL.Replace("{provider}", System.Uri.EscapeDataString(Helpers.ConvertToString(Provider, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 202) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("If cluster or provider id are empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the provider or cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("If the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("If any other error occurs.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<string> CreateTaskAsync(string Cluster, string Provider)
         {
@@ -63,13 +61,12 @@ namespace vspheresdk.Vcenter.Modules
             CreateTaskServiceURL.Replace("{provider}", System.Uri.EscapeDataString(Helpers.ConvertToString(Provider, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = CreateTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 202) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("If cluster or provider id are empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the provider or cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("If the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("If any other error occurs.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

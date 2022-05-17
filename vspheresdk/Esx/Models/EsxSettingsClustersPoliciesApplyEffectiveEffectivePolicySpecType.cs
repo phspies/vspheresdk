@@ -22,7 +22,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "pre_remediation_power_action", Required = Required.AllowNull)]
-        public EsxSettingsClustersPoliciesApplyEffectiveEffectivePolicySpecPreRemediationPowerActionType PreRemediationPowerAction { get; set; }
+        public EsxSettingsClustersPoliciesApplyEffectiveEffectivePolicySpecPreRemediationPowerActionEnumType PreRemediationPowerAction { get; set; }
         /// <summary>
         /// Enable Quick Boot during remediation in the cluster.
         /// </summary>

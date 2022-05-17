@@ -16,13 +16,13 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelTypeCategoryTypeA Category { get; set; }
+        public VapiMetadataMetamodelTypeCategoryEnumTypeA Category { get; set; }
         /// <summary>
         /// Category of the built-in type.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "builtin_type")]
-        public VapiMetadataMetamodelTypeBuiltinTypeA BuiltinType { get; set; }
+        public VapiMetadataMetamodelTypeBuiltinTypeEnumA BuiltinType { get; set; }
         /// <summary>
         /// Identifier and type of the user defined type.
         /// </summary>

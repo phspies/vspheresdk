@@ -29,6 +29,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "days")]
-        public Dictionary<string,ApplianceRecoveryBackupSchedulesDayOfWeekType> Days { get; set; }
+        public Dictionary<string,ApplianceRecoveryBackupSchedulesDayOfWeekEnumType> Days { get; set; }
     }
 }

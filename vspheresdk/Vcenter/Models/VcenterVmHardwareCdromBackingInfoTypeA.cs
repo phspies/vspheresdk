@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareCdromBackingTypeA Type { get; set; }
+        public VcenterVmHardwareCdromBackingTypeEnumA Type { get; set; }
         /// <summary>
         /// Path of the image file backing the virtual CD-ROM device.
         /// This field is optional and it is only relevant when the value of Cdrom.BackingInfo.type is ISO_FILE.
@@ -48,6 +48,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "device_access_type")]
-        public VcenterVmHardwareCdromDeviceAccessTypeA DeviceAccessType { get; set; }
+        public VcenterVmHardwareCdromDeviceAccessTypeEnumA DeviceAccessType { get; set; }
     }
 }

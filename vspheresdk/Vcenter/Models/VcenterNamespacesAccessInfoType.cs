@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "role", Required = Required.AllowNull)]
-        public VcenterNamespacesAccessRoleType Role { get; set; }
+        public VcenterNamespacesAccessRoleEnumType Role { get; set; }
         /// <summary>
         /// Flag to indicate if the Access.Info.role is direct or inherited. The value is set to true if the Access.Info.role is
         /// inherited from group membership

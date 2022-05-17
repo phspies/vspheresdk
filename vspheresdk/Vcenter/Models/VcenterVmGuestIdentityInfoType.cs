@@ -16,13 +16,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "name", Required = Required.AllowNull)]
-        public VcenterVmGuestOstype Name { get; set; }
+        public VcenterVmGuestOsenumType Name { get; set; }
         /// <summary>
         /// Guest operating system family.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "family", Required = Required.AllowNull)]
-        public VcenterVmGuestOsfamilyType Family { get; set; }
+        public VcenterVmGuestOsfamilyEnumType Family { get; set; }
         /// <summary>
         /// Guest operating system full name.
         /// </summary>

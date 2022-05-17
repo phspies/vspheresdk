@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterVmHardwareCdromHostBusAdapterType Type { get; set; }
+        public VcenterVmHardwareCdromHostBusAdapterTypeEnum Type { get; set; }
         /// <summary>
         /// Address for attaching the device to a virtual IDE adapter.
         /// If unset, the server will choose an available address; if none is available, the request will fail.

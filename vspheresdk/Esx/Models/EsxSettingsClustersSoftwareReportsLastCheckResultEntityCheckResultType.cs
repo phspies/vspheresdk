@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsLastCheckResultEntityCheckResultEntityType Type { get; set; }
+        public EsxSettingsClustersSoftwareReportsLastCheckResultEntityCheckResultEntityTypeEnum Type { get; set; }
         /// <summary>
         /// If the entity type is CLUSTER then the cluster identifier for which the checks have been run.
         /// </summary>
@@ -34,7 +34,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsLastCheckResultStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsLastCheckResultStatusEnumType Status { get; set; }
         /// <summary>
         /// List of {@name CheckStatus} for all checks performed.
         /// </summary>

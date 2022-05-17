@@ -16,13 +16,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "version", Required = Required.AllowNull)]
-        public VcenterVmHardwareVersionTypeA Version { get; set; }
+        public VcenterVmHardwareVersionEnumTypeA Version { get; set; }
         /// <summary>
         /// Scheduled upgrade policy.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_policy", Required = Required.AllowNull)]
-        public VcenterVmHardwareUpgradePolicyTypeA UpgradePolicy { get; set; }
+        public VcenterVmHardwareUpgradePolicyEnumTypeA UpgradePolicy { get; set; }
         /// <summary>
         /// Target hardware version to be used on the next scheduled virtual hardware upgrade.
         /// This field is optional and it is only relevant when the value of Hardware.Info.upgrade-policy is one of
@@ -30,13 +30,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_version")]
-        public VcenterVmHardwareVersionTypeA UpgradeVersion { get; set; }
+        public VcenterVmHardwareVersionEnumTypeA UpgradeVersion { get; set; }
         /// <summary>
         /// Scheduled upgrade status.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_status", Required = Required.AllowNull)]
-        public VcenterVmHardwareUpgradeStatusTypeA UpgradeStatus { get; set; }
+        public VcenterVmHardwareUpgradeStatusEnumTypeA UpgradeStatus { get; set; }
         /// <summary>
         /// Reason for the scheduled upgrade failure.
         /// This field is optional and it is only relevant when the value of Hardware.Info.upgrade-status is FAILED.

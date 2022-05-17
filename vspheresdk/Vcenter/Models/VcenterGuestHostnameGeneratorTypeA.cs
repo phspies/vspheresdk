@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterGuestHostnameGeneratorTypeA Type { get; set; }
+        public VcenterGuestHostnameGeneratorTypeEnumA Type { get; set; }
         /// <summary>
         /// The virtual machine name specified by the client.
         /// This field is optional and it is only relevant when the value of HostnameGenerator.type is FIXED.

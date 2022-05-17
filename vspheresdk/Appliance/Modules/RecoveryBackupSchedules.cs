@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Appliance.Models;
-using vspheresdk.Appliance.Models.Enums;
 
 namespace vspheresdk.Appliance.Modules
 {
@@ -39,11 +38,10 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CreateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the schedule with the given id already exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<object> ListAsync()
         {
@@ -55,10 +53,9 @@ namespace vspheresdk.Appliance.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<object> response = await restClient.ExecuteTaskAsyncWithPolicy<object>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<ApplianceRecoveryBackupSchedulesInfoType> GetAsync(string Schedule)
         {
@@ -72,11 +69,10 @@ namespace vspheresdk.Appliance.Modules
             GetServiceURL.Replace("{schedule}", System.Uri.EscapeDataString(Helpers.ConvertToString(Schedule, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<ApplianceRecoveryBackupSchedulesInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<ApplianceRecoveryBackupSchedulesInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if schedule associated with id does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task UpdateAsync(string Schedule, ApplianceRecoveryBackupSchedulesUpdateType RequestBody = null)
         {
@@ -91,12 +87,11 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = UpdateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if provided with invalid schedule specification.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if schedule associated with id does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task DeleteAsync(string Schedule)
         {
@@ -110,11 +105,10 @@ namespace vspheresdk.Appliance.Modules
             DeleteServiceURL.Replace("{schedule}", System.Uri.EscapeDataString(Helpers.ConvertToString(Schedule, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if schedule associated with id does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<ApplianceRecoveryBackupJobBackupJobStatusType> RunAsync(string Schedule, ApplianceRecoveryBackupSchedulesRunType RequestBody = null)
         {
@@ -129,12 +123,11 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = RunServiceURL.ToString();
             RestResponse<ApplianceRecoveryBackupJobBackupJobStatusType> response = await restClient.ExecuteTaskAsyncWithPolicy<ApplianceRecoveryBackupJobBackupJobStatusType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if a backup or restore is already in progress.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if schedule associated with id does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if any error occurs during the execution of the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

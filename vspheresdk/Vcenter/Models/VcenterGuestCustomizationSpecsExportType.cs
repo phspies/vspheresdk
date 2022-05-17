@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "format", Required = Required.AllowNull)]
-        public VcenterGuestCustomizationSpecsFormatType Format { get; set; }
+        public VcenterGuestCustomizationSpecsFormatEnumType Format { get; set; }
     }
 }

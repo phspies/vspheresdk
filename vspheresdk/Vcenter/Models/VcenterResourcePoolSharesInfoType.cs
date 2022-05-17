@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "level", Required = Required.AllowNull)]
-        public VcenterResourcePoolSharesInfoLevelType Level { get; set; }
+        public VcenterResourcePoolSharesInfoLevelEnumType Level { get; set; }
         /// <summary>
         /// When ResourcePool.SharesInfo.level is set to CUSTOM, it is the number of shares allocated. Otherwise, this value is
         /// ignored.

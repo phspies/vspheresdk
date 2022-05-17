@@ -17,7 +17,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "target", Required = Required.AllowNull)]
-        public ContentLibrarySubscriptionsCreateSpecSubscribedLibraryTargetTypeA Target { get; set; }
+        public ContentLibrarySubscriptionsCreateSpecSubscribedLibraryTargetEnumTypeA Target { get; set; }
         /// <summary>
         /// Specification for creating a new subscribed library associated with the subscription.
         /// </summary>
@@ -37,7 +37,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "location", Required = Required.AllowNull)]
-        public ContentLibrarySubscriptionsLocationTypeA Location { get; set; }
+        public ContentLibrarySubscriptionsLocationEnumTypeA Location { get; set; }
         /// <summary>
         /// Specification for the subscribed library's vCenter Server instance.
         /// </summary>

@@ -43,6 +43,6 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "query_options", Required = Required.AllowNull)]
-        public VstatsResourceAddressSchemasQueryCapabilitiesType QueryOptions { get; set; }
+        public VstatsResourceAddressSchemasQueryCapabilitiesEnumType QueryOptions { get; set; }
     }
 }

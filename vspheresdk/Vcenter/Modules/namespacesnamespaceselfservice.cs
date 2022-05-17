@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
-using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -37,12 +36,11 @@ namespace vspheresdk.Vcenter.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VcenterNamespacesNamespaceSelfServiceSummaryType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VcenterNamespacesNamespaceSelfServiceSummaryType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have System.Read privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VcenterNamespacesNamespaceSelfServiceInfoType> GetAsync(string Cluster)
         {
@@ -56,13 +54,12 @@ namespace vspheresdk.Vcenter.Modules
             GetServiceURL.Replace("{cluster}", System.Uri.EscapeDataString(Helpers.ConvertToString(Cluster, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<VcenterNamespacesNamespaceSelfServiceInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterNamespacesNamespaceSelfServiceInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if cluster with vSphere Namespaced enabled could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have System.Read privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task ActivateAsync(string Cluster)
         {
@@ -76,14 +73,13 @@ namespace vspheresdk.Vcenter.Modules
             ActivateServiceURL.Replace("{cluster}", System.Uri.EscapeDataString(Helpers.ConvertToString(Cluster, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ActivateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the service is marked for deactivation or the associated cluster is being disabled or no namespace template exists in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the specified cluster is not licensed.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if cluster with vSphere Namespaces enabled could not be located or no namespace templates exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.SelfServiceManage privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task ActivateWithTemplateAsync(string Cluster, VcenterNamespacesNamespaceSelfServiceActivateTemplateSpecType RequestBody = null)
         {
@@ -98,14 +94,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ActivateWithTemplateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the service is marked for deactivation or the associated cluster is being disabled.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the specified cluster is not licensed.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if cluster with vSphere Namespaces enabled could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.SelfServiceManage privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task DeactivateAsync(string Cluster)
         {
@@ -119,14 +114,13 @@ namespace vspheresdk.Vcenter.Modules
             DeactivateServiceURL.Replace("{cluster}", System.Uri.EscapeDataString(Helpers.ConvertToString(Cluster, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeactivateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if cluster with vSphere Namespaced enabled is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.SelfServiceManage privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the service is not activated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

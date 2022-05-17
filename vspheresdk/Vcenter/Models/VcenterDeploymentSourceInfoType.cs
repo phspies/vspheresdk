@@ -28,13 +28,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "deployment_type", Required = Required.AllowNull)]
-        public VcenterDeploymentApplianceType DeploymentType { get; set; }
+        public VcenterDeploymentApplianceTypeEnum DeploymentType { get; set; }
         /// <summary>
         /// Deployment size of the source vCenter Server.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "deployment_size", Required = Required.AllowNull)]
-        public VcenterDeploymentApplianceSizeType DeploymentSize { get; set; }
+        public VcenterDeploymentApplianceSizeEnumType DeploymentSize { get; set; }
         /// <summary>
         /// The SSO domain name of the source vCenter Server.
         /// </summary>

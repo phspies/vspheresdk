@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Appliance.Models;
-using vspheresdk.Appliance.Models.Enums;
 
 namespace vspheresdk.Appliance.Modules
 {
@@ -39,10 +38,9 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = SetServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<List<ApplianceNetworkingFirewallInboundRuleType>> GetAsync()
         {
@@ -54,10 +52,9 @@ namespace vspheresdk.Appliance.Modules
             };
             request.Resource = GetServiceURL.ToString();
             RestResponse<List<ApplianceNetworkingFirewallInboundRuleType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ApplianceNetworkingFirewallInboundRuleType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

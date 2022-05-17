@@ -60,7 +60,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "authentication_method", Required = Required.AllowNull)]
-        public VcenterIdentityProvidersOauth2AuthenticationMethodTypeA AuthenticationMethod { get; set; }
+        public VcenterIdentityProvidersOauth2AuthenticationMethodEnumTypeA AuthenticationMethod { get; set; }
         /// <summary>
         /// 
         /// key/value pairs that are to be appended to the authEndpoint request.

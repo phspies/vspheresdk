@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareSerialBackingTypeA Type { get; set; }
+        public VcenterVmHardwareSerialBackingTypeEnumA Type { get; set; }
         /// <summary>
         /// Path of the file backing the virtual serial port.
         /// This field is optional and it is only relevant when the value of Serial.BackingSpec.type is FILE.

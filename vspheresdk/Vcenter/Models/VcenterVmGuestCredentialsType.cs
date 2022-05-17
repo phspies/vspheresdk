@@ -23,7 +23,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmGuestCredentialsTypeA Type { get; set; }
+        public VcenterVmGuestCredentialsTypeEnum Type { get; set; }
         /// <summary>
         /// For SAML_BEARER_TOKEN, this is the guest user to be associated with the credentials. For USERNAME_PASSWORD this is the
         /// guest username.

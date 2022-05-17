@@ -54,7 +54,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceRecoveryReconciliationJobStatusType Status { get; set; }
+        public ApplianceRecoveryReconciliationJobStatusEnumType Status { get; set; }
         /// <summary>
         /// Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
         /// If unset, the operation cannot be canceled.

@@ -19,7 +19,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "auth_type", Required = Required.AllowNull)]
-        public EsxHostsSoftwareConnectionSpecAuthenticationType AuthType { get; set; }
+        public EsxHostsSoftwareConnectionSpecAuthenticationTypeEnum AuthType { get; set; }
         /// <summary>
         /// Specifies the host details to be used during the {@link esx.hosts.Software#get} {@term operation}
         /// </summary>

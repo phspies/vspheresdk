@@ -28,7 +28,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "subscribed_library_location", Required = Required.AllowNull)]
-        public ContentLibrarySubscriptionsLocationTypeA SubscribedLibraryLocation { get; set; }
+        public ContentLibrarySubscriptionsLocationEnumTypeA SubscribedLibraryLocation { get; set; }
         /// <summary>
         /// Information about the vCenter Server instance where the subscribed library exists.
         /// </summary>

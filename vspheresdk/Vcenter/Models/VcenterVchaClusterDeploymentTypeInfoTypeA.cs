@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "deployment_type", Required = Required.AllowNull)]
-        public VcenterVchaClusterDeploymentTypeTypeA DeploymentType { get; set; }
+        public VcenterVchaClusterDeploymentTypeTypeEnumA DeploymentType { get; set; }
     }
 }

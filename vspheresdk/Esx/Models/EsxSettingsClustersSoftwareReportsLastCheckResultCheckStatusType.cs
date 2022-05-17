@@ -22,7 +22,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsLastCheckResultStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsLastCheckResultStatusEnumType Status { get; set; }
         /// <summary>
         /// The issues encountered while running this check.
         /// </summary>

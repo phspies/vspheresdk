@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "compatibility", Required = Required.AllowNull)]
-        public EsxHclCompatibilityStatusType Compatibility { get; set; }
+        public EsxHclCompatibilityStatusEnumType Compatibility { get; set; }
         /// <summary>
         /// Information about the PCI device.
         /// </summary>

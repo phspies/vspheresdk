@@ -25,7 +25,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
-        public VcenterNamespacesInstancesConfigStatusType ConfigStatus { get; set; }
+        public VcenterNamespacesInstancesConfigStatusEnumType ConfigStatus { get; set; }
         /// <summary>
         /// Current set of messages associated with the object.
         /// </summary>

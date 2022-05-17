@@ -17,6 +17,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_policy")]
-        public VcenterVmToolsUpgradePolicyTypeA UpgradePolicy { get; set; }
+        public VcenterVmToolsUpgradePolicyEnumTypeA UpgradePolicy { get; set; }
     }
 }

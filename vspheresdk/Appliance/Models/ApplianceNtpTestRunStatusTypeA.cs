@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceNtpServerStatusTypeA Status { get; set; }
+        public ApplianceNtpServerStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Message associated with status
         /// </summary>

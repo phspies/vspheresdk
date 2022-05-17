@@ -30,7 +30,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "automation_level")]
-        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterDrsConfigDrsBehaviorInfoType AutomationLevel { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterDrsConfigDrsBehaviorInfoEnumType AutomationLevel { get; set; }
         /// <summary>
         /// Threshold for generated recommendations. DRS generates only those recommendations that are above the specified
         /// vmotionRate. Ratings vary from 1 to 5. Warning: This attribute is available as Technology Preview. These are early

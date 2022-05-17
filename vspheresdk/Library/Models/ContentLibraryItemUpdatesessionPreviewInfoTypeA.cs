@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public ContentLibraryItemUpdatesessionPreviewInfoStateTypeA State { get; set; }
+        public ContentLibraryItemUpdatesessionPreviewInfoStateEnumTypeA State { get; set; }
         /// <summary>
         /// The certificate information of the signed update session content.
         /// </summary>

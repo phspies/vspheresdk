@@ -22,6 +22,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterTrustedInfrastructureStsPrincipalTypeA Type { get; set; }
+        public VcenterTrustedInfrastructureStsPrincipalTypeEnum Type { get; set; }
     }
 }

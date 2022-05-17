@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ip_family", Required = Required.AllowNull)]
-        public VcenterVchaClusterIpFamilyType IpFamily { get; set; }
+        public VcenterVchaClusterIpFamilyEnumType IpFamily { get; set; }
         /// <summary>
         /// If the type of the ip family is IPV4, then this will point to IPv4 address specification.
         /// This field is optional and it is only relevant when the value of Cluster.IpInfo.ip-family is IPV4.

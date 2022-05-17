@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsHardwareCompatibilityComplianceStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsHardwareCompatibilityComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// HCL Validation check time.
         /// </summary>

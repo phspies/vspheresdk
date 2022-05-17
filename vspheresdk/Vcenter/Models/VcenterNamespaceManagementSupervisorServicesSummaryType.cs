@@ -31,6 +31,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesStateType State { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesStateEnumType State { get; set; }
     }
 }

@@ -32,7 +32,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersNetworkSpecIpv4ModeType Mode { get; set; }
+        public VcenterNamespaceManagementClustersNetworkSpecIpv4ModeEnumType Mode { get; set; }
         /// <summary>
         /// Settings for the interfaces on the network.
         /// This field is optional and it is only relevant when the value of Clusters.NetworkSpec.mode is STATICRANGE.

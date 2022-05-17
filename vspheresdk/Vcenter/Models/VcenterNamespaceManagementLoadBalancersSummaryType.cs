@@ -25,6 +25,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "provider", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementLoadBalancersProviderType Provider { get; set; }
+        public VcenterNamespaceManagementLoadBalancersProviderEnumType Provider { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "source_type", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareDraftsSourceType SourceType { get; set; }
+        public EsxSettingsClustersSoftwareDraftsSourceTypeEnum SourceType { get; set; }
         /// <summary>
         /// Location of the software specification file to be imported.
         /// </summary>

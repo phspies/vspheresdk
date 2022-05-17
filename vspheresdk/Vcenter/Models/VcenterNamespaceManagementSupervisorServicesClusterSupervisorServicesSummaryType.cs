@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesClusterSupervisorServicesConfigStatusType ConfigStatus { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesClusterSupervisorServicesConfigStatusEnumType ConfigStatus { get; set; }
         /// <summary>
         /// The current version for the Supervisor Service.
         /// If unset, there is no version installed for the Supervisor Service.

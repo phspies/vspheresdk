@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Appliance.Models;
-using vspheresdk.Appliance.Models.Enums;
 
 namespace vspheresdk.Appliance.Modules
 {
@@ -39,11 +38,10 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CreateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("If a username is invalid username is validated against azAZ09azAZ09.azAZ09 pattern", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<List<string>> ListAsync()
         {
@@ -55,10 +53,9 @@ namespace vspheresdk.Appliance.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task SetAsync(string Username, ApplianceLocalAccountsConfigType RequestBody = null)
         {
@@ -73,11 +70,10 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = SetServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the account is not found", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<ApplianceLocalAccountsInfoType> GetAsync(string Username)
         {
@@ -91,11 +87,10 @@ namespace vspheresdk.Appliance.Modules
             GetServiceURL.Replace("{username}", System.Uri.EscapeDataString(Helpers.ConvertToString(Username, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<ApplianceLocalAccountsInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<ApplianceLocalAccountsInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the account is not found", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task UpdateAsync(string Username, ApplianceLocalAccountsUpdateType RequestBody = null)
         {
@@ -110,11 +105,10 @@ namespace vspheresdk.Appliance.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = UpdateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the account is not found", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task DeleteAsync(string Username)
         {
@@ -128,11 +122,10 @@ namespace vspheresdk.Appliance.Modules
             DeleteServiceURL.Replace("{username}", System.Uri.EscapeDataString(Helpers.ConvertToString(Username, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If the account is not found", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

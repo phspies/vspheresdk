@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "size_hint")]
-        public VcenterNamespaceManagementSizingHintType SizeHint { get; set; }
+        public VcenterNamespaceManagementSizingHintEnumType SizeHint { get; set; }
         /// <summary>
         /// Basic runtime statistics for the cluster.
         /// </summary>
@@ -29,7 +29,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersConfigStatusType ConfigStatus { get; set; }
+        public VcenterNamespaceManagementClustersConfigStatusEnumType ConfigStatus { get; set; }
         /// <summary>
         /// Current set of messages associated with the object.
         /// </summary>
@@ -41,7 +41,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "kubernetes_status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersKubernetesStatusType KubernetesStatus { get; set; }
+        public VcenterNamespaceManagementClustersKubernetesStatusEnumType KubernetesStatus { get; set; }
         /// <summary>
         /// Current set of messages associated with the object.
         /// </summary>
@@ -91,7 +91,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespaceManagementClustersNetworkProviderEnumType NetworkProvider { get; set; }
         /// <summary>
         /// Specification for the NSX Container Plugin cluster network.
         /// This field is optional and it is only relevant when the value of Clusters.Info.network-provider is

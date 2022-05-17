@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtIpv4ModeType Mode { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtIpv4ModeEnumType Mode { get; set; }
         /// <summary>
         /// The IPv4 address, for example, "10.20.80.191".
         /// </summary>

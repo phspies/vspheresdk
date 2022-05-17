@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "severity", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSoftwareClustersMessageSeverityType Severity { get; set; }
+        public VcenterNamespaceManagementSoftwareClustersMessageSeverityEnumType Severity { get; set; }
         /// <summary>
         /// Details about the message.
         /// </summary>

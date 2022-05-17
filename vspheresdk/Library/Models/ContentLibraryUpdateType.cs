@@ -69,7 +69,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public ContentLibraryModelLibraryType Type { get; set; }
+        public ContentLibraryModelLibraryTypeEnum Type { get; set; }
         /// <summary>
         /// Defines various optimizations and optimization parameters applied to this library.
         /// </summary>

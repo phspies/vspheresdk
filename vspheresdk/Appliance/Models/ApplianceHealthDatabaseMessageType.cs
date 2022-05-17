@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "severity", Required = Required.AllowNull)]
-        public ApplianceHealthDatabaseMessageSeverityType Severity { get; set; }
+        public ApplianceHealthDatabaseMessageSeverityEnumType Severity { get; set; }
         /// <summary>
         /// Message describing the issue with the database.
         /// </summary>

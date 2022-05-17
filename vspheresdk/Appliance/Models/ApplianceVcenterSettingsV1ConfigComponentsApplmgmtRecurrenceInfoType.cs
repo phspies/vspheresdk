@@ -31,6 +31,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "days")]
-        public Dictionary<string,ApplianceVcenterSettingsV1ConfigComponentsApplmgmtRecurrenceInfoDayOfWeekType> Days { get; set; }
+        public Dictionary<string,ApplianceVcenterSettingsV1ConfigComponentsApplmgmtRecurrenceInfoDayOfWeekEnumType> Days { get; set; }
     }
 }

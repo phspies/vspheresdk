@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsComplianceStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Compatible Device Compliance result for all devices present on all hosts in the cluster compared with the corresponding
         /// component in the software specification. The key is the DeviceName and value is the PciDeviceComplianceInfo object.

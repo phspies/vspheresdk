@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider", Required = Required.AllowNull)]
-        public VcenterNamespacesInstancesNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespacesInstancesNetworkProviderEnumType NetworkProvider { get; set; }
         /// <summary>
         /// The create spec for an NSXT-backed Namespaces network configuration, supported by NSXT_CONTAINER_PLUGIN network
         /// provider.

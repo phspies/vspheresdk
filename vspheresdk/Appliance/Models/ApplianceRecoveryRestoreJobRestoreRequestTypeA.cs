@@ -23,7 +23,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "location_type", Required = Required.AllowNull)]
-        public ApplianceRecoveryRestoreJobLocationTypeA LocationType { get; set; }
+        public ApplianceRecoveryRestoreJobLocationTypeEnumA LocationType { get; set; }
         /// <summary>
         /// path or url
         /// </summary>

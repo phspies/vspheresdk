@@ -22,6 +22,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public ApplianceServicesStateType State { get; set; }
+        public ApplianceServicesStateEnumType State { get; set; }
     }
 }

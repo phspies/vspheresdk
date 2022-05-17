@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "method", Required = Required.AllowNull)]
-        public VapiRestNavigationHttpMethodType Method { get; set; }
+        public VapiRestNavigationHttpMethodEnumType Method { get; set; }
         /// <summary>
         /// URL to be called.
         /// </summary>

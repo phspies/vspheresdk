@@ -20,6 +20,6 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status")]
-        public VstatsCounterMetadataCounterEditionStatusType Status { get; set; }
+        public VstatsCounterMetadataCounterEditionStatusEnumType Status { get; set; }
     }
 }

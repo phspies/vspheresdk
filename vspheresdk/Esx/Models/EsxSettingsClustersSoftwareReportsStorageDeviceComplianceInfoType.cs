@@ -25,13 +25,13 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsComplianceStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Detailed compliance status of the storage device.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "detail", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsComplianceStatusDetailType Detail { get; set; }
+        public EsxSettingsClustersSoftwareReportsComplianceStatusDetailEnumType Detail { get; set; }
         /// <summary>
         /// Affected List of Host IDs where this device is found.
         /// </summary>

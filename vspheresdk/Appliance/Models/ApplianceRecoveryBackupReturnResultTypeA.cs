@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceRecoveryBackupReturnStatusTypeA Status { get; set; }
+        public ApplianceRecoveryBackupReturnStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// List of messages
         /// </summary>

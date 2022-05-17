@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "component_class", Required = Required.AllowNull)]
-        public EsxSettingsHardwareModuleClassType ComponentClass { get; set; }
+        public EsxSettingsHardwareModuleClassEnumType ComponentClass { get; set; }
         /// <summary>
         /// Descipription of the hardware module (e.g. "System BIOS" or "Frobozz 100Gb NIC").
         /// </summary>

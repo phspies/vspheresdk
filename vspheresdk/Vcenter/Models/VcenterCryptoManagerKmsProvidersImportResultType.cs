@@ -25,7 +25,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterCryptoManagerKmsProvidersType Type { get; set; }
+        public VcenterCryptoManagerKmsProvidersTypeEnum Type { get; set; }
         /// <summary>
         /// Native provider information
         /// This field is optional and it is only relevant when the value of Providers.ImportResult.type is NATIVE.

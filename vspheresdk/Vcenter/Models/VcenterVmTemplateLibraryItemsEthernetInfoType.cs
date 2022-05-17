@@ -16,13 +16,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "backing_type", Required = Required.AllowNull)]
-        public VcenterVmTemplateLibraryItemsEthernetInfoNetworkBackingType BackingType { get; set; }
+        public VcenterVmTemplateLibraryItemsEthernetInfoNetworkBackingTypeEnum BackingType { get; set; }
         /// <summary>
         /// MAC address type of the ethernet adapter.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mac_type", Required = Required.AllowNull)]
-        public VcenterVmTemplateLibraryItemsEthernetInfoMacAddressType MacType { get; set; }
+        public VcenterVmTemplateLibraryItemsEthernetInfoMacAddressTypeEnum MacType { get; set; }
         /// <summary>
         /// Identifier of the network backing the virtual Ethernet adapter.
         /// </summary>

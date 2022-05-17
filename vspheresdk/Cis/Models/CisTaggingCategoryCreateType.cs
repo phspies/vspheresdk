@@ -28,7 +28,7 @@ namespace vspheresdk.Cis.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "cardinality", Required = Required.AllowNull)]
-        public CisTaggingCategoryModelCardinalityType Cardinality { get; set; }
+        public CisTaggingCategoryModelCardinalityEnumType Cardinality { get; set; }
         /// <summary>
         /// Object types to which this category's tags can be attached.
         /// </summary>

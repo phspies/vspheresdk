@@ -25,13 +25,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "capability", Required = Required.AllowNull)]
-        public VcenterNamespacesNamespaceSelfServiceCapabilityType Capability { get; set; }
+        public VcenterNamespacesNamespaceSelfServiceCapabilityEnumType Capability { get; set; }
         /// <summary>
         /// The current status of the namespace-self-service.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterNamespacesNamespaceSelfServiceStatusType Status { get; set; }
+        public VcenterNamespacesNamespaceSelfServiceStatusEnumType Status { get; set; }
         /// <summary>
         /// Current set of messages associated with the object.
         /// </summary>

@@ -29,6 +29,6 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "item_type_rules", Required = Required.AllowNull)]
-        public Dictionary<string,ContentSecurityRuleType> ItemTypeRules { get; set; }
+        public Dictionary<string,ContentSecurityRuleTypeEnum> ItemTypeRules { get; set; }
     }
 }

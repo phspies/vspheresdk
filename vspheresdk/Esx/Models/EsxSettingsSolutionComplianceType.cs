@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsComplianceStatusType Status { get; set; }
+        public EsxSettingsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Current solution present on the host.
         /// </summary>

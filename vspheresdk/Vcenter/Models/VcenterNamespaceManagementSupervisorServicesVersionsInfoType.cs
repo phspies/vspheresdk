@@ -36,7 +36,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "content_type", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesVersionsContentType ContentType { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesVersionsContentTypeEnum ContentType { get; set; }
         /// <summary>
         /// Inline content that contains base64 encoded service definition for the version.
         /// If unset, no content is available for the Supervisor Service version.
@@ -55,6 +55,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesVersionsStateType State { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesVersionsStateEnumType State { get; set; }
     }
 }

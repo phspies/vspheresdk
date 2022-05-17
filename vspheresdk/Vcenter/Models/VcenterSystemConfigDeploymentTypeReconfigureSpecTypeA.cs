@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterDeploymentApplianceTypeA Type { get; set; }
+        public VcenterDeploymentApplianceTypeEnumA Type { get; set; }
         /// <summary>
         /// External PSC to register with when reconfiguring a VCSA_EMBEDDED appliance to a VCSA_EXTERNAL appliance.
         /// Only required when reconfiguring an VCSA_EMBEDDED node to a VCSA_EXTERNAL.

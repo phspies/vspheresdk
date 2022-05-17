@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
-using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -43,7 +42,7 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the operation is not supported by the VMware tools in the guest OS.if the operation is disabled by the VMware tools in the guest OS.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the virtual machine vm is not found.if the pid is not found. The value of vapi.std.errors.Errordata will contain all the fields defined in the Processes.ProcessErrorDetails providing additional information about the failure.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the virtual machine is busy.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
@@ -51,7 +50,6 @@ namespace vspheresdk.Vcenter.Modules
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if credentials is not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if credentials does not have permission to terminate the process.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<VcenterVmGuestProcessesInfoType> GetAsync(string Vm, long Pid, VcenterVmGuestProcessesGetType RequestBody)
         {
@@ -69,14 +67,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = GetServiceURL.ToString();
             RestResponse<VcenterVmGuestProcessesInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterVmGuestProcessesInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the operation is not supported by the VMware tools in the guest OS.if the operation is disabled by the VMware tools in the guest OS.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the virtual machine vm is not found.if the process pid is not found. The value of vapi.std.errors.Errordata will contain all the fields defined in the Processes.ProcessErrorDetails providing additional information about the failure.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the virtual machine is busy.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if the VMware tools are not running.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the credentials is not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<long> CreateAsync(string Vm, VcenterVmGuestProcessesCreateType RequestBody)
         {
@@ -92,7 +89,7 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CreateServiceURL.ToString();
             RestResponse<long> response = await restClient.ExecuteTaskAsyncWithPolicy<long>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 201) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the operation is not supported by the VMware tools in the guest OS.if the operation is disabled by the VMware tools in the guest OS.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the virtual machine vm is not found.if the program path does not exist. The value of vapi.std.errors.Errordata will contain all the fields defined in the FileErrorDetails providing additional information about the failure.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the program fails to start.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
@@ -100,7 +97,6 @@ namespace vspheresdk.Vcenter.Modules
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the credentials was not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the path field of spec cannot be accessed.if the path field of spec cannot be run because credentials will not allow the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<VcenterVmGuestProcessesSummaryType>> ListAsync(string Vm, VcenterVmGuestProcessesListType RequestBody)
         {
@@ -116,14 +112,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VcenterVmGuestProcessesSummaryType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VcenterVmGuestProcessesSummaryType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the operation is not supported by the VMware tools in the guest OS.if the operation is disabled by the VMware tools in the guest OS.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the virtual machine vm is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the virtual machine is busy.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if the VMware tools are not running.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the credentials is not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

@@ -32,7 +32,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_tag", Required = Required.AllowNull)]
-        public VcenterIdentityProvidersConfigTypeA ConfigTag { get; set; }
+        public VcenterIdentityProvidersConfigTypeEnumA ConfigTag { get; set; }
         /// <summary>
         /// OAuth2 Summary
         /// This field is optional and it is only relevant when the value of Providers.Summary.config-tag is Oauth2.

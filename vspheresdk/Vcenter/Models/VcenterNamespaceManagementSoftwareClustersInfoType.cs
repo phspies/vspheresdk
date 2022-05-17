@@ -41,7 +41,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSoftwareClustersStateType State { get; set; }
+        public VcenterNamespaceManagementSoftwareClustersStateEnumType State { get; set; }
         /// <summary>
         /// Information about upgrade in progress.
         /// If unset, the cluster upgrade is not in progress.

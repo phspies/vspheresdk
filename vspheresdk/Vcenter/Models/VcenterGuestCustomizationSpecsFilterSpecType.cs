@@ -28,6 +28,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "OS_type")]
-        public VcenterGuestCustomizationSpecsOsType OStype { get; set; }
+        public VcenterGuestCustomizationSpecsOsTypeEnum OStype { get; set; }
     }
 }

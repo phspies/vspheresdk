@@ -52,7 +52,7 @@ namespace vspheresdk.Cis.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status")]
-        public Dictionary<string,CisTaskStatusType> Status { get; set; }
+        public Dictionary<string,CisTaskStatusEnumType> Status { get; set; }
         /// <summary>
         /// Identifiers of the targets the operation for the associated task created or was performed on (see CommonInfo.target).
         /// If unset or empty, tasks associated with operations on any target match the filter.

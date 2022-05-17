@@ -28,7 +28,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_type", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterManagementVirtualMachineManagementVmtype VmType { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterManagementVirtualMachineManagementVmtypeEnum VmType { get; set; }
         /// <summary>
         /// Absolute path from root folder to management virtual machine parent vm folder. Warning: This attribute is available as
         /// Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since

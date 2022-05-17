@@ -37,7 +37,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "severity", Required = Required.AllowNull)]
-        public VcenterLcmUpdatePendingSeverityType Severity { get; set; }
+        public VcenterLcmUpdatePendingSeverityTypeEnum Severity { get; set; }
         /// <summary>
         /// Build number of the vCenter Release
         /// </summary>
@@ -49,13 +49,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "update_type", Required = Required.AllowNull)]
-        public VcenterLcmUpdatePendingUpdateType UpdateType { get; set; }
+        public VcenterLcmUpdatePendingUpdateTypeEnum UpdateType { get; set; }
         /// <summary>
         /// Category of the release based on features bundled on top of previous release
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public VcenterLcmUpdatePendingCategoryType Category { get; set; }
+        public VcenterLcmUpdatePendingCategoryEnumType Category { get; set; }
         /// <summary>
         /// Flag to suggest a reboot after the release is applied
         /// </summary>

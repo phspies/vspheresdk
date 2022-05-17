@@ -24,13 +24,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
-        public VcenterContentRegistriesHarborProjectsConfigStatusType ConfigStatus { get; set; }
+        public VcenterContentRegistriesHarborProjectsConfigStatusEnumType ConfigStatus { get; set; }
         /// <summary>
         /// The access type of a Harbor project.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "scope", Required = Required.AllowNull)]
-        public VcenterContentRegistriesHarborProjectsScopeType Scope { get; set; }
+        public VcenterContentRegistriesHarborProjectsScopeEnumType Scope { get; set; }
         /// <summary>
         /// The date and time when the harbor project creation API was triggered and project identifier generated.
         /// </summary>

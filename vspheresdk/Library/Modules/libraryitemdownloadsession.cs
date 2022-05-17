@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
-using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -39,11 +38,10 @@ namespace vspheresdk.Library.Modules
             if (ClientToken != null) { request.AddQueryParameter("client_token", ClientToken.ToString()); }
             request.Resource = CreateServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 201) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the session specification is not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item targeted by the download does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<string>> ListAsync(string? LibraryItemId = null)
         {
@@ -56,10 +54,9 @@ namespace vspheresdk.Library.Modules
             if (LibraryItemId != null) { request.AddQueryParameter("library_item_id", LibraryItemId.ToString()); }
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if a library item identifier is given for an item which does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<ContentLibraryItemDownloadSessionCreateType> GetAsync(string DownloadSessionId)
         {
@@ -73,10 +70,9 @@ namespace vspheresdk.Library.Modules
             GetServiceURL.Replace("{download_session_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(DownloadSessionId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<ContentLibraryItemDownloadSessionCreateType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentLibraryItemDownloadSessionCreateType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if no download session with the given param.name downloadSessionId exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task DeleteAsync(string DownloadSessionId)
         {
@@ -90,10 +86,9 @@ namespace vspheresdk.Library.Modules
             DeleteServiceURL.Replace("{download_session_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(DownloadSessionId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the download session does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task CancelAsync(string DownloadSessionId)
         {
@@ -107,11 +102,10 @@ namespace vspheresdk.Library.Modules
             CancelServiceURL.Replace("{download_session_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(DownloadSessionId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = CancelServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if no download session with the given identifier exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the download session is not in the link DownloadSessionModel.StateACTIVE state.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task FailAsync(string DownloadSessionId, ContentLibraryItemDownloadSessionFailType RequestBody)
         {
@@ -127,11 +121,10 @@ namespace vspheresdk.Library.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = FailServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the download session does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the download session is not in the link DownloadSessionModel.StateACTIVE state.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task KeepAliveAsync(string DownloadSessionId, ContentLibraryItemDownloadSessionKeepAliveType RequestBody = null)
         {
@@ -146,11 +139,10 @@ namespace vspheresdk.Library.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = KeepAliveServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if no download session with the given identifier exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the download session is not in the link DownloadSessionModel.StateACTIVE state.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

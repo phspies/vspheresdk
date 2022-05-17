@@ -27,7 +27,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "provider")]
-        public VcenterNamespaceManagementLoadBalancersProviderType Provider { get; set; }
+        public VcenterNamespaceManagementLoadBalancersProviderEnumType Provider { get; set; }
         /// <summary>
         /// The LoadBalancers.HAProxyConfigUpdateSpec is a conditional configuration made available upon selecting the HA_PROXY load
         /// balancer provider. It is used to configure the load balancer at run time.

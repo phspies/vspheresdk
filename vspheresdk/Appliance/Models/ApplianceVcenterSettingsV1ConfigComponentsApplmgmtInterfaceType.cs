@@ -24,7 +24,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status")]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtInterfaceInterfaceStatusType Status { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtInterfaceInterfaceStatusEnumType Status { get; set; }
         /// <summary>
         /// MAC address. For example 00:0C:29:94:BB:5A.
         /// If set, the mac was never set

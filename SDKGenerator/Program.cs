@@ -23,12 +23,8 @@ namespace SDK
 
         static Dictionary<string, string> models = new Dictionary<string, string>();
 
-
-
         static void Main(string[] args)
         {
-
-
             Helpers.Register(nameof(ToXmlDoc), ToXmlDoc);
             Helpers.Register(nameof(GetMethodName), GetMethodName);
             Helpers.Register(nameof(GetDotNetName), GetDotNetName);
@@ -74,7 +70,16 @@ namespace SDK
             {
                 foreach (var model in apiDoc.Value.Definitions)
                 {
-                    string className = model.Key.EndsWith("type", StringComparison.InvariantCultureIgnoreCase) ? PascalCase(model.Key) : PascalCase(model.Key + "Type");
+                    string className;
+                    if (model.Value.Enumeration.Count > 0)
+                    {
+                        className = model.Key.EndsWith("type", StringComparison.InvariantCultureIgnoreCase) ? PascalCase(model.Key + "Enum") : PascalCase(model.Key + "EnumType");
+                    }
+                    else
+                    {
+                        className = model.Key.EndsWith("type", StringComparison.InvariantCultureIgnoreCase) ? PascalCase(model.Key) : PascalCase(model.Key + "Type");
+                    }
+
                     if (models.Any(x => x.Value.Equals(className, StringComparison.CurrentCultureIgnoreCase)))
                     {
                         className = $"{className}" + "A";
@@ -175,13 +180,13 @@ namespace SDK
             }
             else
             {
-                if (String.IsNullOrWhiteSpace(response.Description)  && response.Schema == null)
+                if (String.IsNullOrWhiteSpace(response.Description) && response.Schema == null)
                 {
-                    context.Write("if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }");
+                    context.Write($"if ((int)response.StatusCode == {code})" + " {}");
                 }
                 else
                 {
-                    context.Write("if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }");
+                    context.Write($"if ((int)response.StatusCode == {code})" + " { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }");
                 }
             }
         }

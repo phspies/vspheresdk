@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterTrustedInfrastructureTrustAuthorityClustersKmsProvidersKeyServerCreateSpecTypeA Type { get; set; }
+        public VcenterTrustedInfrastructureTrustAuthorityClustersKmsProvidersKeyServerCreateSpecTypeEnum Type { get; set; }
         /// <summary>
         /// Description of the key server.
         /// If unset, description will not be added.

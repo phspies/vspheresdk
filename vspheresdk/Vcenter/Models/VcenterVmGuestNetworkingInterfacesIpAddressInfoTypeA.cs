@@ -34,12 +34,12 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "origin")]
-        public VcenterVmGuestNetworkingInterfacesIpAddressOriginTypeA Origin { get; set; }
+        public VcenterVmGuestNetworkingInterfacesIpAddressOriginEnumTypeA Origin { get; set; }
         /// <summary>
         /// The state of this ipAddress.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterVmGuestNetworkingInterfacesIpAddressStatusTypeA State { get; set; }
+        public VcenterVmGuestNetworkingInterfacesIpAddressStatusEnumTypeA State { get; set; }
     }
 }

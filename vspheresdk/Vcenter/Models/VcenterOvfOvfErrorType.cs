@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public VcenterOvfOvfMessageCategoryType Category { get; set; }
+        public VcenterOvfOvfMessageCategoryEnumType Category { get; set; }
         /// <summary>
         /// {@term List} of parse issues (see {@link ParseIssue}).
         /// </summary>

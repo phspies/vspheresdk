@@ -26,7 +26,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterTopologyNodesApplianceTypeA Type { get; set; }
+        public VcenterTopologyNodesApplianceTypeEnumA Type { get; set; }
         /// <summary>
         /// List of replication partners' node identifiers. Identifiers can be either IP address or DNS resolvable name of the
         /// partner node.

@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterVmHardwareAdapterScsiTypeA Type { get; set; }
+        public VcenterVmHardwareAdapterScsiTypeEnumA Type { get; set; }
         /// <summary>
         /// SCSI bus number.
         /// If unset, the server will choose an available bus number; if none is available, the request will fail.
@@ -39,6 +39,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        public VcenterVmHardwareAdapterScsiSharingTypeA Sharing { get; set; }
+        public VcenterVmHardwareAdapterScsiSharingEnumTypeA Sharing { get; set; }
     }
 }

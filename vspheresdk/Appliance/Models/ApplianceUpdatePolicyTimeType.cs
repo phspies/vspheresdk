@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "day", Required = Required.AllowNull)]
-        public ApplianceUpdatePolicyDayOfWeekType Day { get; set; }
+        public ApplianceUpdatePolicyDayOfWeekEnumType Day { get; set; }
         /// <summary>
         /// Hour: 0-24
         /// </summary>

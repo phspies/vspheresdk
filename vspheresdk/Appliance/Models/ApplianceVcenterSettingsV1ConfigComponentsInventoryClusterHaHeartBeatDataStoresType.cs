@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "heartbeat_datastore_policy", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaHeartBeatDataStoresHbdatastoreCandidateType HeartbeatDatastorePolicy { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaHeartBeatDataStoresHbdatastoreCandidateEnumType HeartbeatDatastorePolicy { get; set; }
         /// <summary>
         /// 
         /// </summary>

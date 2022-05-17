@@ -31,6 +31,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterNetworkType Type { get; set; }
+        public VcenterNetworkTypeEnum Type { get; set; }
     }
 }

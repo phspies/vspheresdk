@@ -28,7 +28,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "policy", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtFirewallRulePolicyPolicyType Policy { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtFirewallRulePolicyPolicyEnumType Policy { get; set; }
         /// <summary>
         /// The interface to which this rule applies. An empty string indicates that the rule applies to all interfaces.
         /// Only set if interface name required

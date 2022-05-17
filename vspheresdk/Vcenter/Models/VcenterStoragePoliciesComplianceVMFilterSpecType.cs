@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public Dictionary<string,VcenterStoragePoliciesComplianceVmstatusType> Status { get; set; }
+        public Dictionary<string,VcenterStoragePoliciesComplianceVmstatusEnumType> Status { get; set; }
         /// <summary>
         /// Identifiers of virtual machines that can match the filter
         /// If unset or empty, virtual machines with any identifier matches the filter

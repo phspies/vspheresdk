@@ -16,13 +16,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterContentRegistriesRecurrenceType Type { get; set; }
+        public VcenterContentRegistriesRecurrenceEnumType Type { get; set; }
         /// <summary>
         /// Day of the week when garbage collection should run.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "day_of_week")]
-        public VcenterContentRegistriesDayOfWeekType DayOfWeek { get; set; }
+        public VcenterContentRegistriesDayOfWeekEnumType DayOfWeek { get; set; }
         /// <summary>
         /// Hour at which garbage collection should run.
         /// </summary>

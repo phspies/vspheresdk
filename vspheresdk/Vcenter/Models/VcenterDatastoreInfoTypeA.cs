@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterDatastoreTypeA Type { get; set; }
+        public VcenterDatastoreTypeEnumA Type { get; set; }
         /// <summary>
         /// Whether or not this datastore is accessible.
         /// </summary>

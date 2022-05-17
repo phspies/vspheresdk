@@ -20,7 +20,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ha_network_type")]
-        public VcenterVchaNetworkType HaNetworkType { get; set; }
+        public VcenterVchaNetworkTypeEnum HaNetworkType { get; set; }
         /// <summary>
         /// The identifier of the Network object used for the HA network.
         /// If the Cluster.ActiveSpec.ha-network field is set, then the Cluster.ActiveSpec.ha-network-type field must be set.

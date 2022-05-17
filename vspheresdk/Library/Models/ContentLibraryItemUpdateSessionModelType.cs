@@ -49,7 +49,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state")]
-        public ContentLibraryItemUpdateSessionModelStateType State { get; set; }
+        public ContentLibraryItemUpdateSessionModelStateEnumType State { get; set; }
         /// <summary>
         /// Indicates the time after which the session will expire. The session is guaranteed not to expire earlier than this time.
         /// </summary>

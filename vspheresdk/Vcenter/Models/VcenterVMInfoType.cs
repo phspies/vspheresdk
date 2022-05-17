@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "guest_OS", Required = Required.AllowNull)]
-        public VcenterVmGuestOstype GuestOS { get; set; }
+        public VcenterVmGuestOsenumType GuestOS { get; set; }
         /// <summary>
         /// Virtual machine name.
         /// </summary>
@@ -35,7 +35,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "power_state", Required = Required.AllowNull)]
-        public VcenterVmPowerStateType PowerState { get; set; }
+        public VcenterVmPowerStateEnumType PowerState { get; set; }
         /// <summary>
         /// Indicates whether the virtual machine is frozen for instant clone, or not.
         /// This field is optional because it was added in a newer version than its parent node.

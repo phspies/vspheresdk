@@ -49,6 +49,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "error_type")]
-        public VapiStdErrorsErrorTypeA ErrorType { get; set; }
+        public VapiStdErrorsErrorTypeEnumA ErrorType { get; set; }
     }
 }

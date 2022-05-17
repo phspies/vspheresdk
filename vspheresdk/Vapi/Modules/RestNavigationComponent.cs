@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vapi.Models;
-using vspheresdk.Vapi.Models.Enums;
 
 namespace vspheresdk.Vapi.Modules
 {

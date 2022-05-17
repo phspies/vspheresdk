@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareEthernetBackingType Type { get; set; }
+        public VcenterVmHardwareEthernetBackingTypeEnum Type { get; set; }
         /// <summary>
         /// Identifier of the network backing the virtual Ethernet adapter.
         /// If unset, the identifier of the network backing could not be determined.

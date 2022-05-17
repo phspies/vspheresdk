@@ -22,6 +22,6 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "override")]
-        public EsxSettingsClustersSoftwareReportsHardwareCompatibilityStorageDeviceOverridesComplianceStatusComplianceActionType Override { get; set; }
+        public EsxSettingsClustersSoftwareReportsHardwareCompatibilityStorageDeviceOverridesComplianceStatusComplianceActionEnumType Override { get; set; }
     }
 }

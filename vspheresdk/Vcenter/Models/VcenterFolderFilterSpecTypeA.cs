@@ -34,7 +34,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterFolderTypeA Type { get; set; }
+        public VcenterFolderTypeEnumA Type { get; set; }
         /// <summary>
         /// Folders that must contain the folder for the folder to match the filter.
         /// If unset or empty, folder in any folder match the filter.

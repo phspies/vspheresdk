@@ -25,12 +25,12 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterCryptoManagerHostsKmsProvidersType Type { get; set; }
+        public VcenterCryptoManagerHostsKmsProvidersTypeEnum Type { get; set; }
         /// <summary>
         /// Health status of the provider
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health", Required = Required.AllowNull)]
-        public VcenterCryptoManagerHostsKmsProvidersHealthType Health { get; set; }
+        public VcenterCryptoManagerHostsKmsProvidersHealthEnumType Health { get; set; }
     }
 }

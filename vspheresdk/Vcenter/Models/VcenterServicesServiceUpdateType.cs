@@ -17,6 +17,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "startup_type")]
-        public VcenterServicesServiceStartupType StartupType { get; set; }
+        public VcenterServicesServiceStartupTypeEnum StartupType { get; set; }
     }
 }

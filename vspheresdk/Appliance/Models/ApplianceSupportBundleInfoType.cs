@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceSupportBundleCreationStatusType Status { get; set; }
+        public ApplianceSupportBundleCreationStatusEnumType Status { get; set; }
         /// <summary>
         /// Support bundle generation time.
         /// This field is optional and it is only relevant when the value of SupportBundle.Info.status is SUCCEEDED.

@@ -63,6 +63,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "load_balancer_size")]
-        public VcenterNamespaceManagementNetworksLoadBalancerSizeType LoadBalancerSize { get; set; }
+        public VcenterNamespaceManagementNetworksLoadBalancerSizeEnumType LoadBalancerSize { get; set; }
     }
 }

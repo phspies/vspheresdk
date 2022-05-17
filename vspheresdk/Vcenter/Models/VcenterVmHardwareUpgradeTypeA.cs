@@ -17,6 +17,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "version")]
-        public VcenterVmHardwareVersionTypeA Version { get; set; }
+        public VcenterVmHardwareVersionEnumTypeA Version { get; set; }
     }
 }

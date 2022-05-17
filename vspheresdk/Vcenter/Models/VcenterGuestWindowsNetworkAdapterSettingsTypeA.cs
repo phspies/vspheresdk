@@ -43,6 +43,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "net_BIOS_mode")]
-        public VcenterGuestWindowsNetworkAdapterSettingsNetBIOSModeTypeA NetBiosmode { get; set; }
+        public VcenterGuestWindowsNetworkAdapterSettingsNetBIOSModeEnumTypeA NetBiosmode { get; set; }
     }
 }

@@ -40,12 +40,12 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersConfigStatusType ConfigStatus { get; set; }
+        public VcenterNamespaceManagementClustersConfigStatusEnumType ConfigStatus { get; set; }
         /// <summary>
         /// Current setting for Clusters.KubernetesStatus.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "kubernetes_status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersKubernetesStatusType KubernetesStatus { get; set; }
+        public VcenterNamespaceManagementClustersKubernetesStatusEnumType KubernetesStatus { get; set; }
     }
 }

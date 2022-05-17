@@ -43,7 +43,7 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VstatsCounterMetadataCounterEditionStatusType Status { get; set; }
+        public VstatsCounterMetadataCounterEditionStatusEnumType Status { get; set; }
         /// <summary>
         /// Numeric properties of the sampled data. Warning: This attribute is available as Technology Preview. These are early
         /// access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback,
@@ -52,7 +52,7 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VstatsCounterMetadataSampleType Type { get; set; }
+        public VstatsCounterMetadataSampleTypeEnum Type { get; set; }
         /// <summary>
         /// The units of the measurement. Warning: This attribute is available as Technology Preview. These are early access APIs
         /// provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware does not
@@ -61,7 +61,7 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "units", Required = Required.AllowNull)]
-        public VstatsCounterMetadataMetricUnitsType Units { get; set; }
+        public VstatsCounterMetadataMetricUnitsEnumType Units { get; set; }
         /// <summary>
         /// Additional multiplier factors to be used with units. Warning: This attribute is available as Technology Preview. These
         /// are early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on
@@ -71,7 +71,7 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "scale")]
-        public VstatsCounterMetadataUnitsFactorType Scale { get; set; }
+        public VstatsCounterMetadataUnitsFactorEnumType Scale { get; set; }
         /// <summary>
         /// Human legible localizable text about the counter. Warning: This attribute is available as Technology Preview. These are
         /// early access APIs provided to test, automate and provide feedback on the feature. Since this can change based on

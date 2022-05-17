@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsComplianceStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// List of vSphere Versions compatible for this storage device.
         /// </summary>

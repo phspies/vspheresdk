@@ -37,7 +37,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public ApplianceUpdatePendingQuestionInputTypeA Type { get; set; }
+        public ApplianceUpdatePendingQuestionInputTypeEnumA Type { get; set; }
         /// <summary>
         /// List of allowed values
         /// allowedValues If unset any value is valid.

@@ -16,13 +16,13 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "impact", Required = Required.AllowNull)]
-        public EsxSettingsComplianceImpactType Impact { get; set; }
+        public EsxSettingsComplianceImpactEnumType Impact { get; set; }
         /// <summary>
         /// Overall compliance state of the host.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsComplianceStatusType Status { get; set; }
+        public EsxSettingsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Notifications returned by the scan operation.
         /// </summary>

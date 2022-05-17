@@ -79,6 +79,6 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VstatsAcqSpecsStatusType Status { get; set; }
+        public VstatsAcqSpecsStatusEnumType Status { get; set; }
     }
 }

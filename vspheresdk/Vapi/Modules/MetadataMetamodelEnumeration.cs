@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vapi.Models;
-using vspheresdk.Vapi.Models.Enums;
 
 namespace vspheresdk.Vapi.Modules
 {
@@ -37,9 +36,8 @@ namespace vspheresdk.Vapi.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VapiMetadataMetamodelEnumerationInfoType> GetAsync(string EnumerationId)
         {
@@ -53,10 +51,9 @@ namespace vspheresdk.Vapi.Modules
             GetServiceURL.Replace("{enumeration_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(EnumerationId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<VapiMetadataMetamodelEnumerationInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VapiMetadataMetamodelEnumerationInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the enumeration element associated with param.name enumerationId is not contained in any of the package elements service elements and structure elements.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

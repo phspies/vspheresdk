@@ -34,7 +34,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "types")]
-        public Dictionary<string,VcenterNetworkType> Types { get; set; }
+        public Dictionary<string,VcenterNetworkTypeEnum> Types { get; set; }
         /// <summary>
         /// Folders that must contain the network for the network to match the filter.
         /// If unset or empty, networks in any folder match the filter.

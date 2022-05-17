@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsComplianceStatusType Status { get; set; }
+        public EsxSettingsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Current version of the component present on the host.
         /// </summary>
@@ -34,13 +34,13 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "current_source")]
-        public EsxSettingsComponentSourceType CurrentSource { get; set; }
+        public EsxSettingsComponentSourceEnumType CurrentSource { get; set; }
         /// <summary>
         /// Source of the component in the software specification.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "target_source")]
-        public EsxSettingsComponentSourceType TargetSource { get; set; }
+        public EsxSettingsComponentSourceEnumType TargetSource { get; set; }
         /// <summary>
         /// Notifications describing the compliance result.
         /// </summary>

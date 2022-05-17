@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterDatastoreTypeA Type { get; set; }
+        public VcenterDatastoreTypeEnumA Type { get; set; }
         /// <summary>
         /// Available space of this datastore, in bytes.
         /// The server periodically updates this value.

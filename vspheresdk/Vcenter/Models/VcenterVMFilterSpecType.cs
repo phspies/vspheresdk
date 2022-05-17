@@ -84,6 +84,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "power_states")]
-        public Dictionary<string,VcenterVmPowerStateType> PowerStates { get; set; }
+        public Dictionary<string,VcenterVmPowerStateEnumType> PowerStates { get; set; }
     }
 }

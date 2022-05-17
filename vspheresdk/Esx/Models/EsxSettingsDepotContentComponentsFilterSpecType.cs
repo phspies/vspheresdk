@@ -40,6 +40,6 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "bundle_types")]
-        public Dictionary<string,EsxSettingsDepotContentComponentsComponentBundleType> BundleTypes { get; set; }
+        public Dictionary<string,EsxSettingsDepotContentComponentsComponentBundleTypeEnum> BundleTypes { get; set; }
     }
 }

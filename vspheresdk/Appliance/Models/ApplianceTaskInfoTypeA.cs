@@ -77,7 +77,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public CisTaskStatusTypeA Status { get; set; }
+        public CisTaskStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
         /// </summary>

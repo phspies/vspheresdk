@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "power_state", Required = Required.AllowNull)]
-        public VcenterVmPowerStateTypeA PowerState { get; set; }
+        public VcenterVmPowerStateEnumTypeA PowerState { get; set; }
         /// <summary>
         /// Number of CPU cores.
         /// This field will be unset if the virtual machine configuration is not available. For example, the configuration

@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmTemplateLibraryItemsDeploySpecDiskStoragePolicyTypeA Type { get; set; }
+        public VcenterVmTemplateLibraryItemsDeploySpecDiskStoragePolicyTypeEnumA Type { get; set; }
         /// <summary>
         /// Identifier of the storage policy to use.
         /// </summary>

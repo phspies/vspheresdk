@@ -24,7 +24,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "automation_level")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsDpmBehaviorInfoType AutomationLevel { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsDpmBehaviorInfoEnumType AutomationLevel { get; set; }
         /// <summary>
         /// DPM Advanced options.
         /// If unset or empty, the value is skipped.

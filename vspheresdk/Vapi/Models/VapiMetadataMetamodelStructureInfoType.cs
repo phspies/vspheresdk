@@ -25,7 +25,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelStructureInfoTypeA Type { get; set; }
+        public VapiMetadataMetamodelStructureInfoTypeEnum Type { get; set; }
         /// <summary>
         /// Metamodel information of all the enumeration elements contained in the structure element. The key in the {@term map} is
         /// the identifier of the enumeration element and the value is the metamodel information of the enumeration element.

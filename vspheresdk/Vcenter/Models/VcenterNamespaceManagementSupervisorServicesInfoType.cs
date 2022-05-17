@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesStateType State { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesStateEnumType State { get; set; }
         /// <summary>
         /// A human readable description of the Supervisor Service.
         /// If unset, no description is available for the Supervisor Service.

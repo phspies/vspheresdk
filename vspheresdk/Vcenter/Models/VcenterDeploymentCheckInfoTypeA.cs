@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterDeploymentCheckStatusTypeA Status { get; set; }
+        public VcenterDeploymentCheckStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Result of the check.
         /// This field will be unset if result is not available at the current step of the task.

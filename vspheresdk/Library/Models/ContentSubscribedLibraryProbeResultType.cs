@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ContentSubscribedLibraryProbeResultStatusType Status { get; set; }
+        public ContentSubscribedLibraryProbeResultStatusEnumType Status { get; set; }
         /// <summary>
         /// The SSL thumbprint for the remote endpoint.
         /// </summary>

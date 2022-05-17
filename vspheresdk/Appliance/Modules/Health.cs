@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Appliance.Models;
-using vspheresdk.Appliance.Models.Enums;
 
 namespace vspheresdk.Appliance.Modules
 {
@@ -39,11 +38,10 @@ namespace vspheresdk.Appliance.Modules
             MessagesServiceURL.Replace("{item}", System.Uri.EscapeDataString(Helpers.ConvertToString(Item, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = MessagesServiceURL.ToString();
             RestResponse<List<ApplianceNotificationType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ApplianceNotificationType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("Unknown health item", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

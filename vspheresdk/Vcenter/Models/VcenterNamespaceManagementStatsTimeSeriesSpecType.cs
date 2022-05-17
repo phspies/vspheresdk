@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "obj_type", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementStatsTimeSeriesSpecObjType ObjType { get; set; }
+        public VcenterNamespaceManagementStatsTimeSeriesSpecObjTypeEnum ObjType { get; set; }
         /// <summary>
         /// Pod Identifier for queries on an individual pod.
         /// This field is optional and it is only relevant when the value of TimeSeries.Spec.obj-type is POD.

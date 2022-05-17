@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterGuestDomainTypeA Type { get; set; }
+        public VcenterGuestDomainTypeEnum Type { get; set; }
         /// <summary>
         /// The workgroup that the virtual machine should join.
         /// This field is optional and it is only relevant when the value of Domain.type is WORKGROUP.

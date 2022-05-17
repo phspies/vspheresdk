@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public VcenterVchaClusterModeClusterModeTypeA Mode { get; set; }
+        public VcenterVchaClusterModeClusterModeEnumTypeA Mode { get; set; }
     }
 }

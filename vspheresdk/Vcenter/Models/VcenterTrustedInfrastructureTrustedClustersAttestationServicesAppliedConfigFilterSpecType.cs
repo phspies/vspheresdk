@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public Dictionary<string,VcenterTrustedInfrastructureTrustedClustersAttestationServicesAppliedConfigHealthType> Health { get; set; }
+        public Dictionary<string,VcenterTrustedInfrastructureTrustedClustersAttestationServicesAppliedConfigHealthEnumType> Health { get; set; }
         /// <summary>
         /// The network address of the Attestation Service configured for use in the Trusted Cluster.
         /// If unset, no filtration will be performed by network address.

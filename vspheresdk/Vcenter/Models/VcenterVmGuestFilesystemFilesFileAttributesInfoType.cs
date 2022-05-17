@@ -36,7 +36,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "filesystem_family", Required = Required.AllowNull)]
-        public VcenterVmGuestFilesystemFilesFilesystemFamilyType FilesystemFamily { get; set; }
+        public VcenterVmGuestFilesystemFilesFilesystemFamilyEnumType FilesystemFamily { get; set; }
         /// <summary>
         /// Windows-specific file information.
         /// This field is optional and it is only relevant when the value of Files.FileAttributesInfo.filesystem-family is WINDOWS.

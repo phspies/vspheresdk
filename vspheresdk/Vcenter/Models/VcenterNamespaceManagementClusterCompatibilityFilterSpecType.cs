@@ -25,6 +25,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider")]
-        public VcenterNamespaceManagementClustersNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespaceManagementClustersNetworkProviderEnumType NetworkProvider { get; set; }
     }
 }

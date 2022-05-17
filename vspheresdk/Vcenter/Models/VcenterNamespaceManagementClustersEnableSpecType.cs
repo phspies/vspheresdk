@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "size_hint", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSizingHintType SizeHint { get; set; }
+        public VcenterNamespaceManagementSizingHintEnumType SizeHint { get; set; }
         /// <summary>
         /// CIDR block from which Kubernetes allocates service cluster IP addresses. This range should not overlap with those in
         /// Clusters.NCPClusterNetworkEnableSpec.pod-cidrs, Clusters.NCPClusterNetworkEnableSpec.ingress-cidrs,
@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespaceManagementClustersNetworkProviderEnumType NetworkProvider { get; set; }
         /// <summary>
         /// Specification for the NSX Container Plugin cluster network.
         /// This field is optional and it is only relevant when the value of Clusters.EnableSpec.network-provider is

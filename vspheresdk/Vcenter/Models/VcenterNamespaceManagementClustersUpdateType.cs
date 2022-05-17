@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "size_hint")]
-        public VcenterNamespaceManagementSizingHintType SizeHint { get; set; }
+        public VcenterNamespaceManagementSizingHintEnumType SizeHint { get; set; }
         /// <summary>
         /// Optionally, you can edit the floating IP address that is assigned to the Supervisor in case the DHCP server fails during
         /// the Supervisor enablement process. The field is only relevant when the DHCP mode of the Supervisor management network is
@@ -34,7 +34,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider")]
-        public VcenterNamespaceManagementClustersNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespaceManagementClustersNetworkProviderEnumType NetworkProvider { get; set; }
         /// <summary>
         /// Updated specification for the cluster network configuration.
         /// If unset, the existing effective cluster network specification will not be modified.

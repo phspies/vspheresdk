@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "res", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSoftwareClustersResultResType Res { get; set; }
+        public VcenterNamespaceManagementSoftwareClustersResultResEnumType Res { get; set; }
         /// <summary>
         /// Exception when cluster pre-check failed during upgrade invocation.
         /// This field is optional and it is only relevant when the value of Clusters.Result.res is REJECTED.

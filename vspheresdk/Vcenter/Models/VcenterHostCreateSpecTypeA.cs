@@ -52,7 +52,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "thumbprint_verification", Required = Required.AllowNull)]
-        public VcenterHostCreateSpecThumbprintVerificationTypeA ThumbprintVerification { get; set; }
+        public VcenterHostCreateSpecThumbprintVerificationEnumTypeA ThumbprintVerification { get; set; }
         /// <summary>
         /// The thumbprint of the SSL certificate, which the host is expected to have. The thumbprint is always computed using the
         /// SHA1 hash and is the string representation of that hash in the format:

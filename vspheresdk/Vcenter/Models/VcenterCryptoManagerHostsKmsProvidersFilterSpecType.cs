@@ -27,13 +27,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public Dictionary<string,VcenterCryptoManagerHostsKmsProvidersHealthType> Health { get; set; }
+        public Dictionary<string,VcenterCryptoManagerHostsKmsProvidersHealthEnumType> Health { get; set; }
         /// <summary>
         /// Provider types.
         /// If unset or empty, the result will not be filtered by provider type.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "types")]
-        public Dictionary<string,VcenterCryptoManagerHostsKmsProvidersType> Types { get; set; }
+        public Dictionary<string,VcenterCryptoManagerHostsKmsProvidersTypeEnum> Types { get; set; }
     }
 }

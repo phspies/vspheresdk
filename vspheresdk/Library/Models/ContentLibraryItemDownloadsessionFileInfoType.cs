@@ -35,7 +35,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ContentLibraryItemDownloadsessionFilePrepareStatusType Status { get; set; }
+        public ContentLibraryItemDownloadsessionFilePrepareStatusEnumType Status { get; set; }
         /// <summary>
         /// Endpoint at which the file is available for download. The value is valid only when the {@link #status} is {@link
         /// File.PrepareStatus#PREPARED}.

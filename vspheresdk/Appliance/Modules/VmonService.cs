@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Appliance.Models;
-using vspheresdk.Appliance.Models.Enums;
 
 namespace vspheresdk.Appliance.Modules
 {

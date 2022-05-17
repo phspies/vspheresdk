@@ -52,7 +52,7 @@ namespace vspheresdk.Cis.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "format")]
-        public VapiStdLocalizationParamDateTimeFormatType Format { get; set; }
+        public VapiStdLocalizationParamDateTimeFormatEnumType Format { get; set; }
         /// <summary>
         /// Number of fractional digits to include in formatted {@term double} value.
         /// </summary>

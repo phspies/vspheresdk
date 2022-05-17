@@ -18,7 +18,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state")]
-        public VcenterVchaClusterNodeStateTypeA State { get; set; }
+        public VcenterVchaClusterNodeStateEnumTypeA State { get; set; }
         /// <summary>
         /// Last known role of the node.
         /// The active node's management vCenter server credentials are not required to populate Cluster.NodeRuntimeInfo.role.
@@ -26,7 +26,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "role")]
-        public VcenterVchaClusterNodeRoleTypeA Role { get; set; }
+        public VcenterVchaClusterNodeRoleEnumTypeA Role { get; set; }
         /// <summary>
         /// Placement information of the node.
         /// The active node's management vCenter server credentials are required to populate most fields of

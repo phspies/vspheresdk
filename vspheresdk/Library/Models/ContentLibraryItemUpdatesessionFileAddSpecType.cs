@@ -22,7 +22,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "source_type", Required = Required.AllowNull)]
-        public ContentLibraryItemUpdatesessionFileSourceType SourceType { get; set; }
+        public ContentLibraryItemUpdatesessionFileSourceTypeEnum SourceType { get; set; }
         /// <summary>
         /// Location from which the Content Library Service will fetch the file, rather than requiring a client to upload the file.
         /// </summary>

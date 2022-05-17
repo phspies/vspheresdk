@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vapi.Models;
-using vspheresdk.Vapi.Models.Enums;
 
 namespace vspheresdk.Vapi.Modules
 {
@@ -39,10 +38,9 @@ namespace vspheresdk.Vapi.Modules
             ListServiceURL.Replace("{service_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(ServiceId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the service element associated with param.name serviceId does not exist in any of the package elements.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VapiMetadataMetamodelOperationInfoType> GetAsync(string ServiceId, string OperationId)
         {
@@ -58,10 +56,9 @@ namespace vspheresdk.Vapi.Modules
             GetServiceURL.Replace("{operation_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(OperationId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<VapiMetadataMetamodelOperationInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VapiMetadataMetamodelOperationInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the service element associated with param.name serviceId does not exist in any of the package elements.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

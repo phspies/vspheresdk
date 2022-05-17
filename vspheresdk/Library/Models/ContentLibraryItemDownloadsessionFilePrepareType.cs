@@ -24,6 +24,6 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "endpoint_type")]
-        public ContentLibraryItemDownloadsessionFileEndpointType EndpointType { get; set; }
+        public ContentLibraryItemDownloadsessionFileEndpointTypeEnum EndpointType { get; set; }
     }
 }

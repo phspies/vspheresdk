@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ip_family", Required = Required.AllowNull)]
-        public VcenterVchaIpFamilyType IpFamily { get; set; }
+        public VcenterVchaIpFamilyEnumType IpFamily { get; set; }
         /// <summary>
         /// If the family of the ip is IPV4, then this will point to IPv4 address specification.
         /// This field is optional and it is only relevant when the value of IpSpec.ip-family is IPV4.

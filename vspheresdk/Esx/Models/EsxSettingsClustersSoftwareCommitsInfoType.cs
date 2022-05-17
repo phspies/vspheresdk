@@ -34,6 +34,6 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "apply_status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareCommitsInfoApplyStatusType ApplyStatus { get; set; }
+        public EsxSettingsClustersSoftwareCommitsInfoApplyStatusTypeEnum ApplyStatus { get; set; }
     }
 }

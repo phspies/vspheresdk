@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterComputePoliciesObjectComplianceType Status { get; set; }
+        public VcenterComputePoliciesObjectComplianceEnumType Status { get; set; }
     }
 }

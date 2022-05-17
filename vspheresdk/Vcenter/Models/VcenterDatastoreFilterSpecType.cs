@@ -34,7 +34,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "types")]
-        public Dictionary<string,VcenterDatastoreType> Types { get; set; }
+        public Dictionary<string,VcenterDatastoreTypeEnum> Types { get; set; }
         /// <summary>
         /// Folders that must contain the datastore for the datastore to match the filter.
         /// If unset or empty, datastores in any folder match the filter.

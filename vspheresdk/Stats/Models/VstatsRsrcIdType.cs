@@ -50,7 +50,7 @@ namespace vspheresdk.Stats.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "predicate")]
-        public VstatsQueryPredicateType Predicate { get; set; }
+        public VstatsQueryPredicateEnumType Predicate { get; set; }
         /// <summary>
         /// An optional designation of the scheme. Warning: This attribute is available as Technology Preview. These are early
         /// access APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback,

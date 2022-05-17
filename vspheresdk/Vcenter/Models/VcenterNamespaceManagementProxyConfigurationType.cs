@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "proxy_settings_source", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementProxySettingsSourceType ProxySettingsSource { get; set; }
+        public VcenterNamespaceManagementProxySettingsSourceEnumType ProxySettingsSource { get; set; }
         /// <summary>
         /// HTTPS proxy configuration. Examples:
         /// - http://username:password@proxy.vmware.com:8080

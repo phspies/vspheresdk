@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Cis.Models;
-using vspheresdk.Cis.Models.Enums;
 
 namespace vspheresdk.Cis.Modules
 {
@@ -37,11 +36,10 @@ namespace vspheresdk.Cis.Modules
             };
             request.Resource = GetServiceURL.ToString();
             RestResponse<CisSessionInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<CisSessionInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the session id is missing from the request or the corresponding session object cannot be found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if session retrieval fails due to server specific issues e.g. connection to back end component is failing. Due to the security nature of this API further details will not be disclosed in the error. Please refer to component health information administrative logs and product specific documentation for possible causes.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<string> CreateAsync()
         {
@@ -53,11 +51,10 @@ namespace vspheresdk.Cis.Modules
             };
             request.Resource = CreateServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 201) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the session creation fails due to request specific issues. Due to the security nature of the API the details of the error are not disclosed. p Please check the following preconditions if using a SAML token to authenticate ul lithe supplied token is delegateable.li lithe time of client and server system are synchronized.li lithe token supplied is valid.li liif bearer tokens are used check that system configuration allows the API endpoint to accept such tokens.li ul", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if session creation fails due to server specific issues for example connection to a back end component is failing. Due to the security nature of this API further details will not be disclosed in the term error. Please refer to component health information administrative logs and product specific documentation for possible causes.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task DeleteAsync()
         {
@@ -69,11 +66,10 @@ namespace vspheresdk.Cis.Modules
             };
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the session id is missing from the request or the corresponding session object cannot be found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if session deletion fails due to server specific issues for example connection to a back end component is failing. Due to the security nature of this API further details will not be disclosed in the term error. Please refer to component health information administrative logs and product specific documentation for possible causes.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

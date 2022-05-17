@@ -31,13 +31,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "connection_state", Required = Required.AllowNull)]
-        public VcenterHostConnectionStateType ConnectionState { get; set; }
+        public VcenterHostConnectionStateEnumType ConnectionState { get; set; }
         /// <summary>
         /// Power state of the host
         /// This field is optional and it is only relevant when the value of Host.Summary.connection-state is CONNECTED.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "power_state")]
-        public VcenterHostPowerStateType PowerState { get; set; }
+        public VcenterHostPowerStateEnumType PowerState { get; set; }
     }
 }

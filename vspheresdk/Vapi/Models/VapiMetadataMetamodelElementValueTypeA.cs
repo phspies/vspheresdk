@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelElementValueTypeA Type { get; set; }
+        public VapiMetadataMetamodelElementValueTypeEnumA Type { get; set; }
         /// <summary>
         /// Long value of the metadata element.
         /// </summary>

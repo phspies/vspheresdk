@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesValidationStatusType Status { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesValidationStatusEnumType Status { get; set; }
         /// <summary>
         /// The type of the provided content. When this SupervisorServices.CheckResult.content-type is CUSTOM_YAML, the
         /// SupervisorServices.CheckResult.status is always VALID because a custom format is not validated.
@@ -24,7 +24,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "content_type")]
-        public VcenterNamespaceManagementSupervisorServicesVersionsContentType ContentType { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesVersionsContentTypeEnum ContentType { get; set; }
         /// <summary>
         /// The information about the Supervisor Service version retrieved from the provided content as a result of validation
         /// checks if the content is in the vSphere application format.

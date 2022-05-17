@@ -49,6 +49,6 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "generic", Required = Required.AllowNull)]
-        public VapiMetadataCliCommandGenericType Generic { get; set; }
+        public VapiMetadataCliCommandGenericTypeEnum Generic { get; set; }
     }
 }

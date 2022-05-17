@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareBootDeviceTypeA Type { get; set; }
+        public VcenterVmHardwareBootDeviceTypeEnumA Type { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "formatter")]
-        public VapiMetadataCliCommandFormatterTypeA Formatter { get; set; }
+        public VapiMetadataCliCommandFormatterTypeEnumA Formatter { get; set; }
         /// <summary>
         /// List of output structure name and output field info.
         /// </summary>

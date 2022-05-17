@@ -34,13 +34,13 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public EsxSettingsDepotContentComponentsCategoryType Category { get; set; }
+        public EsxSettingsDepotContentComponentsCategoryTypeEnum Category { get; set; }
         /// <summary>
         /// Urgency of the component version.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "urgency", Required = Required.AllowNull)]
-        public EsxSettingsDepotContentComponentsUrgencyType Urgency { get; set; }
+        public EsxSettingsDepotContentComponentsUrgencyTypeEnum Urgency { get; set; }
         /// <summary>
         /// Link to kb article related to this the component version.
         /// </summary>

@@ -16,6 +16,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public ApplianceTimesyncTimeSyncModeTypeA Mode { get; set; }
+        public ApplianceTimesyncTimeSyncModeEnumTypeA Mode { get; set; }
     }
 }

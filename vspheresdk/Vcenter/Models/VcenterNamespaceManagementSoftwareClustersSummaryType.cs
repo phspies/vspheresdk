@@ -60,6 +60,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSoftwareClustersStateType State { get; set; }
+        public VcenterNamespaceManagementSoftwareClustersStateEnumType State { get; set; }
     }
 }

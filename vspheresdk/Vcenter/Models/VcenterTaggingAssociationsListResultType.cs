@@ -33,6 +33,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterTaggingAssociationsLastIterationStatusType Status { get; set; }
+        public VcenterTaggingAssociationsLastIterationStatusEnumType Status { get; set; }
     }
 }

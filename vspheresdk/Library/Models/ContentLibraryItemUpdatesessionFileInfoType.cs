@@ -23,7 +23,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "source_type", Required = Required.AllowNull)]
-        public ContentLibraryItemUpdatesessionFileSourceType SourceType { get; set; }
+        public ContentLibraryItemUpdatesessionFileSourceTypeEnum SourceType { get; set; }
         /// <summary>
         /// The file size, in bytes as received by the server. This {@term field} is guaranteed to be set when the server has
         /// completely received the file.
@@ -60,7 +60,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ContentLibraryItemTransferStatusType Status { get; set; }
+        public ContentLibraryItemTransferStatusEnumType Status { get; set; }
         /// <summary>
         /// Details about the transfer error.
         /// </summary>

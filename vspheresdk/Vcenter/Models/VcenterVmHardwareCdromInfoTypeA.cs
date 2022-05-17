@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareCdromHostBusAdapterTypeA Type { get; set; }
+        public VcenterVmHardwareCdromHostBusAdapterTypeEnumA Type { get; set; }
         /// <summary>
         /// Device label.
         /// </summary>
@@ -48,7 +48,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterVmHardwareConnectionStateTypeA State { get; set; }
+        public VcenterVmHardwareConnectionStateEnumTypeA State { get; set; }
         /// <summary>
         /// Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
         /// </summary>

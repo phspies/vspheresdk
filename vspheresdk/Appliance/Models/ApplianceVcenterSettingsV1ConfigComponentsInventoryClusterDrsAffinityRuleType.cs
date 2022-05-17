@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsStatusType Status { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsStatusEnumType Status { get; set; }
         /// <summary>
         /// Flag to indicate whether or not the rule is enabled. Set this property when user configures the rule. The default value
         /// is false (disabled). If there is a rule conflict, the Server can override the setting to disable a rule.

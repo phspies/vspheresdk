@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementClustersNetworkProviderType NetworkProvider { get; set; }
+        public VcenterNamespaceManagementClustersNetworkProviderEnumType NetworkProvider { get; set; }
         /// <summary>
         /// Modified configuration specification for a DVPG-backed Namespaces network object, supported by VSPHERE_NETWORK network
         /// provider.

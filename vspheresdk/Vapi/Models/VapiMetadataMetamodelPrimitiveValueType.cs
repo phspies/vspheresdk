@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelPrimitiveValueTypeA Type { get; set; }
+        public VapiMetadataMetamodelPrimitiveValueTypeEnum Type { get; set; }
         /// <summary>
         /// Boolean value of the constant.
         /// </summary>

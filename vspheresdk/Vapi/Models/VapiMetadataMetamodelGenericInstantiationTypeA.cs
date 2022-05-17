@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "generic_type", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelGenericInstantiationGenericTypeA GenericType { get; set; }
+        public VapiMetadataMetamodelGenericInstantiationGenericTypeEnumA GenericType { get; set; }
         /// <summary>
         /// Type of the element parameter if the generic type instantiation is a {@link GenericType#LIST}, {@link
         /// GenericType#OPTIONAL} or {@link GenericType#SET}.

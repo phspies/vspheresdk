@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterCryptoManagerKmsProvidersExportTypeA Type { get; set; }
+        public VcenterCryptoManagerKmsProvidersExportTypeEnum Type { get; set; }
         /// <summary>
         /// Location of the exported configuration
         /// This field is optional and it is only relevant when the value of Providers.ExportResult.type is LOCATION.

@@ -24,14 +24,14 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "automation_level")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsProactiveHaconfigBehaviorType AutomationLevel { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsProactiveHaconfigBehaviorTypeEnum AutomationLevel { get; set; }
         /// <summary>
         /// Configured remediation for moderately degraded hosts. Values are of type RemediationType.
         /// If unset or empty, the value is skipped.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "remediation")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsProactiveHaconfigRemediationType Remediation { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsProactiveHaconfigRemediationTypeEnum Remediation { get; set; }
         /// <summary>
         /// The list of health update providers configured for this cluster. Providers are identified by their id. If the provider
         /// list is empty, InfraUpdateHA will not be active.

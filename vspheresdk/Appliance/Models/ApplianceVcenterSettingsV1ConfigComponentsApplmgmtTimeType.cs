@@ -31,6 +31,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "day")]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtTimeUpdateDayType Day { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtTimeUpdateDayEnumType Day { get; set; }
     }
 }

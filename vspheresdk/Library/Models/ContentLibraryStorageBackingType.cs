@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public ContentLibraryStorageBackingTypeA Type { get; set; }
+        public ContentLibraryStorageBackingTypeEnum Type { get; set; }
         /// <summary>
         /// Identifier of the datastore used to store the content in the library.
         /// </summary>

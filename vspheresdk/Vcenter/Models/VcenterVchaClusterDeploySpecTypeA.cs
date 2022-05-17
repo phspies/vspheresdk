@@ -24,7 +24,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "deployment", Required = Required.AllowNull)]
-        public VcenterVchaClusterTypeA Deployment { get; set; }
+        public VcenterVchaClusterTypeEnumA Deployment { get; set; }
         /// <summary>
         /// Contains the active node's network configuration.
         /// </summary>

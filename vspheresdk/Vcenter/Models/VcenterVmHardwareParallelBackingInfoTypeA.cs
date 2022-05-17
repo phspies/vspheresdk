@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareParallelBackingTypeA Type { get; set; }
+        public VcenterVmHardwareParallelBackingTypeEnumA Type { get; set; }
         /// <summary>
         /// Path of the file backing the virtual parallel port.
         /// This field is optional and it is only relevant when the value of Parallel.BackingInfo.type is FILE.

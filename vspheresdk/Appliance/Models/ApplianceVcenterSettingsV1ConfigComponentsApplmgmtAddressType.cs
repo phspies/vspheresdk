@@ -24,7 +24,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "origin")]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtAddressOriginType Origin { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtAddressOriginEnumType Origin { get; set; }
         /// <summary>
         /// The IPv6 CIDR prefix, for example, 64.
         /// If set, the prefix was never set.
@@ -38,6 +38,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status")]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtAddressStatusType Status { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtAddressStatusEnumType Status { get; set; }
     }
 }

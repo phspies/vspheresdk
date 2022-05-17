@@ -29,7 +29,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterHvcLinksSyncProvidersStatusTypeA Status { get; set; }
+        public VcenterHvcLinksSyncProvidersStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Sync Polling interval between local and remote replicas for the provider *Warning:* This attribute is available as
         /// Technology Preview. These are early access APIs provided to test, automate and provide feedback on the feature. Since

@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "algorithm")]
-        public ContentLibraryItemFileChecksumAlgorithmType Algorithm { get; set; }
+        public ContentLibraryItemFileChecksumAlgorithmEnumType Algorithm { get; set; }
         /// <summary>
         /// The checksum value calculated with {@link #algorithm}.
         /// </summary>

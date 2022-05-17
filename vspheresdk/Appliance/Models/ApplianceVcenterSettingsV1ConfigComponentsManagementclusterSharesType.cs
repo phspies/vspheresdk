@@ -20,7 +20,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "level", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterSharesLevelType Level { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsManagementclusterSharesLevelEnumType Level { get; set; }
         /// <summary>
         /// When Shares.level is set to CUSTOM, it is the number of shares allocated. Otherwise, this value is ignored.
         /// There is no unit for this value. It is a relative measure based on the settings for other resource pools.

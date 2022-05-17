@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
-using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -37,9 +36,8 @@ namespace vspheresdk.Library.Modules
             };
             request.Resource = GetServiceURL.ToString();
             RestResponse<ContentConfigurationModelType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentConfigurationModelType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task UpdateAsync(ContentConfigurationModelType RequestBody = null)
         {
@@ -52,10 +50,9 @@ namespace vspheresdk.Library.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = UpdateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if one of the configuration properties is not within the proper range.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

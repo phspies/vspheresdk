@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Esx.Models;
-using vspheresdk.Esx.Models.Enums;
 
 namespace vspheresdk.Esx.Modules
 {
@@ -44,7 +43,7 @@ namespace vspheresdk.Esx.Modules
             if (BaseImageVersion != null) { request.AddQueryParameter("base_image_version", BaseImageVersion.ToString()); }
             request.Resource = GetServiceURL.ToString();
             RestResponse<EsxSettingsHardwareSupportManagersPackagesVersionsPackageInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<EsxSettingsHardwareSupportManagersPackagesVersionsPackageInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("If there is some unknown internal error. The accompanying error message will give more details about the failure.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("If any of the specified parameters are Invalid e.g. if the release version specified in the query parameter is not in fact among those supported by the Hardware Support Package HSP.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("If there is no Hardware Support Manager HSM with the specified name or no Hardware Support Package HSP with the specified name and version.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
@@ -52,7 +51,6 @@ namespace vspheresdk.Esx.Modules
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the caller is not authenticated. named param.name manager in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have the required privilege to perform the operation.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

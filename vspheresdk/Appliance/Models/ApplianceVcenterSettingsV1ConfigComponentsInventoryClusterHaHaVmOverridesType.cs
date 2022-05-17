@@ -23,7 +23,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_restart_priority")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesRestartPriorityType VmRestartPriority { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesRestartPriorityEnumType VmRestartPriority { get; set; }
         /// <summary>
         /// After condition has been met, a mandatory delay before starting the next VM restart priority.
         /// </summary>
@@ -50,7 +50,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_isolation_response")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesIsolationResponseType VmIsolationResponse { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesIsolationResponseEnumType VmIsolationResponse { get; set; }
         /// <summary>
         /// VM storage protection setting for storage failures categorized as Permenant Device Loss (PDL). PDL indicates storage
         /// device failure or LUN removal. In case of PDL, the failed datastore or device is unlikely to recover. The details of PDL
@@ -58,7 +58,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_datastore_with_pdl_failure_response", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesStorageVmReactionType VmDatastoreWithPdlFailureResponse { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesStorageVmReactionEnumType VmDatastoreWithPdlFailureResponse { get; set; }
         /// <summary>
         /// VM storage protection setting for storage failures categorized as All Paths Down (APD). APD is a condition where a
         /// storage has become inaccessible for unknown reasons. It only indicates loss of connectivity and does not indicate
@@ -66,7 +66,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_apd_failure_response", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesStorageVmReactionType VmApdFailureResponse { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesStorageVmReactionEnumType VmApdFailureResponse { get; set; }
         /// <summary>
         /// The time interval after an APD timeout has been declared and before VM Component Protection service will terminate the
         /// VM. The default value is 180 seconds if not specified. To use cluster setting for a VM override, set to -1 in per-VM
@@ -81,13 +81,13 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_apd_response_recovery")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesVmReactionOnApdclearedType VmApdResponseRecovery { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesVmReactionOnApdclearedEnumType VmApdResponseRecovery { get; set; }
         /// <summary>
         /// Virtual machine health monitoring is disabled. In this state, HA response to guest and application heartbeat failures
         /// are disabled.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_monitoring")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesVmMonitoringStateType VmMonitoring { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterHaFailuresAndResponsesVmMonitoringStateEnumType VmMonitoring { get; set; }
     }
 }

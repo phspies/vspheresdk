@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public ApplianceRecoveryBackupJobBackupRestoreProcessStateType State { get; set; }
+        public ApplianceRecoveryBackupJobBackupRestoreProcessStateEnumType State { get; set; }
         /// <summary>
         /// List of messages.
         /// </summary>

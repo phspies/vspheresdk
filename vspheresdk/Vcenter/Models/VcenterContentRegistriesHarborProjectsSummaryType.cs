@@ -30,6 +30,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "scope", Required = Required.AllowNull)]
-        public VcenterContentRegistriesHarborProjectsScopeType Scope { get; set; }
+        public VcenterContentRegistriesHarborProjectsScopeEnumType Scope { get; set; }
     }
 }

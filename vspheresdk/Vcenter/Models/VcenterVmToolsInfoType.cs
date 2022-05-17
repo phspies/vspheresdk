@@ -54,7 +54,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_policy", Required = Required.AllowNull)]
-        public VcenterVmToolsUpgradePolicyType UpgradePolicy { get; set; }
+        public VcenterVmToolsUpgradePolicyEnumType UpgradePolicy { get; set; }
         /// <summary>
         /// Current version status of VMware Tools in the guest operating system, if known.
         /// This field will be unset if the version status is not known, for example if VMware Tools is too old to report the
@@ -62,7 +62,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "version_status")]
-        public VcenterVmToolsVersionStatusType VersionStatus { get; set; }
+        public VcenterVmToolsVersionStatusEnumType VersionStatus { get; set; }
         /// <summary>
         /// Current installation type of VMware Tools in the guest operating system.
         /// This field will be unset if the installation type is not known, for example if VMware Tools is too old to report the
@@ -70,12 +70,12 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "install_type")]
-        public VcenterVmToolsToolsInstallType InstallType { get; set; }
+        public VcenterVmToolsToolsInstallTypeEnum InstallType { get; set; }
         /// <summary>
         /// Current run state of VMware Tools in the guest operating system.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "run_state", Required = Required.AllowNull)]
-        public VcenterVmToolsRunStateType RunState { get; set; }
+        public VcenterVmToolsRunStateEnumType RunState { get; set; }
     }
 }

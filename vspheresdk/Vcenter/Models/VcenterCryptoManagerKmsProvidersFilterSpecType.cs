@@ -27,6 +27,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public Dictionary<string,VcenterCryptoManagerKmsProvidersHealthType> Health { get; set; }
+        public Dictionary<string,VcenterCryptoManagerKmsProvidersHealthEnumType> Health { get; set; }
     }
 }

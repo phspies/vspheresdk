@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "reboot")]
-        public VcenterGuestWindowsConfigurationRebootOptionTypeA Reboot { get; set; }
+        public VcenterGuestWindowsConfigurationRebootOptionEnumTypeA Reboot { get; set; }
         /// <summary>
         /// Customization settings like user details, administrator details, etc for the windows guest operating system. Exactly one
         /// of WindowsConfiguration.sysprep or WindowsConfiguration.sysprep-xml must be specified.

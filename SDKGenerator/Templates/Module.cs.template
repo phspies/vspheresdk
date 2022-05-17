@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.{{rootmodule}}.Models;
-using vspheresdk.{{rootmodule}}.Models.Enums;
 
 namespace vspheresdk.{{rootmodule}}.Modules
 {
@@ -50,7 +49,6 @@ namespace vspheresdk.{{rootmodule}}.Modules
             {{GetEvaluateResponse .}}
       	    {{/each Item4.responses}}
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            {{GetOperationReturnType . "return"}}
         }
         {{/operations}}
     }

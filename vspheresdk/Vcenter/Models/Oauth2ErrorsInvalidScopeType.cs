@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "error", Required = Required.AllowNull)]
-        public Oauth2ErrorsErrorType Error { get; set; }
+        public Oauth2ErrorsErrorTypeEnum Error { get; set; }
         /// <summary>
         /// Human-readable ASCII text providing additional information, used to assist the client developer in understanding the
         /// error that occurred. Values for the "error_description" parameter MUST NOT include characters outside the set %x20-21 /

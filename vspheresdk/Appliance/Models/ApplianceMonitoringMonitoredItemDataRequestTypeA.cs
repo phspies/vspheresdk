@@ -25,13 +25,13 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "interval", Required = Required.AllowNull)]
-        public ApplianceMonitoringIntervalTypeA Interval { get; set; }
+        public ApplianceMonitoringIntervalTypeEnumA Interval { get; set; }
         /// <summary>
         /// aggregation function
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "function", Required = Required.AllowNull)]
-        public ApplianceMonitoringFunctionTypeA Function { get; set; }
+        public ApplianceMonitoringFunctionTypeEnumA Function { get; set; }
         /// <summary>
         /// Start time in UTC
         /// </summary>

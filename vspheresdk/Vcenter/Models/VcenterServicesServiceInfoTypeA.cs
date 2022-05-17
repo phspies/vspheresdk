@@ -28,20 +28,20 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "startup_type", Required = Required.AllowNull)]
-        public VcenterServicesServiceStartupTypeA StartupType { get; set; }
+        public VcenterServicesServiceStartupTypeEnumA StartupType { get; set; }
         /// <summary>
         /// Running State.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterServicesServiceStateTypeA State { get; set; }
+        public VcenterServicesServiceStateEnumTypeA State { get; set; }
         /// <summary>
         /// Health of service.
         /// This field is optional and it is only relevant when the value of Service.Info.state is STARTED.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public VcenterServicesServiceHealthTypeA Health { get; set; }
+        public VcenterServicesServiceHealthEnumTypeA Health { get; set; }
         /// <summary>
         /// Localizable messages associated with the health of the service
         /// This field is optional and it is only relevant when the value of Service.Info.state is STARTED.

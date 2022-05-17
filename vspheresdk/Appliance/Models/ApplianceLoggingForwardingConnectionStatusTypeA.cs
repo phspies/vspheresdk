@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public ApplianceLoggingForwardingConnectionStatusStateTypeA State { get; set; }
+        public ApplianceLoggingForwardingConnectionStatusStateEnumTypeA State { get; set; }
         /// <summary>
         /// Message associated with the state of the configured remote logging server.
         /// If unset, there is no message to be shown.

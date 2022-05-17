@@ -50,6 +50,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterVmGuestFilesystemFilesLastIterationStatusType Status { get; set; }
+        public VcenterVmGuestFilesystemFilesLastIterationStatusEnumType Status { get; set; }
     }
 }

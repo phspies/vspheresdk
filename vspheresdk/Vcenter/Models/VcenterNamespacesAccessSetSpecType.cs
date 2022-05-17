@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "role", Required = Required.AllowNull)]
-        public VcenterNamespacesAccessRoleType Role { get; set; }
+        public VcenterNamespacesAccessRoleEnumType Role { get; set; }
     }
 }

@@ -68,7 +68,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "authentication_method")]
-        public VcenterIdentityProvidersOauth2AuthenticationMethodTypeA AuthenticationMethod { get; set; }
+        public VcenterIdentityProvidersOauth2AuthenticationMethodEnumTypeA AuthenticationMethod { get; set; }
         /// <summary>
         /// key/value pairs that are to be appended to the authEndpoint request. How to append to authEndpoint request: If the map
         /// is not empty, a "?" is added to the endpoint URL, and combination of each k and each string in the v is added with an

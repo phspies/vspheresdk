@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Cis.Models;
-using vspheresdk.Cis.Models.Enums;
 
 namespace vspheresdk.Cis.Modules
 {
@@ -41,13 +40,12 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = AttachServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the tag for the given tagId does not exist in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the input tag is not eligible to be attached to this object or if the objectId is not valid.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to attach the tag or do not have the privilege to read the object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<CisTaggingTagAssociationBatchResultType> AttachTagToMultipleObjectsAsync(string TagId, CisTaggingTagAssociationAttachTagToMultipleObjectsType RequestBody)
         {
@@ -63,12 +61,11 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = AttachTagToMultipleObjectsServiceURL.ToString();
             RestResponse<CisTaggingTagAssociationBatchResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<CisTaggingTagAssociationBatchResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the tag for the given tagId does not exist in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the attach tag privilege on the tag.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task DetachAsync(string TagId, CisTaggingTagAssociationDetachType RequestBody)
         {
@@ -84,12 +81,11 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = DetachServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the tag for the given tagId does not exist in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to detach the tag or do not have the privilege to read the given object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
         public async Task<CisTaggingTagAssociationBatchResultType> DetachTagFromMultipleObjectsAsync(string TagId, CisTaggingTagAssociationDetachTagFromMultipleObjectsType RequestBody)
         {
@@ -105,12 +101,11 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = DetachTagFromMultipleObjectsServiceURL.ToString();
             RestResponse<CisTaggingTagAssociationBatchResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<CisTaggingTagAssociationBatchResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the tag for the given tag does not exist in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the attach tag privilege on the tag.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<VapiStdDynamicIdtype>> ListAttachedObjectsAsync(string TagId)
         {
@@ -124,12 +119,11 @@ namespace vspheresdk.Cis.Modules
             ListAttachedObjectsServiceURL.Replace("{tag_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(TagId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ListAttachedObjectsServiceURL.ToString();
             RestResponse<List<VapiStdDynamicIdtype>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VapiStdDynamicIdtype>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the tag for the given tagId does not exist in the system.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to read the tag.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<CisTaggingTagAssociationBatchResultType> AttachMultipleTagsToObjectAsync(CisTaggingTagAssociationAttachMultipleTagsToObjectType RequestBody)
         {
@@ -143,11 +137,10 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = AttachMultipleTagsToObjectServiceURL.ToString();
             RestResponse<CisTaggingTagAssociationBatchResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<CisTaggingTagAssociationBatchResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to read the object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<CisTaggingTagAssociationBatchResultType> DetachMultipleTagsFromObjectAsync(CisTaggingTagAssociationDetachMultipleTagsFromObjectType RequestBody)
         {
@@ -161,11 +154,10 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = DetachMultipleTagsFromObjectServiceURL.ToString();
             RestResponse<CisTaggingTagAssociationBatchResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<CisTaggingTagAssociationBatchResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to read the object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<string>> ListAttachableTagsAsync(CisTaggingTagAssociationListAttachableTagsType RequestBody)
         {
@@ -179,11 +171,10 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ListAttachableTagsServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to read the object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<CisTaggingTagAssociationTagToObjectsType>> ListAttachedObjectsOnTagsAsync(CisTaggingTagAssociationListAttachedObjectsOnTagsType RequestBody)
         {
@@ -197,10 +188,9 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ListAttachedObjectsOnTagsServiceURL.ToString();
             RestResponse<List<CisTaggingTagAssociationTagToObjectsType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<CisTaggingTagAssociationTagToObjectsType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<string>> ListAttachedTagsAsync(CisTaggingTagAssociationListAttachedTagsType RequestBody)
         {
@@ -214,11 +204,10 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ListAttachedTagsServiceURL.ToString();
             RestResponse<List<string>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<string>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have the privilege to read the object.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<CisTaggingTagAssociationObjectToTagsType>> ListAttachedTagsOnObjectsAsync(CisTaggingTagAssociationListAttachedTagsOnObjectsType RequestBody)
         {
@@ -232,10 +221,9 @@ namespace vspheresdk.Cis.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ListAttachedTagsOnObjectsServiceURL.ToString();
             RestResponse<List<CisTaggingTagAssociationObjectToTagsType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<CisTaggingTagAssociationObjectToTagsType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

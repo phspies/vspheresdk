@@ -18,7 +18,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtDnsServerConfigurationDnsserverModeType Mode { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtDnsServerConfigurationDnsserverModeEnumType Mode { get; set; }
         /// <summary>
         /// List of the currently used DNS servers. DNS server configuration.
         /// </summary>

@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterVmHardwareBootType Type { get; set; }
+        public VcenterVmHardwareBootTypeEnum Type { get; set; }
         /// <summary>
         /// Flag indicating whether to use EFI legacy boot mode.
         /// If unset, defaults to value that is recommended for the guest OS and is supported for the virtual hardware version.
@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_protocol")]
-        public VcenterVmHardwareBootNetworkProtocolType NetworkProtocol { get; set; }
+        public VcenterVmHardwareBootNetworkProtocolEnumType NetworkProtocol { get; set; }
         /// <summary>
         /// Delay in milliseconds before beginning the firmware boot process when the virtual machine is powered on. This delay may
         /// be used to provide a time window for users to connect to the virtual machine console and enter BIOS setup mode.

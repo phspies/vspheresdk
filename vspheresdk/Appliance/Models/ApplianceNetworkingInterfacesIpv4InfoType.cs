@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public ApplianceNetworkingInterfacesIpv4ModeType Mode { get; set; }
+        public ApplianceNetworkingInterfacesIpv4ModeEnumType Mode { get; set; }
         /// <summary>
         /// The IPv4 address, for example, "10.20.80.191".
         /// This field is optional and it is only relevant when the value of Ipv4.Info.mode is one of STATIC or DHCP.

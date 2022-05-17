@@ -22,6 +22,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "creation_status")]
-        public ApplianceSupportBundleCreationStatusType CreationStatus { get; set; }
+        public ApplianceSupportBundleCreationStatusEnumType CreationStatus { get; set; }
     }
 }

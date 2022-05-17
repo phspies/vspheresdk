@@ -34,7 +34,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "source", Required = Required.AllowNull)]
-        public EsxSettingsComponentSourceType Source { get; set; }
+        public EsxSettingsComponentSourceEnumType Source { get; set; }
         /// <summary>
         /// Note assosicated with this component.
         /// </summary>

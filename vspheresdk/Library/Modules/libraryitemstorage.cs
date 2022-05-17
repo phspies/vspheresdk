@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
-using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -39,10 +38,9 @@ namespace vspheresdk.Library.Modules
             ListServiceURL.Replace("{library_item_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(LibraryItemId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<ContentLibraryItemStorageInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ContentLibraryItemStorageInfoType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the specified library item does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<List<ContentLibraryItemStorageInfoType>> GetAsync(string LibraryItemId, string FileName)
         {
@@ -58,10 +56,9 @@ namespace vspheresdk.Library.Modules
             if (FileName != null) { request.AddQueryParameter("file_name", FileName.ToString()); }
             request.Resource = GetServiceURL.ToString();
             RestResponse<List<ContentLibraryItemStorageInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ContentLibraryItemStorageInfoType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the specified library item does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

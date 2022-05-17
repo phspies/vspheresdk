@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public EsxSettingsNotificationTypeA Type { get; set; }
+        public EsxSettingsNotificationTypeEnum Type { get; set; }
         /// <summary>
         /// The notification id.
         /// </summary>

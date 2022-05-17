@@ -19,6 +19,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "sharing")]
-        public VcenterVmHardwareAdapterScsiSharingTypeA Sharing { get; set; }
+        public VcenterVmHardwareAdapterScsiSharingEnumTypeA Sharing { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace vspheresdk.Appliance.Modules
             timeout = _timeout;
             cancellationToken = _cancellationToken;
         }
-        public async Task<ApplianceHealthSystemHealthLevelType> GetAsync()
+        public async Task<ApplianceHealthSystemHealthLevelEnumType> GetAsync()
         {
             StringBuilder GetServiceURL = new StringBuilder("/api/appliance/health/system");
             var request = new RestRequest
@@ -36,11 +36,10 @@ namespace vspheresdk.Appliance.Modules
                 Method = Method.Get
             };
             request.Resource = GetServiceURL.ToString();
-            RestResponse<ApplianceHealthSystemHealthLevelType> response = await restClient.ExecuteTaskAsyncWithPolicy<ApplianceHealthSystemHealthLevelType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            RestResponse<ApplianceHealthSystemHealthLevelEnumType> response = await restClient.ExecuteTaskAsyncWithPolicy<ApplianceHealthSystemHealthLevelEnumType>(request, cancellationToken, timeout, retry);
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<string> LastcheckAsync()
         {
@@ -52,10 +51,9 @@ namespace vspheresdk.Appliance.Modules
             };
             request.Resource = LastcheckServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

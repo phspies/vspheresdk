@@ -52,7 +52,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public ApplianceRecoveryBackupJobDetailsTypeA Type { get; set; }
+        public ApplianceRecoveryBackupJobDetailsTypeEnumA Type { get; set; }
         /// <summary>
         /// List of any info/warning/error messages returned by the backup job.
         /// </summary>
@@ -112,7 +112,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public CisTaskStatusTypeA Status { get; set; }
+        public CisTaskStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
         /// </summary>

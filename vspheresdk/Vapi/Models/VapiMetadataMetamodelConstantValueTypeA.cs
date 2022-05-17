@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public VapiMetadataMetamodelConstantValueCategoryTypeA Category { get; set; }
+        public VapiMetadataMetamodelConstantValueCategoryEnumTypeA Category { get; set; }
         /// <summary>
         /// Primitive value of the constant element.
         /// </summary>

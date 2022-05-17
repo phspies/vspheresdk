@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
-using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -37,9 +36,8 @@ namespace vspheresdk.Library.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<ContentTypeInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ContentTypeInfoType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

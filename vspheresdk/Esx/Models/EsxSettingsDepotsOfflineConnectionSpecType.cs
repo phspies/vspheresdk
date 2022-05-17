@@ -19,7 +19,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "auth_type", Required = Required.AllowNull)]
-        public EsxSettingsDepotsOfflineConnectionSpecAuthenticationType AuthType { get; set; }
+        public EsxSettingsDepotsOfflineConnectionSpecAuthenticationTypeEnum AuthType { get; set; }
         /// <summary>
         /// Specifies the host details to be used during the {@link Offline#createFromHost} {@term operation}.
         /// </summary>

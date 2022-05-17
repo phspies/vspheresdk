@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterOvfLibraryItemStorageGroupMappingTypeA Type { get; set; }
+        public VcenterOvfLibraryItemStorageGroupMappingTypeEnumA Type { get; set; }
         /// <summary>
         /// Target datastore to be used for the storage group.
         /// </summary>
@@ -35,6 +35,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "provisioning")]
-        public VcenterOvfDiskProvisioningTypeA Provisioning { get; set; }
+        public VcenterOvfDiskProvisioningTypeEnumA Provisioning { get; set; }
     }
 }

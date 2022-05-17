@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health", Required = Required.AllowNull)]
-        public VcenterCryptoManagerHostsKmsProvidersHealthType Health { get; set; }
+        public VcenterCryptoManagerHostsKmsProvidersHealthEnumType Health { get; set; }
         /// <summary>
         /// Details regarding the health status of the provider.
         /// When the provider Providers.Health is not OK or NONE, this field will provide actionable descriptions of the issues.
@@ -29,7 +29,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterCryptoManagerHostsKmsProvidersType Type { get; set; }
+        public VcenterCryptoManagerHostsKmsProvidersTypeEnum Type { get; set; }
         /// <summary>
         /// Native provider information
         /// This field is optional and it is only relevant when the value of Providers.Info.type is NATIVE.

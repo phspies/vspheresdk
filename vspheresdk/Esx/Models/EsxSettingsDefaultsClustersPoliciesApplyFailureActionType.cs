@@ -17,7 +17,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "action", Required = Required.AllowNull)]
-        public EsxSettingsDefaultsClustersPoliciesApplyFailureActionActionType Action { get; set; }
+        public EsxSettingsDefaultsClustersPoliciesApplyFailureActionActionEnumType Action { get; set; }
         /// <summary>
         /// Time to wait to retry the failed operation in seconds.
         /// </summary>

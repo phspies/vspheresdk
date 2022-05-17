@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
-using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -40,12 +39,11 @@ namespace vspheresdk.Vcenter.Modules
             if (ClientToken != null) { request.AddQueryParameter("client_token", ClientToken.ToString()); }
             request.Resource = CreateServiceURL.ToString();
             RestResponse<VcenterOvfLibraryItemCreateResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterOvfLibraryItemCreateResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 201) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the operation cannot be performed because of the specified virtual machine or virtual appliances current state. For example if the virtual machine configuration information is not available or if the virtual appliance is running.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the virtual machine or virtual appliance specified by param.name source does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if the specified virtual machine or virtual appliance is busy.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VcenterOvfLibraryItemDeploymentResultType> DeployAsync(string OvfLibraryItemId, VcenterOvfLibraryItemDeployType RequestBody, string? ClientToken = null)
         {
@@ -62,13 +60,12 @@ namespace vspheresdk.Vcenter.Modules
             if (ClientToken != null) { request.AddQueryParameter("client_token", ClientToken.ToString()); }
             request.Resource = DeployServiceURL.ToString();
             RestResponse<VcenterOvfLibraryItemDeploymentResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterOvfLibraryItemDeploymentResultType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if param.name target contains invalid arguments.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item specified by param.name ovfLibraryItemId does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if there was an error accessing the OVF package stored in the library item specified by param.name ovfLibraryItemId.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if you do not have all of the privileges described as follows  ul literm Operation execution requires VirtualMachine.Config.AddNewDisk if the OVF descriptor has a disk drive type 17 section. li literm Operation execution requires VirtualMachine.Config.AdvancedConfig if the OVF descriptor has an ExtraConfig section. li literm Operation execution requires Extension.Register for specified resource group if the OVF descriptor has a vServiceDependency section. li literm Operation execution requires Network.Assign for target network if specified. li literm Operation execution requires Datastore.AllocateSpace for target datastore if specified. li ul", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VcenterOvfLibraryItemOvfSummaryType> FilterAsync(string OvfLibraryItemId, VcenterOvfLibraryItemFilterType RequestBody)
         {
@@ -84,12 +81,11 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = FilterServiceURL.ToString();
             RestResponse<VcenterOvfLibraryItemOvfSummaryType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterOvfLibraryItemOvfSummaryType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if param.name target contains invalid arguments.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item specified by param.name ovfLibraryItemId does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("if there was an error accessing the OVF package at the specified param.name ovfLibraryItemId.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareDraftsStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareDraftsStatusTypeEnum Status { get; set; }
         /// <summary>
         /// Creation time of the software draft.
         /// </summary>

@@ -16,13 +16,13 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "origin", Required = Required.AllowNull)]
-        public ApplianceNetworkingInterfacesIpv6OriginType Origin { get; set; }
+        public ApplianceNetworkingInterfacesIpv6OriginEnumType Origin { get; set; }
         /// <summary>
         /// The Status of the IPv6 address. For more information, see RFC 4293.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceNetworkingInterfacesIpv6StatusType Status { get; set; }
+        public ApplianceNetworkingInterfacesIpv6StatusEnumType Status { get; set; }
         /// <summary>
         /// The IPv6 address, for example, fc00:10:20:83:20c:29ff:fe94:bb5a.
         /// </summary>

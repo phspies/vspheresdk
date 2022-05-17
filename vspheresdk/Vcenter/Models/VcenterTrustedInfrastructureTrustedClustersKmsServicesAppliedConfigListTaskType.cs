@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public Dictionary<string,VcenterTrustedInfrastructureTrustedClustersKmsServicesAppliedConfigHealthType> Health { get; set; }
+        public Dictionary<string,VcenterTrustedInfrastructureTrustedClustersKmsServicesAppliedConfigHealthEnumType> Health { get; set; }
         /// <summary>
         /// The network address of the Key Provider Service configured for use in the Trusted Cluster.
         /// If unset, no filtration will be performed by network address.

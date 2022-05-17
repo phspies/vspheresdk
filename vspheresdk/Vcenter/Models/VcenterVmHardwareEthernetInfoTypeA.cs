@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareEthernetEmulationTypeA Type { get; set; }
+        public VcenterVmHardwareEthernetEmulationTypeEnumA Type { get; set; }
         /// <summary>
         /// Flag indicating whether Universal Pass-Through (UPT) compatibility is enabled on this virtual Ethernet adapter.
         /// This field is optional and it is only relevant when the value of Ethernet.Info.type is VMXNET3.
@@ -35,7 +35,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mac_type", Required = Required.AllowNull)]
-        public VcenterVmHardwareEthernetMacAddressTypeA MacType { get; set; }
+        public VcenterVmHardwareEthernetMacAddressTypeEnumA MacType { get; set; }
         /// <summary>
         /// MAC address.
         /// May be unset if Ethernet.Info.mac-type is MANUAL and has not been specified, or if Ethernet.Info.mac-type is GENERATED
@@ -69,7 +69,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterVmHardwareConnectionStateTypeA State { get; set; }
+        public VcenterVmHardwareConnectionStateEnumTypeA State { get; set; }
         /// <summary>
         /// Flag indicating whether the virtual device should be connected whenever the virtual machine is powered on.
         /// </summary>

@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterVmGuestPowerStateType State { get; set; }
+        public VcenterVmGuestPowerStateEnumType State { get; set; }
         /// <summary>
         /// Flag indicating if the virtual machine is ready to process soft power operations.
         /// </summary>

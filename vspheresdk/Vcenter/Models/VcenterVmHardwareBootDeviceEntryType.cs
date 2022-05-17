@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareBootDeviceType Type { get; set; }
+        public VcenterVmHardwareBootDeviceTypeEnum Type { get; set; }
         /// <summary>
         /// Virtual Ethernet device. Ethernet device to use as boot device for this entry.
         /// This field is optional and it is only relevant when the value of Device.Entry.type is ETHERNET.

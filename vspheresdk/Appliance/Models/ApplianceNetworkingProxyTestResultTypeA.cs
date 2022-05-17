@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceNetworkingProxyServerStatusTypeA Status { get; set; }
+        public ApplianceNetworkingProxyServerStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Message associated with status.
         /// </summary>

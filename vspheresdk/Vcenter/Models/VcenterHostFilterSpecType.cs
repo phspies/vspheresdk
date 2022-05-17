@@ -74,6 +74,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "connection_states")]
-        public Dictionary<string,VcenterHostConnectionStateType> ConnectionStates { get; set; }
+        public Dictionary<string,VcenterHostConnectionStateEnumType> ConnectionStates { get; set; }
     }
 }

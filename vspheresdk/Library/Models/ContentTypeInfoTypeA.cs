@@ -47,6 +47,6 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "supported_rules")]
-        public Dictionary<string,ContentSecurityRuleTypeA> SupportedRules { get; set; }
+        public Dictionary<string,ContentSecurityRuleTypeEnumA> SupportedRules { get; set; }
     }
 }

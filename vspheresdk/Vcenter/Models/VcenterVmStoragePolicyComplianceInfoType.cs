@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "overall_compliance", Required = Required.AllowNull)]
-        public VcenterVmStoragePolicyComplianceStatusType OverallCompliance { get; set; }
+        public VcenterVmStoragePolicyComplianceStatusEnumType OverallCompliance { get; set; }
         /// <summary>
         /// The storage policy compliance information Compliance.VmComplianceInfo for the virtual machine's home directory.
         /// If unset the virtual machine home directory has no storage policy association.

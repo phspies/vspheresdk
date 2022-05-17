@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "guest_OS", Required = Required.AllowNull)]
-        public VcenterVmGuestOstype GuestOS { get; set; }
+        public VcenterVmGuestOsenumType GuestOS { get; set; }
         /// <summary>
         /// CPU configuration of the virtual machine template.
         /// </summary>

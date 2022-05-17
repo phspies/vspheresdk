@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterGuestIpv6TypeA Type { get; set; }
+        public VcenterGuestIpv6TypeEnum Type { get; set; }
         /// <summary>
         /// IPv6 address
         /// This field is optional and it is only relevant when the value of Ipv6.type is STATIC.

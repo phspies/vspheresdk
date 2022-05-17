@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmStoragePolicyVmHomePolicySpecPolicyType Type { get; set; }
+        public VcenterVmStoragePolicyVmHomePolicySpecPolicyTypeEnum Type { get; set; }
         /// <summary>
         /// Storage Policy identification.
         /// This field is optional and it is only relevant when the value of Policy.VmHomePolicySpec.type is USE_SPECIFIED_POLICY.

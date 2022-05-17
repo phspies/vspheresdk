@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "subject_type", Required = Required.AllowNull)]
-        public VcenterNamespacesAccessSubjectType SubjectType { get; set; }
+        public VcenterNamespacesAccessSubjectTypeEnum SubjectType { get; set; }
         /// <summary>
         /// Name of the subject.
         /// </summary>

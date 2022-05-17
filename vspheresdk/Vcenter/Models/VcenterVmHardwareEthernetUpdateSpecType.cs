@@ -28,7 +28,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mac_type")]
-        public VcenterVmHardwareEthernetMacAddressType MacType { get; set; }
+        public VcenterVmHardwareEthernetMacAddressTypeEnum MacType { get; set; }
         /// <summary>
         /// MAC address.
         /// This field may be modified at any time, and changes will be applied the next time the virtual machine is powered on.

@@ -17,7 +17,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "authentication_method")]
-        public ContentLibraryPublishInfoAuthenticationMethodTypeA AuthenticationMethod { get; set; }
+        public ContentLibraryPublishInfoAuthenticationMethodEnumTypeA AuthenticationMethod { get; set; }
         /// <summary>
         /// Whether the local library is published.
         /// </summary>

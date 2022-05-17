@@ -28,7 +28,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "policy", Required = Required.AllowNull)]
-        public ApplianceNetworkingFirewallInboundPolicyType Policy { get; set; }
+        public ApplianceNetworkingFirewallInboundPolicyEnumType Policy { get; set; }
         /// <summary>
         /// The interface to which this rule applies. An empty string indicates that the rule applies to all interfaces.
         /// </summary>

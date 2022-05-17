@@ -16,6 +16,6 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "checks_to_skip", Required = Required.AllowNull)]
-        public Dictionary<string,EsxSettingsClustersEnablementSoftwareCheckType> ChecksToSkip { get; set; }
+        public Dictionary<string,EsxSettingsClustersEnablementSoftwareCheckTypeEnum> ChecksToSkip { get; set; }
     }
 }

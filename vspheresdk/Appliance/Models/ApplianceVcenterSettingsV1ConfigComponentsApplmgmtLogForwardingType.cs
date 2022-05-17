@@ -28,6 +28,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "protocol")]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtLogForwardingProtocolType Protocol { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtLogForwardingProtocolEnumType Protocol { get; set; }
     }
 }

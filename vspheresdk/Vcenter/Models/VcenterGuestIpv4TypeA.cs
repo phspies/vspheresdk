@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterGuestIpv4TypeA Type { get; set; }
+        public VcenterGuestIpv4TypeEnumA Type { get; set; }
         /// <summary>
         /// The static IPv4 address
         /// This field is optional and it is only relevant when the value of Ipv4.type is STATIC.

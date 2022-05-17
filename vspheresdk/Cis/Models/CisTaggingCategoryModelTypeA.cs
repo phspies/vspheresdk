@@ -37,7 +37,7 @@ namespace vspheresdk.Cis.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "cardinality", Required = Required.AllowNull)]
-        public CisTaggingCategoryModelCardinalityTypeA Cardinality { get; set; }
+        public CisTaggingCategoryModelCardinalityEnumTypeA Cardinality { get; set; }
         /// <summary>
         /// The types of objects that the tags in this category can be attached to. If the set is empty, then tags can be attached
         /// to all types of objects. This field works only for objects that reside in Inventory Service (IS). For non IS objects,

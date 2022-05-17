@@ -17,6 +17,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state")]
-        public VcenterTrustedInfrastructureTrustAuthorityClustersStateType State { get; set; }
+        public VcenterTrustedInfrastructureTrustAuthorityClustersStateEnumType State { get; set; }
     }
 }

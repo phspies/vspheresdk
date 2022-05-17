@@ -16,6 +16,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "value", Required = Required.AllowNull)]
-        public ApplianceHealthDatabasestorageHealthLevelTypeA Value { get; set; }
+        public ApplianceHealthDatabasestorageHealthLevelEnumTypeA Value { get; set; }
     }
 }

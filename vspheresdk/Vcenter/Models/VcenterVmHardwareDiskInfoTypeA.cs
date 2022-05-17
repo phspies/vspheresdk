@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareDiskHostBusAdapterTypeA Type { get; set; }
+        public VcenterVmHardwareDiskHostBusAdapterTypeEnumA Type { get; set; }
         /// <summary>
         /// Address of device attached to a virtual IDE adapter.
         /// Workaround for PR1459646

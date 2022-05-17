@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterVmGuestCustomizationInfoStatusTypeA Status { get; set; }
+        public VcenterVmGuestCustomizationInfoStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Description of the error if the Customization.Info.status of customization operation is FAILED.
         /// This field will be unset if the status is not FAILED or there is no information available for the error.

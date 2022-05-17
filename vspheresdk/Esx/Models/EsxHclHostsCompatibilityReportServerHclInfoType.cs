@@ -29,6 +29,6 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "model_compatibility", Required = Required.AllowNull)]
-        public EsxHclCompatibilityStatusType ModelCompatibility { get; set; }
+        public EsxHclCompatibilityStatusEnumType ModelCompatibility { get; set; }
     }
 }

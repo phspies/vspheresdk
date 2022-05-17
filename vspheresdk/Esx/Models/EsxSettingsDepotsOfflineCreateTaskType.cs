@@ -22,7 +22,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "source_type", Required = Required.AllowNull)]
-        public EsxSettingsDepotsOfflineSourceType SourceType { get; set; }
+        public EsxSettingsDepotsOfflineSourceTypeEnum SourceType { get; set; }
         /// <summary>
         /// Location of the depot from which content should be retrieved.
         /// </summary>

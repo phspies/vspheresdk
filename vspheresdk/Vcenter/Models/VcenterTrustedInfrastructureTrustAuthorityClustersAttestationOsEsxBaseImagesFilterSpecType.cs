@@ -35,6 +35,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health")]
-        public Dictionary<string,VcenterTrustedInfrastructureTrustAuthorityClustersAttestationOsEsxBaseImagesHealthType> Health { get; set; }
+        public Dictionary<string,VcenterTrustedInfrastructureTrustAuthorityClustersAttestationOsEsxBaseImagesHealthEnumType> Health { get; set; }
     }
 }

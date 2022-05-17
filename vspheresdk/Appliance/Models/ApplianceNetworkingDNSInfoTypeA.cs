@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode", Required = Required.AllowNull)]
-        public ApplianceNetworkingDNSInfoDNSModeTypeA Mode { get; set; }
+        public ApplianceNetworkingDNSInfoDNSModeEnumTypeA Mode { get; set; }
         /// <summary>
         /// Hostname.
         /// </summary>

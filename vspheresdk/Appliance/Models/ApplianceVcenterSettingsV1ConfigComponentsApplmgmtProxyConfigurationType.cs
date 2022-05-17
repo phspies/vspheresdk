@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "protocol", Required = Required.AllowNull)]
-        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtProxyConfigurationProtocolType Protocol { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsApplmgmtProxyConfigurationProtocolEnumType Protocol { get; set; }
         /// <summary>
         /// URL of the proxy server
         /// Only set if server set in ProxyConfiguration.

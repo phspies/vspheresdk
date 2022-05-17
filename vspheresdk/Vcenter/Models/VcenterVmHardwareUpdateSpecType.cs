@@ -19,7 +19,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_policy")]
-        public VcenterVmHardwareUpgradePolicyType UpgradePolicy { get; set; }
+        public VcenterVmHardwareUpgradePolicyEnumType UpgradePolicy { get; set; }
         /// <summary>
         /// Target hardware version to be used on the next scheduled virtual hardware upgrade.
         /// If specified, this field must represent a newer virtual hardware version than the current virtual hardware version
@@ -30,6 +30,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "upgrade_version")]
-        public VcenterVmHardwareVersionType UpgradeVersion { get; set; }
+        public VcenterVmHardwareVersionEnumType UpgradeVersion { get; set; }
     }
 }

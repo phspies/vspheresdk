@@ -28,7 +28,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterDeploymentQuestionQuestionTypeA Type { get; set; }
+        public VcenterDeploymentQuestionQuestionTypeEnumA Type { get; set; }
         /// <summary>
         /// Default answer value.
         /// </summary>

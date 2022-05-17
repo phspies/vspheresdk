@@ -23,6 +23,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "behavior")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsDrsBehaviorInfoType Behavior { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsDrsBehaviorInfoEnumType Behavior { get; set; }
     }
 }

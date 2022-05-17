@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceHealthDatabaseInfoStatusTypeA Status { get; set; }
+        public ApplianceHealthDatabaseInfoStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Messages describing any issues with the database, along with their severity.
         /// </summary>

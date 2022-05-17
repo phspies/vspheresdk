@@ -40,7 +40,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public EsxSettingsDepotContentBaseImagesCategoryType Category { get; set; }
+        public EsxSettingsDepotContentBaseImagesCategoryTypeEnum Category { get; set; }
         /// <summary>
         /// Link to kb article related to this the base-image.
         /// </summary>

@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterNamespaceManagementSupervisorServicesVersionsStateType State { get; set; }
+        public VcenterNamespaceManagementSupervisorServicesVersionsStateEnumType State { get; set; }
         /// <summary>
         /// A human readable description of the Supervisor Service version.
         /// If unset, no description is available for the service version.

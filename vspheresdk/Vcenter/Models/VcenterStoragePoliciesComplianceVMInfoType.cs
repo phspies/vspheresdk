@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vm_home")]
-        public VcenterStoragePoliciesComplianceVmstatusType VmHome { get; set; }
+        public VcenterStoragePoliciesComplianceVmstatusEnumType VmHome { get; set; }
         /// <summary>
         /// A Map of virtual disks and their compliance status If empty, the virtual machine does not have any disks or its disks
         /// are not associated with a storage policy.
@@ -27,6 +27,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "disks", Required = Required.AllowNull)]
-        public Dictionary<string,VcenterStoragePoliciesComplianceVmstatusType> Disks { get; set; }
+        public Dictionary<string,VcenterStoragePoliciesComplianceVmstatusEnumType> Disks { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace vspheresdk.Vapi.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "scheme_type", Required = Required.AllowNull)]
-        public VapiMetadataAuthenticationAuthenticationInfoSchemeType SchemeType { get; set; }
+        public VapiMetadataAuthenticationAuthenticationInfoSchemeTypeEnum SchemeType { get; set; }
         /// <summary>
         /// In a session aware authentication scheme, a session manager is required that supports {@code create}, {@code delete} and
         /// {@code keepAlive} {@term operations}. The fully qualified {@term service} name of the session manager is provided in

@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareEthernetBackingType Type { get; set; }
+        public VcenterVmHardwareEthernetBackingTypeEnum Type { get; set; }
         /// <summary>
         /// Identifier of the network that backs the virtual Ethernet adapter.
         /// This field is optional and it is only relevant when the value of Ethernet.BackingSpec.type is one of STANDARD_PORTGROUP,

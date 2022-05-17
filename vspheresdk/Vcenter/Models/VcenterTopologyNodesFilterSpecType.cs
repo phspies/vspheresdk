@@ -18,6 +18,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "types")]
-        public Dictionary<string,VcenterTopologyNodesApplianceType> Types { get; set; }
+        public Dictionary<string,VcenterTopologyNodesApplianceTypeEnum> Types { get; set; }
     }
 }

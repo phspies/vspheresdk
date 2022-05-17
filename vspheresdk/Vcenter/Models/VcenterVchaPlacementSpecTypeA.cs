@@ -56,7 +56,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ha_network_type")]
-        public VcenterVchaNetworkTypeA HaNetworkType { get; set; }
+        public VcenterVchaNetworkTypeEnumA HaNetworkType { get; set; }
         /// <summary>
         /// The identifier of the Network object used for the HA network.
         /// If the PlacementSpec.ha-network field is set, then the {#link #haNetworkType} field must be set.
@@ -81,7 +81,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "management_network_type")]
-        public VcenterVchaNetworkTypeA ManagementNetworkType { get; set; }
+        public VcenterVchaNetworkTypeEnumA ManagementNetworkType { get; set; }
         /// <summary>
         /// The identifier of the Network object used for the Management network. If the PlacementSpec.management-network field is
         /// set, then the PlacementSpec.management-network-type field must be set.

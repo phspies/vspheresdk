@@ -38,6 +38,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "maintenance_mode")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryDatastoreMaintenanceModeStateType MaintenanceMode { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryDatastoreMaintenanceModeStateEnumType MaintenanceMode { get; set; }
     }
 }

@@ -34,7 +34,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "category", Required = Required.AllowNull)]
-        public EsxSettingsDepotContentAddOnsCategoryType Category { get; set; }
+        public EsxSettingsDepotContentAddOnsCategoryTypeEnum Category { get; set; }
         /// <summary>
         /// Link to kb article related to this the OEM add-on version.
         /// </summary>

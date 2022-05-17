@@ -22,6 +22,6 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "scalable_shares")]
-        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsScaleSharesBehaviorType ScalableShares { get; set; }
+        public ApplianceVcenterSettingsV1ConfigComponentsInventoryClusterDrsScaleSharesBehaviorEnumType ScalableShares { get; set; }
     }
 }

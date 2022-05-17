@@ -18,7 +18,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_state")]
-        public VcenterVchaClusterConfigStateType ConfigState { get; set; }
+        public VcenterVchaClusterConfigStateEnumType ConfigState { get; set; }
         /// <summary>
         /// Node configuration information for the VCHA cluster.
         /// If unset, then the information is unavailable.
@@ -46,14 +46,14 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mode")]
-        public VcenterVchaClusterClusterModeType Mode { get; set; }
+        public VcenterVchaClusterClusterModeEnumType Mode { get; set; }
         /// <summary>
         /// Last known state of the VCHA Cluster.
         /// If unset, then the information is unavailable or the node is not cloned yet.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "health_state")]
-        public VcenterVchaClusterClusterStateType HealthState { get; set; }
+        public VcenterVchaClusterClusterStateEnumType HealthState { get; set; }
         /// <summary>
         /// Health warning messages if the health information is unavailable.
         /// If unset, then the cluster is in a healthy state.

@@ -19,7 +19,7 @@ namespace vspheresdk.Hvc.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "stage", Required = Required.AllowNull)]
-        public VcenterHvcLinksSyncProvidersSessionInfoStageType Stage { get; set; }
+        public VcenterHvcLinksSyncProvidersSessionInfoStageEnumType Stage { get; set; }
         /// <summary>
         /// Completed work for the session. *Warning:* This attribute is available as Technology Preview. These are early access
         /// APIs provided to test, automate and provide feedback on the feature. Since this can change based on feedback, VMware

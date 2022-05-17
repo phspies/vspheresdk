@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsLastApplyResultApplyStatusStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsLastApplyResultApplyStatusStatusEnumType Status { get; set; }
         /// <summary>
         /// Progress of the operation.
         /// </summary>

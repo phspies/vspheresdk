@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vapi.Models;
-using vspheresdk.Vapi.Models.Enums;
 
 namespace vspheresdk.Vapi.Modules
 {
@@ -38,10 +37,9 @@ namespace vspheresdk.Vapi.Modules
             if (Path != null) { request.AddQueryParameter("path", Path.ToString()); }
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VapiMetadataCliCommandIdentityType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VapiMetadataCliCommandIdentityType>>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if a namespace corresponding to param.name path doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<string> FingerprintAsync()
         {
@@ -53,9 +51,8 @@ namespace vspheresdk.Vapi.Modules
             };
             request.Resource = FingerprintServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
         public async Task<VapiMetadataCliCommandInfoType> GetAsync(VapiMetadataCliCommandGetType RequestBody)
         {
@@ -69,10 +66,9 @@ namespace vspheresdk.Vapi.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = GetServiceURL.ToString();
             RestResponse<VapiMetadataCliCommandInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VapiMetadataCliCommandInfoType>(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            if ((int)response.StatusCode == 200) { ArgumentNullException.ThrowIfNull(response.Data) ; return response.Data; }
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if a command corresponding to param.name identity doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            return response.Data;
         }
     }
 }

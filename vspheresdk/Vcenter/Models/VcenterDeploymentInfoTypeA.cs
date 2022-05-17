@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterDeploymentApplianceStateTypeA State { get; set; }
+        public VcenterDeploymentApplianceStateEnumTypeA State { get; set; }
         /// <summary>
         /// The progress info of the current appliance status.
         /// This field is optional and it is only relevant when the value of CommonInfo#status is one of RUNNING, BLOCKED,
@@ -85,7 +85,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public CisTaskStatusTypeA Status { get; set; }
+        public CisTaskStatusEnumTypeA Status { get; set; }
         /// <summary>
         /// Flag to indicate whether or not the operation can be cancelled. The value may change as the operation progresses.
         /// </summary>

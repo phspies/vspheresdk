@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterVmStoragePolicyComplianceStatusType Status { get; set; }
+        public VcenterVmStoragePolicyComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Date and time of the most recent compliance check.
         /// </summary>

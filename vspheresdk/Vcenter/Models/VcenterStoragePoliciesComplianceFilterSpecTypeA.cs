@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public Dictionary<string,VcenterStoragePoliciesComplianceStatusTypeA> Status { get; set; }
+        public Dictionary<string,VcenterStoragePoliciesComplianceStatusEnumTypeA> Status { get; set; }
     }
 }

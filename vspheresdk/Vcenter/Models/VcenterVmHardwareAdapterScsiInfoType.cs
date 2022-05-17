@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareAdapterScsiType Type { get; set; }
+        public VcenterVmHardwareAdapterScsiTypeEnum Type { get; set; }
         /// <summary>
         /// Address of the SCSI adapter on the SCSI bus.
         /// </summary>
@@ -42,6 +42,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "sharing", Required = Required.AllowNull)]
-        public VcenterVmHardwareAdapterScsiSharingType Sharing { get; set; }
+        public VcenterVmHardwareAdapterScsiSharingEnumType Sharing { get; set; }
     }
 }

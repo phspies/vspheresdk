@@ -100,7 +100,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ha_network_type")]
-        public VcenterVchaNetworkTypeA HaNetworkType { get; set; }
+        public VcenterVchaNetworkTypeEnumA HaNetworkType { get; set; }
         /// <summary>
         /// The identifier of the Network object used for the Management network.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
@@ -121,7 +121,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "management_network_type", Required = Required.AllowNull)]
-        public VcenterVchaNetworkTypeA ManagementNetworkType { get; set; }
+        public VcenterVchaNetworkTypeEnumA ManagementNetworkType { get; set; }
         /// <summary>
         /// The storage information of the VCHA node.
         /// </summary>

@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public VcenterVmPowerStateTypeA State { get; set; }
+        public VcenterVmPowerStateEnumTypeA State { get; set; }
         /// <summary>
         /// Flag indicating whether the virtual machine was powered off cleanly. This field may be used to detect that the virtual
         /// machine crashed unexpectedly and should be restarted.

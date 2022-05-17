@@ -16,7 +16,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "state", Required = Required.AllowNull)]
-        public ApplianceUpdateStateTypeA State { get; set; }
+        public ApplianceUpdateStateEnumTypeA State { get; set; }
         /// <summary>
         /// The running or completed update task.
         /// </summary>

@@ -22,7 +22,7 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ApplianceNetworkingInterfacesInterfaceStatusType Status { get; set; }
+        public ApplianceNetworkingInterfacesInterfaceStatusEnumType Status { get; set; }
         /// <summary>
         /// MAC address. For example 00:0C:29:94:BB:5A.
         /// </summary>

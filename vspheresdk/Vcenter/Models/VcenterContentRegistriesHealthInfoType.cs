@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public VcenterContentRegistriesHealthStatusType Status { get; set; }
+        public VcenterContentRegistriesHealthStatusEnumType Status { get; set; }
         /// <summary>
         /// Details about the status.
         /// </summary>

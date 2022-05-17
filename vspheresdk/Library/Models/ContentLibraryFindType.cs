@@ -22,6 +22,6 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public ContentLibraryModelLibraryType Type { get; set; }
+        public ContentLibraryModelLibraryTypeEnum Type { get; set; }
     }
 }

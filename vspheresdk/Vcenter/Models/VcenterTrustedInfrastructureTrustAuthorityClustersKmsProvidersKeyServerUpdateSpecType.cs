@@ -20,7 +20,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterTrustedInfrastructureTrustAuthorityClustersKmsProvidersKeyServerUpdateSpecTypeA Type { get; set; }
+        public VcenterTrustedInfrastructureTrustAuthorityClustersKmsProvidersKeyServerUpdateSpecTypeEnum Type { get; set; }
         /// <summary>
         /// Description of the key server.
         /// 

@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareAdapterSataType Type { get; set; }
+        public VcenterVmHardwareAdapterSataTypeEnum Type { get; set; }
         /// <summary>
         /// SATA bus number.
         /// </summary>

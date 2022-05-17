@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterVmHardwareAdapterSataTypeA Type { get; set; }
+        public VcenterVmHardwareAdapterSataTypeEnumA Type { get; set; }
         /// <summary>
         /// SATA bus number.
         /// If unset, the server will choose an available bus number; if none is available, the request will fail.

@@ -50,7 +50,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "storage_provisioning")]
-        public VcenterOvfDiskProvisioningType StorageProvisioning { get; set; }
+        public VcenterOvfDiskProvisioningTypeEnum StorageProvisioning { get; set; }
         /// <summary>
         /// Default storage profile to use for all sections of type vmw:StorageSection in the OVF descriptor.
         /// </summary>

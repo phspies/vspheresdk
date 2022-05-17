@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterTrustedInfrastructureTrustedClustersAttestationServicesCreateSpecSourceType Type { get; set; }
+        public VcenterTrustedInfrastructureTrustedClustersAttestationServicesCreateSpecSourceTypeEnum Type { get; set; }
         /// <summary>
         /// The service's unique ID.
         /// This field is optional and it is only relevant when the value of Services.CreateSpec.type is SERVICE.

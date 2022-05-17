@@ -16,7 +16,7 @@ namespace vspheresdk.Esx.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public EsxSettingsClustersSoftwareReportsComplianceStatusType Status { get; set; }
+        public EsxSettingsClustersSoftwareReportsComplianceStatusEnumType Status { get; set; }
         /// <summary>
         /// Lists compliance information for storage devices found to be compliant with VMware Compatibility Guide (VCG) during the
         /// last check {@term operation}. <p> Note that complianceStatus of every device is not necessarily COMPATIBLE due to

@@ -58,19 +58,19 @@ namespace vspheresdk.Appliance.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "priority", Required = Required.AllowNull)]
-        public ApplianceUpdateCommonInfoPriorityTypeA Priority { get; set; }
+        public ApplianceUpdateCommonInfoPriorityEnumTypeA Priority { get; set; }
         /// <summary>
         /// Update severity
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "severity", Required = Required.AllowNull)]
-        public ApplianceUpdateCommonInfoSeverityTypeA Severity { get; set; }
+        public ApplianceUpdateCommonInfoSeverityEnumTypeA Severity { get; set; }
         /// <summary>
         /// Update category
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "update_type", Required = Required.AllowNull)]
-        public ApplianceUpdateCommonInfoCategoryTypeA UpdateType { get; set; }
+        public ApplianceUpdateCommonInfoCategoryEnumTypeA UpdateType { get; set; }
         /// <summary>
         /// Update release date.
         /// </summary>

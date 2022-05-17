@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "config_tag", Required = Required.AllowNull)]
-        public VcenterIdentityProvidersConfigTypeA ConfigTag { get; set; }
+        public VcenterIdentityProvidersConfigTypeEnumA ConfigTag { get; set; }
         /// <summary>
         /// OAuth2 UpdateSpec
         /// This field is optional and it is only relevant when the value of Providers.UpdateSpec.config-tag is Oauth2.
@@ -85,7 +85,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "idm_protocol")]
-        public VcenterIdentityProvidersIdmProtocolTypeA IdmProtocol { get; set; }
+        public VcenterIdentityProvidersIdmProtocolEnumTypeA IdmProtocol { get; set; }
         /// <summary>
         /// Identity management endpoints. When specified, at least one endpoint must be provided.
         /// This field is optional and it is only relevant when the value of Providers.UpdateSpec.idm-protocol is one of REST, SCIM,

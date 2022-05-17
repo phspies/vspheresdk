@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "status", Required = Required.AllowNull)]
-        public ContentLibraryItemCertVerificationStatusType Status { get; set; }
+        public ContentLibraryItemCertVerificationStatusEnumType Status { get; set; }
         /// <summary>
         /// A certificate in base64 encoding.
         /// </summary>

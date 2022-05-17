@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vapi.Models;
-using vspheresdk.Vapi.Models.Enums;
 
 namespace vspheresdk.Vapi.Modules
 {
@@ -39,14 +38,13 @@ namespace vspheresdk.Vapi.Modules
             CancelServiceURL.Replace("{activation_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(ActivationId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = CancelServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            if ((int)response.StatusCode == 204) {}
             else if ((int)response.StatusCode == 404) { throw new vSphereException("if a vCenter Server task with the given activationId was not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 400) { throw new vSphereException("if the vCenter Server task associated with the given activationId is not cancelable.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user is not authorized to cancel the task.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else if ((int)response.StatusCode == 503) { throw new vSphereException("if the task cancelation cannot be performed due to vCenter server is unreachable or it is not properly configured.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
-            
         }
     }
 }

@@ -22,7 +22,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmGuestFilesystemFilesType Type { get; set; }
+        public VcenterVmGuestFilesystemFilesTypeEnum Type { get; set; }
         /// <summary>
         /// The file size in bytes.
         /// </summary>

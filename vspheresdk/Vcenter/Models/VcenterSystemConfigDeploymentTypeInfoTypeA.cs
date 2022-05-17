@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterDeploymentApplianceTypeA Type { get; set; }
+        public VcenterDeploymentApplianceTypeEnumA Type { get; set; }
     }
 }

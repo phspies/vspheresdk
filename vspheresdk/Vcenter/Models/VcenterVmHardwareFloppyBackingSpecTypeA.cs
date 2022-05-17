@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterVmHardwareFloppyBackingTypeA Type { get; set; }
+        public VcenterVmHardwareFloppyBackingTypeEnumA Type { get; set; }
         /// <summary>
         /// Path of the image file that should be used as the virtual floppy drive backing.
         /// This field is optional and it is only relevant when the value of Floppy.BackingSpec.type is IMAGE_FILE.

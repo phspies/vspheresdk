@@ -31,6 +31,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public VcenterFolderType Type { get; set; }
+        public VcenterFolderTypeEnum Type { get; set; }
     }
 }

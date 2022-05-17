@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "summary_type", Required = Required.AllowNull)]
-        public VcenterTrustedInfrastructureTrustAuthorityHostsKmsSummaryTypeA SummaryType { get; set; }
+        public VcenterTrustedInfrastructureTrustAuthorityHostsKmsSummaryTypeEnum SummaryType { get; set; }
         /// <summary>
         /// The trusted ESX on which the service runs.
         /// This field is optional and it is only relevant when the value of Kms.Summary.summary-type is one of BRIEF, NORMAL, or

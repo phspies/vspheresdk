@@ -16,7 +16,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "data_set", Required = Required.AllowNull)]
-        public VcenterDeploymentHistoryMigrationOptionType DataSet { get; set; }
+        public VcenterDeploymentHistoryMigrationOptionEnumType DataSet { get; set; }
         /// <summary>
         /// Defines how vCenter history will be migrated. If set to true, vCenter history will be migrated separately after
         /// successful upgrade(supported scenarios are upgrade from 6.0 or 6.5 to 6.7) or migration, otherwise it will be migrated

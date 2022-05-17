@@ -17,7 +17,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public VcenterVmHardwareEthernetEmulationType Type { get; set; }
+        public VcenterVmHardwareEthernetEmulationTypeEnum Type { get; set; }
         /// <summary>
         /// Flag indicating whether Universal Pass-Through (UPT) compatibility is enabled on this virtual Ethernet adapter.
         /// If unset, defaults to false.
@@ -31,7 +31,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "mac_type")]
-        public VcenterVmHardwareEthernetMacAddressType MacType { get; set; }
+        public VcenterVmHardwareEthernetMacAddressTypeEnum MacType { get; set; }
         /// <summary>
         /// MAC address.
         /// Workaround for PR1459647

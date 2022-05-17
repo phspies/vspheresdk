@@ -16,7 +16,7 @@ namespace vspheresdk.Library.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "type", Required = Required.AllowNull)]
-        public ContentLibraryItemUpdatesessionWarningTypeA Type { get; set; }
+        public ContentLibraryItemUpdatesessionWarningTypeEnumA Type { get; set; }
         /// <summary>
         /// Indicates if this warning will be ignored during session complete operation.
         /// </summary>

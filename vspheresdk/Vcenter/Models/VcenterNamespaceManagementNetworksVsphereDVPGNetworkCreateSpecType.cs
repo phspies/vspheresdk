@@ -28,7 +28,7 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "ip_assignment_mode")]
-        public VcenterNamespaceManagementNetworksIpassignmentModeType IpAssignmentMode { get; set; }
+        public VcenterNamespaceManagementNetworksIpassignmentModeEnumType IpAssignmentMode { get; set; }
         /// <summary>
         /// Usable IP pools on this network.
         /// </summary>
