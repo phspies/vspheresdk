@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,195 +19,126 @@ namespace vSphereSDKTesting
             vSphereClient vsphere = new vSphereClient("vc01.lab.local", "administrator@vsphere.local", "VMware1!", false);
             await vsphere.LoginAsync();
             var vms = await vsphere.VcenterSubModule.VMModule.ListAsync();
+            var templateimage = await vsphere.VcenterSubModule.VMModule.GetAsync(vms.Single(x => x.Name.Equals("ubuntutemplate")).Vm);
             var clusters = await vsphere.VcenterSubModule.ClusterModule.ListAsync();
+            var cluster = clusters.Single(x => x.Name.Equals("BaseCluster01"));
+            var datacenters = await vsphere.VcenterSubModule.DatacenterModule.ListAsync();
+            var datacenter = await vsphere.VcenterSubModule.DatacenterModule.GetAsync(datacenters.First().Datacenter);
             var libids = await vsphere.LibrarySubModule.LibraryModule.ListAsync();
             List<ContentLibraryModelType> libs = new List<ContentLibraryModelType>();
             foreach (string id in libids)
             {
                 libs.Add(await vsphere.LibrarySubModule.LibraryModule.GetAsync(id));
             }
+            var templateid = await vsphere.LibrarySubModule.LibraryItemModule.ListAsync(libs.Single(x => x.Name == "Templates").Id);
+            var template = await vsphere.LibrarySubModule.LibraryItemModule.GetAsync(templateid.First());
             var testvm = await vsphere.VcenterSubModule.VMModule.GetAsync(vms[0].Vm);
 
-            var resourcepools = await vsphere.VcenterSubModule.ResourcePoolModule.ListAsync();
+            var resourcepools = await vsphere.VcenterSubModule.ResourcePoolModule.ListAsync(Clusters: cluster.Cluster);
             var rpdetails = await vsphere.VcenterSubModule.ResourcePoolModule.GetAsync(resourcepools[0].ResourcePool);
-
-            //create base resource pool
-            var createrp = await vsphere.VcenterSubModule.ResourcePoolModule.CreateAsync(
-                new VcenterResourcePoolCreateType()
-                {
-                    Parent = resourcepools[0].ResourcePool,
-                    Name = "TestCodeResourcePool",
-                    CpuAllocation = new VcenterResourcePoolResourceAllocationCreateSpecType()
-                    {
-                        ExpandableReservation = true,
-                        Limit = 300,
-                        Reservation = 0,
-                        Shares = new VcenterResourcePoolSharesInfoType()
-                        {
-                            Level = VcenterResourcePoolSharesInfoLevelEnumType.NORMAL
-                        }
-                    },
-                    MemoryAllocation = new VcenterResourcePoolResourceAllocationCreateSpecType()
-                    {
-                        ExpandableReservation = true,
-                        Limit = 50,
-                        Reservation = 0,
-                        Shares = new VcenterResourcePoolSharesInfoType()
-                        {
-                            Level = VcenterResourcePoolSharesInfoLevelEnumType.NORMAL
-                        }
-                    }
-                }
-            );
-            Assert.NotNull(createrp);
-
-            //create nested resource pool
-            var createrp2 = await vsphere.VcenterSubModule.ResourcePoolModule.CreateAsync(
-                 new VcenterResourcePoolCreateType()
-                 {
-                     Parent = createrp,
-                     Name = "NestedTestCodeResourcePool",
-                     CpuAllocation = new VcenterResourcePoolResourceAllocationCreateSpecType()
-                     {
-                         ExpandableReservation = true,
-                         Limit = 300,
-                         Reservation = 0,
-                         Shares = new VcenterResourcePoolSharesInfoType()
-                         {
-                             Level = VcenterResourcePoolSharesInfoLevelEnumType.NORMAL
-                         }
-                     },
-                     MemoryAllocation = new VcenterResourcePoolResourceAllocationCreateSpecType()
-                     {
-                         ExpandableReservation = true,
-                         Limit = 50,
-                         Reservation = 0,
-                         Shares = new VcenterResourcePoolSharesInfoType()
-                         {
-                             Level = VcenterResourcePoolSharesInfoLevelEnumType.NORMAL
-                         }
-                     }
-                 }
-             );
-            Assert.NotNull(createrp2);
-
-            await Task.Delay(10000);
-            //delete nested resource pools
-            await vsphere.VcenterSubModule.ResourcePoolModule.DeleteAsync(createrp);
 
             var networkList = await vsphere.VcenterSubModule.NetworkModule.ListAsync();
             var hostList = await vsphere.VcenterSubModule.HostModule.ListAsync();
-
-            
-            var createCustSpec = await vsphere.VcenterSubModule.GuestCustomizationSpecsModule.CreateAsync(new VcenterGuestCustomizationSpecsCreateType()
-            {
-                Name = "TestCodeCustomization",
-                Spec = new VcenterGuestCustomizationSpecType()
-                {
-                    Interfaces = new Dictionary<string, VcenterGuestAdapterMappingType>() {
-                        {
-                            "2000", new VcenterGuestAdapterMappingType() {
-                                Adapter = new VcenterGuestIpsettingsType()
-                                {
-                                    Ipv4 = new VcenterGuestIpv4Type()
-                                    {
-                                         IpAddress = "10.200.0.10",
-                                         Prefix = 24,
-                                         Gateways = new List<string>() { "10.0.0.1" },
-                                         Type = VcenterGuestIpv4TypeEnum.STATIC
-                                    },
-                                    Windows = new VcenterGuestWindowsNetworkAdapterSettingsType()
-                                    {
-
-                                    }
-
-                                }
-
-                            }
-                        }
-                    },
-                    ConfigurationSpec = new VcenterGuestConfigurationSpecType()
-                    {
-                        CloudConfig = new VcenterGuestCloudConfigurationType()
-                        {
-                            Cloudinit = new VcenterGuestCloudinitConfigurationType()
-                            {
-                                Metadata = "",
-                                Userdata = ""
-                            }
-                        }
-                    }
-                }
-            });
+            var clusterList = await vsphere.VcenterSubModule.ClusterModule.ListAsync();
+            var datatoreList = await vsphere.VcenterSubModule.DatastoreModule.ListAsync();
+            var storagepolicyList = await vsphere.VcenterSubModule.StoragePoliciesModule.ListAsync();
 
 
-
-            string deployedVM = await vsphere.VcenterSubModule.VmTemplateLibraryItemsModule.DeployAsync("item", new VcenterVmTemplateLibraryItemsDeployType()
+            var cloneVMObject = new VcenterVmTemplateLibraryItemsDeployType()
             {
                 Name = "testdeployVM",
                 Description = "Test deployment VM for SDK",
                 Placement = new VcenterVmTemplateLibraryItemsDeployPlacementSpecType()
                 {
-                    Cluster = "cluster",
-                    ResourcePool = "ResourcePool"
+                    Cluster = clusterList.Single(x => x.Name.Equals("BaseCluster01")).Cluster,
+                    ResourcePool = resourcepools[0].ResourcePool,
+                    Folder = datacenter.VmFolder
                 },
                 DiskStorage = new VcenterVmTemplateLibraryItemsDeploySpecDiskStorageType()
                 {
-                    Datastore = "datastorename",
+                    Datastore = datatoreList.Single(x => x.Name.Equals("BaseCluster-datastore")).Datastore,
                     StoragePolicy = new VcenterVmTemplateLibraryItemsDeploySpecDiskStoragePolicyType()
                     {
-                        Policy = "policyname",
+                        Policy = storagepolicyList.Single(x => x.Name.Equals("Default TKG Storage Policy")).Policy,
                         Type = VcenterVmTemplateLibraryItemsDeploySpecDiskStoragePolicyTypeEnum.USESPECIFIEDPOLICY
                     }
-                },
-                GuestCustomization = new VcenterVmTemplateLibraryItemsGuestCustomizationSpecType()
-                {
-                    Name = "customizationspecname"
                 },
                 PoweredOn = true,
                 HardwareCustomization = new VcenterVmTemplateLibraryItemsHardwareCustomizationSpecType()
                 {
                     CpuUpdate = new VcenterVmTemplateLibraryItemsCpuUpdateSpecType()
                     {
-                        NumCoresPerSocket = 1,
-                        NumCpus = 1
+                        NumCoresPerSocket = 2,
+                        NumCpus = 2
                     },
                     MemoryUpdate = new VcenterVmTemplateLibraryItemsMemoryUpdateSpecType()
                     {
                         Memory = 4096
                     },
                     Nics = new Dictionary<string, VcenterVmTemplateLibraryItemsEthernetUpdateSpecType>()
-                       {
-                           {
-                               "200",
-                               new VcenterVmTemplateLibraryItemsEthernetUpdateSpecType()
-                               {
-                                    Network = "network"
-                               }
-                           }
-                       }
+                    {
+                        {
+                            templateimage.Nics.First().Key,
+                            new VcenterVmTemplateLibraryItemsEthernetUpdateSpecType()
+                            {
+                                Network = networkList.Single(x => x.Name.Equals("BaseNetwork")).Network
+                            }
+                        }
+                    }
                 }
-            });
-            string clonedVM = await vsphere.VcenterSubModule.VMModule.CloneAsync(new VcenterVmcloneType()
-            {
-                GuestCustomizationSpec = new VcenterVmguestCustomizationSpecType()
-                {
-                    Name = "TestCodeCustomization"
-                },
-                Source = "test",
-                Placement = new VcenterVmclonePlacementSpecType()
-                {
-                    Cluster = "Cluster",
-                    Datastore = "datastore",
-                    ResourcePool = "resource pool"
-                },
-                Name = "Name",
+            };
 
-            });
+            var json = JsonConvert.SerializeObject(cloneVMObject, Formatting.Indented);
 
+            string deployedVM = await vsphere.VcenterSubModule.VmTemplateLibraryItemsModule.DeployAsync(template.Id, cloneVMObject);
+
+
+            await vsphere.VcenterSubModule.VmPowerModule.StopAsync(deployedVM);
+            await vsphere.VcenterSubModule.VMModule.DeleteAsync(deployedVM);
             await vsphere.LogoutAsync();
 
 
+
+            //var createCustSpec = await vsphere.VcenterSubModule.GuestCustomizationSpecsModule.CreateAsync(new VcenterGuestCustomizationSpecsCreateType()
+            //{
+            //    Name = "TestCodeCustomization",
+            //    Spec = new VcenterGuestCustomizationSpecType()
+            //    {
+            //        Interfaces = new Dictionary<string, VcenterGuestAdapterMappingType>() {
+            //            {
+            //                "2000", new VcenterGuestAdapterMappingType() {
+            //                    Adapter = new VcenterGuestIpsettingsType()
+            //                    {
+            //                        Ipv4 = new VcenterGuestIpv4Type()
+            //                        {
+            //                             IpAddress = "10.200.0.10",
+            //                             Prefix = 24,
+            //                             Gateways = new List<string>() { "10.0.0.1" },
+            //                             Type = VcenterGuestIpv4TypeEnum.STATIC
+            //                        },
+            //                        Windows = new VcenterGuestWindowsNetworkAdapterSettingsType()
+            //                        {
+
+            //                        }
+
+            //                    }
+
+            //                }
+            //            }
+            //        },
+            //        ConfigurationSpec = new VcenterGuestConfigurationSpecType()
+            //        {
+            //            CloudConfig = new VcenterGuestCloudConfigurationType()
+            //            {
+            //                Cloudinit = new VcenterGuestCloudinitConfigurationType()
+            //                {
+            //                    Metadata = "",
+            //                    Userdata = ""
+            //                }
+            //            }
+            //        }
+            //    }
+            //});
 
         }
     }

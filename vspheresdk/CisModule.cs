@@ -12,12 +12,11 @@ namespace vspheresdk
 {
     public class CisSubModule
     {
-        JsonSerializerSettings defaultSerializationSettings;
         RestClient restClient;
         private CancellationToken cancellationToken;
         private int timeout;
         private int retry;
-        public CisSubModule(RestClient RestClient, CancellationToken _cancellationToken = default(CancellationToken), int Port = 443, int _timeout = 5, int _retry = 2)
+        public CisSubModule(RestClient RestClient, CancellationToken _cancellationToken = default(CancellationToken), int _timeout = 5, int _retry = 2)
         {
             cancellationToken = _cancellationToken;
             timeout = _timeout;

@@ -154,7 +154,7 @@ namespace vspheresdk.Library.Modules
         public async Task<List<string>> ListAsync(string LibraryId)
         {
             ArgumentNullException.ThrowIfNull(LibraryId, "LibraryId cannot be null");
-            StringBuilder ListServiceURL = new StringBuilder("/api/content/library/item?library_id");
+            StringBuilder ListServiceURL = new StringBuilder("/api/content/library/item");
             var request = new RestRequest
             {              
                 RequestFormat = DataFormat.Json,
