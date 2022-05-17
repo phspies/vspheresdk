@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
+using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -26,7 +27,7 @@ namespace vspheresdk.Vcenter.Modules
             timeout = _timeout;
             cancellationToken = _cancellationToken;
         }
-        public async Task<List<Models.VcenterTrustedInfrastructureTrustAuthorityHostsAttestationSummaryType>> ListAsync(VcenterTrustedInfrastructureTrustAuthorityHostsAttestationFilterSpecType RequestBody = null, string? Projection = null)
+        public async Task<List<VcenterTrustedInfrastructureTrustAuthorityHostsAttestationSummaryType>> ListAsync(VcenterTrustedInfrastructureTrustAuthorityHostsAttestationFilterSpecType RequestBody = null, string? Projection = null)
         {
             StringBuilder ListServiceURL = new StringBuilder("/api/vcenter/trusted-infrastructure/trust-authority-hosts/attestation");
             var request = new RestRequest

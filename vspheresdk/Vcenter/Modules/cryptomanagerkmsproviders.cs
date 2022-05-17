@@ -10,7 +10,6 @@ using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
 using vspheresdk.Vcenter.Models.Enums;
-using VcenterCryptoManagerKmsProvidersExportType = vspheresdk.Vcenter.Models.VcenterCryptoManagerKmsProvidersExportType;
 
 namespace vspheresdk.Vcenter.Modules
 {

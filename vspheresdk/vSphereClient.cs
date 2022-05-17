@@ -82,6 +82,7 @@ namespace vspheresdk
             return await AuthenticationHelper.RetrieveAsync(sessionRestClient, cancellationToken, timeout, retry);
         }
         public ApplianceSubModule ApplianceSubModule => new ApplianceSubModule(tokenRestClient, cancellationToken, timeout, retry);
+        public CisSubModule CisSubModule => new CisSubModule(tokenRestClient, cancellationToken, timeout, retry);
         public EsxSubModule EsxSubModule => new EsxSubModule(tokenRestClient, cancellationToken, timeout, retry);
         public HvcSubModule HvcSubModule => new HvcSubModule(tokenRestClient, cancellationToken, timeout, retry);
         public LibrarySubModule LibrarySubModule => new LibrarySubModule(tokenRestClient, cancellationToken, timeout, retry);

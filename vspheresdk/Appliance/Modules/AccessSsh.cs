@@ -44,7 +44,7 @@ namespace vspheresdk.Appliance.Modules
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
-        public async Task<bool> GetAsync()
+        public async Task<boolean> GetAsync()
         {
             StringBuilder GetServiceURL = new StringBuilder("/api/appliance/access/ssh");
             var request = new RestRequest
@@ -53,7 +53,7 @@ namespace vspheresdk.Appliance.Modules
                 Method = Method.Get
             };
             request.Resource = GetServiceURL.ToString();
-            RestResponse<bool> response = await restClient.ExecuteTaskAsyncWithPolicy<bool>(request, cancellationToken, timeout, retry);
+            RestResponse<boolean> response = await restClient.ExecuteTaskAsyncWithPolicy<boolean>(request, cancellationToken, timeout, retry);
             if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
             else if ((int)response.StatusCode == 500) { throw new vSphereException("Generic error", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
             else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
