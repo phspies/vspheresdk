@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
+using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -40,11 +41,12 @@ namespace vspheresdk.Vcenter.Modules
             GetTaskServiceURL.Replace("{version}", System.Uri.EscapeDataString(Helpers.ConvertToString(Version, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + GetTaskServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if there is a generic error.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the version is invalid or the cluster id is empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the version or cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<string> DeleteTaskAsync(string Cluster, string Version)
@@ -61,11 +63,12 @@ namespace vspheresdk.Vcenter.Modules
             DeleteTaskServiceURL.Replace("{version}", System.Uri.EscapeDataString(Helpers.ConvertToString(Version, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeleteTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Delete operation to " + DeleteTaskServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if there is a generic error.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the version is invalid or the cluster id is empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the version or cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<string> ImportFromImgdbTaskAsync(string Cluster, string RequestBody = null)
@@ -81,11 +84,12 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = ImportFromImgdbTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + ImportFromImgdbTaskServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the imgdb is invalid or cluster id is empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if there is a generic error.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<string> ListTaskAsync(string Cluster, string Version = null, string DisplayName = null, string Health = null)
@@ -103,11 +107,12 @@ namespace vspheresdk.Vcenter.Modules
             if (Health != null) { request.AddQueryParameter("health", Health.ToString()); }
             request.Resource = ListTaskServiceURL.ToString();
             RestResponse<string> response = await restClient.ExecuteTaskAsyncWithPolicy<string>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListTaskServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if there is a generic error.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the cluster id is empty.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the cluster is not found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the caller is not authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
     }

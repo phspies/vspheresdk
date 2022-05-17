@@ -5568,13 +5568,13 @@
         "tags": [
           "namespace_management/cluster_compatibility"
         ],
-        "summary": "Returns Namespaces compatibility information for all clusters in vCenter matching the ClusterCompatibility.FilterSpec. The result contains only visible (subject to permission checks) clusters.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
+        "summary": "Returns Namespaces compatibility information for all vSphere clusters in the vCenter Server matching the ClusterCompatibility.FilterSpec. The result contains only visible (subject to permission checks) clusters.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
         "parameters": [
           {
             "in": "query",
             "name": "compatible",
             "type": "boolean",
-            "description": "Compatibility criteria for matching the filter. If true, only clusters which are compatible for Namespaces match the filter. If false, all clusters match the filter.\nIf unset, both compatible and incompatible clusters match the filter."
+            "description": "Set this flag to true to only list vSphere clusters that are currently compatible with the Namespaces feature. If set to false, both compatible and incompatible vSphere clusters will be listed.\nIf unset, both compatible and incompatible vSphere clusters will be listed."
           },
           {
             "in": "query",
@@ -5598,9 +5598,15 @@
             }
           },
           "500": {
-            "description": "if the server reports an unknown internal error.",
+            "description": "if the system reports an error while responding to the request.",
             "schema": {
-              "$ref": "#/definitions/VapiStdErrorsInternalServerError"
+              "$ref": "#/definitions/VapiStdErrorsError"
+            }
+          },
+          "400": {
+            "description": "if filter contains any error.",
+            "schema": {
+              "$ref": "#/definitions/VapiStdErrorsInvalidArgument"
             }
           },
           "401": {
@@ -5610,7 +5616,7 @@
             }
           },
           "403": {
-            "description": "if the user does not have System.Read privilege.",
+            "description": "if the user does not have System.Read privilege on the vSphere clusters.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnauthorized"
             }
@@ -5739,13 +5745,13 @@
             }
           },
           "400": {
-            "description": "if the cluster's hosts are not configured with sufficient resources for the new Kubernetes API Server size.",
+            "description": "if the Supervisor cluster's hosts are not configured with sufficient resources for the new Kubernetes API Server size.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnsupported"
             }
           },
           "404": {
-            "description": "if cluster could not be located.",
+            "description": "if the Supervisor cluster could not be located.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
@@ -5861,13 +5867,13 @@
             }
           },
           "400": {
-            "description": "if the cluster's hosts are not configured with sufficient resources for the new Kubernetes API Server size.",
+            "description": "if the Supervisor cluster's hosts are not configured with sufficient resources for the new Kubernetes API Server size.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnsupported"
             }
           },
           "404": {
-            "description": "if cluster could not be located.",
+            "description": "if the Supervisor cluster could not be located.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
@@ -6556,14 +6562,14 @@
         "tags": [
           "namespace_management/supervisor_services/cluster_supervisor_services"
         ],
-        "summary": "Create a Supervisor Service on the specified vSphere Supervisor cluster. This operation will apply the Supervisor Service version's service definition on the cluster. This operation is possible only when the Supervisor Service and Supervisor Service version are in the ACTIVATED state.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
+        "summary": "Create a Supervisor Service on the specified vSphere Supervisor. This operation will apply the Supervisor Service version's service definition on the cluster. This operation is possible only when the Supervisor Service and Supervisor Service version are in the ACTIVATED state. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
             "required": true,
             "in": "path",
             "name": "cluster",
-            "description": "Identifier for the Supervisor cluster on which to create the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
+            "description": "Identifier for the Supervisor on which to create the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
           },
           {
             "in": "body",
@@ -6584,7 +6590,7 @@
             }
           },
           "400": {
-            "description": "if the Supervisor cluster doesn't support Supervisor Services, or if the Supervisor Service cannot be created in the current state, e.g. the supervisor service version is in the DEACTIVATED state.",
+            "description": "if the Supervisor doesn't support Supervisor Services, or if the Supervisor Service cannot be created in the current state, e.g. the supervisor service version is in the DEACTIVATED state.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
@@ -6619,7 +6625,7 @@
         "tags": [
           "namespace_management/supervisor_services/cluster_supervisor_services"
         ],
-        "summary": "Return the summaries about all Supervisor Services on the specified vSphere Supervisor cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires System.Read. \n",
+        "summary": "Return the summaries about all Supervisor Services on the specified vSphere Supervisor. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
@@ -6646,13 +6652,13 @@
             }
           },
           "404": {
-            "description": "if Supervisor cluster with the ID cluster could not be located.",
+            "description": "if Supervisor with the ID cluster could not be located.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
           },
           "400": {
-            "description": "if the Supervisor cluster doesn't support Supervisor Services.",
+            "description": "if the Supervisor doesn't support Supervisor Services.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
@@ -6664,7 +6670,7 @@
             }
           },
           "403": {
-            "description": "if the user does not have the System.Read privilege on the specified cluster.",
+            "description": "if the user does not have the SupervisorServices.Manage privilege on the specified cluster.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnauthorized"
             }
@@ -6683,14 +6689,14 @@
         "tags": [
           "namespace_management/supervisor_services/cluster_supervisor_services"
         ],
-        "summary": "Set a new configuration to the specified Supervisor Service on the specified vSphere Supervisor cluster. This operation will apply the new Supervisor Service version's service definition to the existing Supervisor Service on the cluster. This operation requires that the specified Supervisor Service is already installed in the specified vSphere Supervisor cluster. Note that this operation doesn't interfere with the application instances that are created by the associated operator(s). So users should make sure the new version is still compatible with the existing application instances.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
+        "summary": "Set a new configuration to the specified Supervisor Service on the specified vSphere Supervisor. This operation will apply the new Supervisor Service version's service definition to the existing Supervisor Service on the cluster. This operation requires that the specified Supervisor Service is already installed in the specified Supervisor. Note that this operation doesn't interfere with the application instances that are created by the associated operator(s). So users should make sure the new version is still compatible with the existing application instances. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
             "required": true,
             "in": "path",
             "name": "cluster",
-            "description": "Identifier for the Supervisor cluster from which to delete the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
+            "description": "Identifier for the Supervisor from which to delete the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
           },
           {
             "type": "string",
@@ -6718,13 +6724,13 @@
             }
           },
           "400": {
-            "description": "if the Supervisor cluster doesn't support Supervisor Services or the specified version is not in the ACTIVATED state.",
+            "description": "if the Supervisor doesn't support Supervisor Services or the specified version is not in the ACTIVATED state.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
           },
           "404": {
-            "description": "if Supervisor cluster with the ID cluster or Supervisor Service with the ID supervisorService or version with the ID {param.name version} could not be located, or the Supervisor Service does not exist on the Supervisor cluster.",
+            "description": "if Supervisor with the ID cluster or Supervisor Service with the ID supervisorService or version with the ID {param.name version} could not be located, or the Supervisor Service does not exist on the Supervisor.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
@@ -6753,7 +6759,7 @@
         "tags": [
           "namespace_management/supervisor_services/cluster_supervisor_services"
         ],
-        "summary": "Return information about the specific Supervisor Service on the specified vSphere Supervisor cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires System.Read. \n",
+        "summary": "Return information about the specific Supervisor Service on the specified vSphere Supervisor. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
@@ -6784,13 +6790,13 @@
             }
           },
           "404": {
-            "description": "if Supervisor cluster with the ID cluster or the Supervisor Service does not exist on the Supervisor cluster.",
+            "description": "if Supervisor with the ID cluster or the Supervisor Service does not exist on the Supervisor.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
           },
           "400": {
-            "description": "if the Supervisor cluster doesn't support Supervisor Services.",
+            "description": "if the Supervisor doesn't support Supervisor Services.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
@@ -6802,7 +6808,7 @@
             }
           },
           "403": {
-            "description": "if the user does not have the System.Read privilege on the specified cluster.",
+            "description": "if the user does not have the SupervisorServices.Manage privilege on the specified cluster.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnauthorized"
             }
@@ -6819,14 +6825,14 @@
         "tags": [
           "namespace_management/supervisor_services/cluster_supervisor_services"
         ],
-        "summary": "Delete a Supervisor Service on the specified vSphere Supervisor cluster. This operation will remove the Supervisor Service with the specified identifier from the cluster, by removing the corresponding namespace and deleting the operator(s) associated with the Supervisor Service. Note that this operation doesn't deal with the application instances that are created by the associated operator(s), so existing application instances could be orphaned if users don't clean or migrate them.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
+        "summary": "Delete a Supervisor Service on the specified vSphere Supervisor. This operation will remove the Supervisor Service with the specified identifier from the cluster, by removing the corresponding namespace and deleting the operator(s) associated with the Supervisor Service. Note that this operation doesn't deal with the application instances that are created by the associated operator(s), so existing application instances could be orphaned if users don't clean or migrate them. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
             "required": true,
             "in": "path",
             "name": "cluster",
-            "description": "Identifier for the Supervisor cluster from which to delete the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
+            "description": "Identifier for the Supervisor from which to delete the service.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
           },
           {
             "type": "string",
@@ -6847,13 +6853,13 @@
             }
           },
           "404": {
-            "description": "if Supervisor cluster with the ID cluster or the Supervisor Service does not exist on the Supervisor cluster.",
+            "description": "if Supervisor with the ID cluster or the Supervisor Service does not exist on the Supervisor.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
           },
           "400": {
-            "description": "if the Supervisor cluster doesn't support Supervisor Services.",
+            "description": "if the Supervisor doesn't support Supervisor Services.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
@@ -7020,8 +7026,14 @@
               "$ref": "#/definitions/VapiStdErrorsError"
             }
           },
+          "400": {
+            "description": "if the Supervisor cluster is being restored from a backup. When a Supervisor cluster is restored, there's a window of time during which the restored Supervisor cluster's state is being synchronized back to vCenter. During that time, Supervisor cluster's disablement is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
+            }
+          },
           "404": {
-            "description": "if cluster could not be located.",
+            "description": "if the Supervisor cluster could not be located.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsNotFound"
             }
@@ -8196,7 +8208,7 @@
         "tags": [
           "namespace_management/supervisor_services/versions"
         ],
-        "summary": "Delete a Supervisor Service version. This operation only deletes the Supervisor Service version from vCenter if the version is in DEACTIVATED state and all instances of the version are removed from all vSphere Supervisor clusters. Note that the Versions.deactivate operation should be called to deactivate the version before the version can be deleted. \n Note that deleting the last version of the supervisorService does not delete the supervisorService instance automatically.\n\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires SupervisorServices.Manage. \n",
+        "summary": "Delete a Supervisor Service version. This operation only deletes the Supervisor Service version from vCenter if the version is in DEACTIVATED state and all instances of the version are removed from all Supervisors. Note that the Versions.deactivate operation should be called to deactivate the version before the version can be deleted. \n Note that deleting the last version of the supervisorService does not delete the supervisorService instance automatically.\n\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires SupervisorServices.Manage. \n",
         "parameters": [
           {
             "type": "string",
@@ -8218,7 +8230,7 @@
             "description": ""
           },
           "500": {
-            "description": "if the system reports an error while responding to the request, e.g. if it is unable to reach a vSphere Supervisor cluster that has the version enabled.",
+            "description": "if the system reports an error while responding to the request, e.g. if it is unable to reach a vSphere Supervisor that has the version enabled.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsError"
             }
@@ -8831,7 +8843,7 @@
         "tags": [
           "namespaces/user/instances"
         ],
-        "summary": "Returns namespaces that user making the call is authorized to access.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
+        "summary": "Returns namespaces matching the FilterSpec. TODO: we need to put the link back for FilterSpec, https://jira.eng.vmware.com/browse/VKAL-13522.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
         "parameters": [],
         "responses": {
           "200": {
@@ -8854,6 +8866,12 @@
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnauthenticated"
             }
+          },
+          "403": {
+            "description": "if the user is not authorized to perform this operation.",
+            "schema": {
+              "$ref": "#/definitions/VapiStdErrorsUnauthorized"
+            }
           }
         },
         "operationId": "list",
@@ -8869,7 +8887,7 @@
         "tags": [
           "namespaces/instances"
         ],
-        "summary": "Create namespace object in the cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the attribute Instances.CreateSpec.cluster requires Namespaces.Configure. \n",
+        "summary": "Create a namespace object on a single vSphere cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the attribute Instances.CreateSpec.cluster requires Namespaces.Configure. \n",
         "parameters": [
           {
             "in": "body",
@@ -8884,7 +8902,7 @@
             "description": ""
           },
           "400": {
-            "description": "if Instances.CreateSpec.cluster is not enabled for Namespaces, or if the networks field is set when the Instances.CreateSpec.cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as its network provider, or if the cluster does not support customizable VM classes.",
+            "description": "ifInstances.CreateSpec.cluster is not enabled for Namespaces, or if the networks field is set when the Instances.CreateSpec.cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as its network provider, or if the Supervisor cluster does not support customizable VM classes.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnsupported"
             }
@@ -8925,11 +8943,11 @@
         "tags": [
           "namespaces/instances"
         ],
-        "summary": "Returns the information about all namespaces on this vCenter.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
+        "summary": "Returns the information about all namespaces in this vCenter Server. The information is tied to a single vSphere cluster.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "The list of summary of all namespaces.",
+            "description": "Information about all namespaces in this vCenter server.",
             "schema": {
               "type": "array",
               "items": {
@@ -8997,7 +9015,7 @@
             }
           },
           "400": {
-            "description": "if customizable VM classes are not suported for this cluster.",
+            "description": "if customizable VM classes are not suported for this Supervisor cluster.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnsupported"
             }
@@ -9032,7 +9050,7 @@
         "tags": [
           "namespaces/instances"
         ],
-        "summary": "Returns information about a specific namespace.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.Instance referenced by the parameter namespace requires System.Read. \n",
+        "summary": "Returns information about a specific namespace on a single vSphere cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.Instance referenced by the parameter namespace requires System.Read. \n",
         "parameters": [
           {
             "type": "string",
@@ -9113,7 +9131,7 @@
             }
           },
           "400": {
-            "description": "if customizable VM classes are not suported for this cluster.",
+            "description": "if customizable VM classes are not suported for this Supervisor cluster.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsUnsupported"
             }
@@ -9166,6 +9184,12 @@
             "description": "if the system reports an error while responding to the request.",
             "schema": {
               "$ref": "#/definitions/VapiStdErrorsError"
+            }
+          },
+          "400": {
+            "description": "if the associated Supervisor cluster is being restored from a backup. When a Supervisor cluster is restored, there's a window of time during which the restored Supervisor cluster's state is being synchronized back to vCenter. During that time, namespace deletion is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/VapiStdErrorsNotAllowedInCurrentState"
             }
           },
           "404": {
@@ -9587,7 +9611,7 @@
         "tags": [
           "namespaces/namespace_self_service"
         ],
-        "summary": "Returns information about Namespace Self Service of a specific cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires System.Read. \n",
+        "summary": "Returns information about Namespace Self Service of a specific cluster. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires System.Read. \n",
         "parameters": [
           {
             "type": "string",
@@ -9642,7 +9666,7 @@
         "tags": [
           "namespaces/namespace_self_service"
         ],
-        "summary": "Activate Namespace Self Service on the cluster on which vSphere Namespaces enabled. This operation empowers Dev Users/Groups as self-service namespace users to create Supervisor Namespaces through kubectl create namespace command. activate requires the availability of one or more templates in the system.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires Namespaces.SelfServiceManage. \n",
+        "summary": "Activate Namespace Self Service on the cluster on which vSphere Namespaces enabled. This operation empowers Dev Users/Groups as self-service namespace users to create Supervisor Namespaces through kubectl create namespace command. activate requires the availability of one or more templates in the system. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
@@ -9700,7 +9724,7 @@
         "tags": [
           "namespaces/namespace_self_service"
         ],
-        "summary": "Activate Namespace Self Service on the cluster after configuring namespace template. This is another variant of activate except configures template before activation. The template configuration includes either creating a new template or updating the existing template, depending on the template's existence. Here is supported the flow of actions using the activateWithTemplate call: 1. Activate with the new template using activateWithTemplate call. 2. Deactivate using deactivate call. 3. Active with updating the existing template using activateWithTemplate.",
+        "summary": "Activate Namespace Self Service on the cluster after configuring namespace template. This is another variant of activate except configures template before activation. The template configuration includes either creating a new template or updating the existing template, depending on the template's existence. Here is supported the flow of actions using the activateWithTemplate call: 1. Activate with the new template using activateWithTemplate call. 2. Deactivate using deactivate call. 3. Active with updating the existing template using activateWithTemplate. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.",
         "parameters": [
           {
             "type": "string",
@@ -9765,7 +9789,7 @@
         "tags": [
           "namespaces/namespace_self_service"
         ],
-        "summary": "Deactivate Namespace Self Service on the cluster on which vSphere Namespaces enabled. This operation reverses Dev Users/Group's self-service namespace capability on the cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires Namespaces.SelfServiceManage. \n",
+        "summary": "Deactivate Namespace Self Service on the cluster on which vSphere Namespaces enabled. This operation reverses Dev Users/Group's self-service namespace capability on the cluster. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource ClusterComputeResource referenced by the parameter cluster requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
@@ -9823,7 +9847,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Creates a namespace template on a cluster on which vSphere Namespaces are enabled on this vCenter. This release supports creating a single namespace template, and the call fails if there is a request to make another one.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires Namespaces.SelfServiceManage. \n",
+        "summary": "Creates a namespace template on a cluster on which vSphere Namespaces are enabled in this vCenter Server. This release supports creating a single namespace template, and the call fails if there is a request to make another one. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
@@ -9886,7 +9910,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Returns information about all the namespace templates associated with a cluster on which vSphere Namespaces are enabled on this vCenter.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
+        "summary": "Returns information about all the namespace templates associated with a cluster on which vSphere Namespaces are enabled in this vCenter Server. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
         "parameters": [
           {
             "type": "string",
@@ -9944,7 +9968,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Get the information about a namespace template on given cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires System.Read. \n",
+        "summary": "Get the information about a namespace template on given cluster. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires System.Read. \n",
         "parameters": [
           {
             "type": "string",
@@ -10004,14 +10028,14 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Updates a namespace template associated with a cluster on which vSphere Namespaces are enabled on this vCenter. The specified configuration is applied partially and unset fields in spec will leave those parts of configuration as-is.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires Namespaces.SelfServiceManage. \n",
+        "summary": "Updates a namespace template associated with cluster on which vSphere Namespaces are enabled in this vCenter Server. The specified configuration is applied partially and unset fields in spec will leave those parts of configuration as-is. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
             "required": true,
             "in": "path",
             "name": "cluster",
-            "description": "Identifier for the cluster on which vSphere Namespaces are enabled.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
+            "description": "Identifier for cluster on which vSphere Namespaces are enabled.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
           },
           {
             "type": "string",
@@ -30117,7 +30141,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Creates a namespace template on a cluster on which vSphere Namespaces are enabled on this vCenter. This release supports creating a single namespace template, and the call fails if there is a request to make another one.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires Namespaces.SelfServiceManage. \n",
+        "summary": "Creates a namespace template on a cluster on which vSphere Namespaces are enabled in this vCenter Server. This release supports creating a single namespace template, and the call fails if there is a request to make another one. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
@@ -30179,7 +30203,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Returns information about all the namespace templates associated with a cluster on which vSphere Namespaces are enabled on this vCenter.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
+        "summary": "Returns information about all the namespace templates associated with a cluster on which vSphere Namespaces are enabled in this vCenter Server. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  Operation execution requires System.Anonymous. \n",
         "parameters": [
           {
             "type": "string",
@@ -30238,7 +30262,7 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Get the information about a namespace template on given cluster.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires System.Read. \n",
+        "summary": "Get the information about a namespace template on given cluster. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires System.Read. \n",
         "parameters": [
           {
             "type": "string",
@@ -30302,14 +30326,14 @@
         "tags": [
           "namespaces/namespace_templates"
         ],
-        "summary": "Updates a namespace template associated with a cluster on which vSphere Namespaces are enabled on this vCenter. The specified configuration is applied partially and unset fields in spec will leave those parts of configuration as-is.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires Namespaces.SelfServiceManage. \n",
+        "summary": "Updates a namespace template associated with cluster on which vSphere Namespaces are enabled in this vCenter Server. The specified configuration is applied partially and unset fields in spec will leave those parts of configuration as-is. A Supervisor can be running on one or multiple vSphere Zones, and each vSphere Zone is associated with one or more vSphere Clusters. If a Supervisor running on the specified vSphere Cluster is running on additional vSphere Clusters, this operation will apply to Supervisor components running on the other vSphere Clusters in addition to the specified vSphere Cluster. To call this API on a Supervisor with multiple vSphere Clusters, use vcenter.namespace_management.supervisors.Topology#get to get the vSphere Clusters associated with the given Supervisor. Any cluster from the list returned can be used as the input of this API.\nif you do not have all of the privileges described as follows: \n   -  The resource vcenter.namespaces.NamespaceTemplate referenced by the parameter template requires Namespaces.SelfServiceManage. \n",
         "parameters": [
           {
             "type": "string",
             "required": true,
             "in": "path",
             "name": "cluster",
-            "description": "Identifier for the cluster on which vSphere Namespaces are enabled.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
+            "description": "Identifier for cluster on which vSphere Namespaces are enabled.\nThe parameter must be an identifier for the resource type: ClusterComputeResource."
           },
           {
             "type": "string",
@@ -45651,7 +45675,7 @@
       "type": "object",
       "properties": {
         "vsan_clusters": {
-          "description": "CNSFileConfig.vsan-clusters is a list of clusters to be used for provisioning file volumes. As a prerequisite these clusters must have vSAN and vSAN file services enabled, and must be in the same vCenter as the Supervisor Cluster. Currently this list must have a single entry which is the cluster identifier of the current cluster. This cluster must be a vSAN cluster and must have vSAN File Service enabled. If a cluster in the list is not a vSAN cluster or does not have vSAN File Service enabled, an InvalidArgument error will be thrown from Clusters.enable, Clusters.update and Clusters.set APIs. An empty list may be specified to disable file volume support on the Supervisor Cluster.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "\nCNSFileConfig.vsan-clusters is a list of clusters to be used for provisioning file volumes.\n \nAs a prerequisite these clusters must have vSAN and vSAN file services enabled, and must be in the same vCenter as the Supervisor.\n \nCurrently this list must have a single entry which is the cluster identifier of the current cluster. This cluster must be a vSAN cluster and must have vSAN File Service enabled.\n \nIf a cluster in the list is not a vSAN cluster or does not have vSAN File Service enabled, an InvalidArgument error will be thrown from Clusters.enable, Clusters.update and Clusters.set APIs.\n \nAn empty list may be specified to disable file volume support on the Supervisor.\n\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
           "type": "array",
           "items": {
             "type": "string"
@@ -45699,11 +45723,11 @@
       "type": "object",
       "properties": {
         "compatible": {
-          "description": "Compatibility criteria for matching the filter. If true, only clusters which are compatible for Namespaces match the filter. If false, all clusters match the filter.\nIf unset, both compatible and incompatible clusters match the filter.",
+          "description": "Set this flag to true to only list vSphere clusters that are currently compatible with the Namespaces feature. If set to false, both compatible and incompatible vSphere clusters will be listed.\nIf unset, both compatible and incompatible vSphere clusters will be listed.",
           "type": "boolean"
         },
         "network_provider": {
-          "description": "The network provider whose networks will be considered. If unset, this will default to NSXT_CONTAINER_PLUGIN.\nThis field is optional because it was added in a newer version than its parent node.",
+          "description": "The network provider whose networks will be considered.\nIf unset, this will default to NSXT_CONTAINER_PLUGIN.",
           "$ref": "#/definitions/VcenterNamespaceManagementClustersNetworkProvider"
         }
       }
@@ -45712,11 +45736,11 @@
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier of the cluster.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier of the vSphere cluster.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "compatible": {
-          "description": "Compatibility of this cluster.",
+          "description": "Compatibility of this vSphere cluster. If false, the list of incompatibility issues will be given in the ClusterCompatibility.Summary.incompatibility-reasons field.",
           "type": "boolean"
         },
         "incompatibility_reasons": {
@@ -45891,7 +45915,7 @@
           "type": "string"
         },
         "cns_file_config": {
-          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, file volume support will not be enabled on this Supervisor Cluster.",
+          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, file volume support will not be enabled on this Supervisor.",
           "$ref": "#/definitions/VcenterNamespaceManagementCNSFileConfig"
         },
         "login_banner": {
@@ -45922,7 +45946,7 @@
           "type": "string"
         },
         "cluster_proxy_config": {
-          "description": "Proxy configuration that will be applied to the Supervisor Cluster. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor Cluster.\nIf unset the settings will be inherited from the vCenter settings if available.",
+          "description": "Proxy configuration that will be applied to the Supervisor. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor.\nIf unset the settings will be inherited from the vCenter settings if available.",
           "$ref": "#/definitions/VcenterNamespaceManagementProxyConfiguration"
         }
       },
@@ -46079,7 +46103,7 @@
           "type": "string"
         },
         "cns_file_config": {
-          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, it means the file volume support is not enabled on this Supervisor Cluster.",
+          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, it means the file volume support is not enabled on this Supervisor.",
           "$ref": "#/definitions/VcenterNamespaceManagementCNSFileConfig"
         },
         "login_banner": {
@@ -46124,7 +46148,7 @@
           "type": "string"
         },
         "cluster_proxy_config": {
-          "description": "Proxy configuration that is applied to the Supervisor Cluster. The proxy should be reachable from the management network and is used for image pulling and container traffic exiting out of the Supervisor Cluster. \n Note that the proxy password will be removed from the URLs as per Section 3.2.1 of RFC3986 security recommendation.\nThis field is optional because it was added in a newer version than its parent node.",
+          "description": "Proxy configuration that is applied to the Supervisor. The proxy should be reachable from the management network and is used for image pulling and container traffic exiting out of the Supervisor. \n Note that the proxy password will be removed from the URLs as per Section 3.2.1 of RFC3986 security recommendation.\nThis field is optional because it was added in a newer version than its parent node.",
           "$ref": "#/definitions/VcenterNamespaceManagementProxyConfiguration"
         }
       },
@@ -46423,7 +46447,7 @@
     },
     "VcenterNamespaceManagementClustersSet": {
       "$ref": "#/definitions/VcenterNamespaceManagementClustersSetSpec",
-      "description": "New specification for the cluster."
+      "description": "New specification for the Supervisor cluster."
     },
     "VcenterNamespaceManagementClustersSetSpec": {
       "type": "object",
@@ -46433,7 +46457,7 @@
           "$ref": "#/definitions/VcenterNamespaceManagementSizingHint"
         },
         "floating_IP": {
-          "description": "Optionally, you can edit the floating IP address that is assigned to the Supervisor Cluster in case the DHCP server fails during the Supervisor Cluster enablement process. The field is only relevant when the DHCP mode of the Supervisor Cluster management network is set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to remediate a supervisor enablement failure in the case where it was detected that the DHCP server does not support DHCP client identifiers.\nIf unset, the existing effective management network floating IP will not be modified.",
+          "description": "Optionally, you can edit the floating IP address that is assigned to the Supervisor in case the DHCP server fails during the Supervisor enablement process. The field is only relevant when the DHCP mode of the Supervisor management network is set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to remediate a supervisor enablement failure in the case where it was detected that the DHCP server does not support DHCP client identifiers.\nIf unset, the existing effective management network floating IP will not be modified.",
           "type": "string"
         },
         "network_provider": {
@@ -46481,7 +46505,7 @@
           "type": "string"
         },
         "cns_file_config": {
-          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, file volume support will not be enabled on this Supervisor Cluster.",
+          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, file volume support will not be enabled on this Supervisor.",
           "$ref": "#/definitions/VcenterNamespaceManagementCNSFileConfig"
         },
         "login_banner": {
@@ -46512,7 +46536,7 @@
           }
         },
         "cluster_proxy_config": {
-          "description": "Proxy configuration that will be applied to the Supervisor Cluster. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor Cluster. Modifying these settings will result in a restart of the container runtime. Workloads might fail to pull their images for a short period of time. There will be no effect on the currently running containers.\nIf unset the settings will be inherited from the vCenter settings if available.",
+          "description": "Proxy configuration that will be applied to the Supervisor. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor. Modifying these settings will result in a restart of the container runtime. Workloads might fail to pull their images for a short period of time. There will be no effect on the currently running containers.\nIf unset the settings will be inherited from the vCenter settings if available.",
           "$ref": "#/definitions/VcenterNamespaceManagementProxyConfiguration"
         }
       },
@@ -46601,7 +46625,7 @@
     },
     "VcenterNamespaceManagementClustersUpdate": {
       "$ref": "#/definitions/VcenterNamespaceManagementClustersUpdateSpec",
-      "description": "New specification for the cluster."
+      "description": "New specification for the Supervisor cluster."
     },
     "VcenterNamespaceManagementClustersUpdateSpec": {
       "type": "object",
@@ -46611,7 +46635,7 @@
           "$ref": "#/definitions/VcenterNamespaceManagementSizingHint"
         },
         "floating_IP": {
-          "description": "Optionally, you can edit the floating IP address that is assigned to the Supervisor Cluster in case the DHCP server fails during the Supervisor Cluster enablement process. The field is only relevant when the DHCP mode of the Supervisor Cluster management network is set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to remediate a supervisor enablement failure in the case where it was detected that the DHCP server does not support DHCP client identifiers.\nIf unset, the existing effective management network floating IP will not be modified.",
+          "description": "Optionally, you can edit the floating IP address that is assigned to the Supervisor in case the DHCP server fails during the Supervisor enablement process. The field is only relevant when the DHCP mode of the Supervisor management network is set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to remediate a supervisor enablement failure in the case where it was detected that the DHCP server does not support DHCP client identifiers.\nIf unset, the existing effective management network floating IP will not be modified.",
           "type": "string"
         },
         "network_provider": {
@@ -46659,7 +46683,7 @@
           "type": "string"
         },
         "cns_file_config": {
-          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, configuration for file volumes will remain unchanged.",
+          "description": "Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.\nIf unset, configuration for file volumes will remain unchanged.",
           "$ref": "#/definitions/VcenterNamespaceManagementCNSFileConfig"
         },
         "login_banner": {
@@ -46694,7 +46718,7 @@
           }
         },
         "cluster_proxy_config": {
-          "description": "Proxy configuration that will be applied to the Supervisor Cluster. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor Cluster. Modifying these settings will result in a restart of the container runtime. Workloads might fail to pull their images for a short period of time. There will be no effect on the currently running containers.\nIf unset no change will be made to the cluster.",
+          "description": "Proxy configuration that will be applied to the Supervisor. The proxy should be reachable from the management network and will be used for image pulling and container traffic exiting out of the Supervisor. Modifying these settings will result in a restart of the container runtime. Workloads might fail to pull their images for a short period of time. There will be no effect on the currently running containers.\nIf unset no change will be made to the cluster.",
           "$ref": "#/definitions/VcenterNamespaceManagementProxyConfiguration"
         }
       }
@@ -48051,7 +48075,7 @@
           "$ref": "#/definitions/VcenterNamespaceManagementSupervisorServicesVersionsContentType"
         },
         "vsphere_apps_check_result": {
-          "description": "The information about the Supervisor Service version retrieved from the provided content as a result of validation checks if the content is in the vSphere or Carvel application format.\nIf unset, the content is not in the vSphere application service format or the Carvel application package format, or the SupervisorServices.CheckResult.status is INVALID.",
+          "description": "The information about the Supervisor Service version retrieved from the provided content as a result of validation checks if the content is in the vSphere application format.\nIf unset, the content is not in the vSphere application service format, or the SupervisorServices.CheckResult.status is INVALID.",
           "$ref": "#/definitions/VcenterNamespaceManagementSupervisorServicesVsphereAppsCheckResult"
         },
         "warning_messages": {
@@ -48099,7 +48123,7 @@
           "type": "string"
         },
         "service_config": {
-          "description": "A generic key-value map for additional configuration parameters required during service creation. As an example, a third party operator might reference a private registry using parameters such as \"registryName\" for the registry name, \"registryUsername\" and \"registryPassword\" for the registry credentials.\nIf unset, no additional configuration parameters will be applied when installing a Supervisor Service in the vSphere Supervisor cluster.",
+          "description": "A generic key-value map for additional configuration parameters required during service creation. As an example, a third party operator might reference a private registry using parameters such as \"registryName\" for the registry name, \"registryUsername\" and \"registryPassword\" for the registry credentials.\nIf unset, no additional configuration parameters will be applied when installing a Supervisor Service in the vSphere Supervisor.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -48127,7 +48151,7 @@
           "$ref": "#/definitions/VcenterNamespaceManagementSupervisorServicesClusterSupervisorServicesConfigStatus"
         },
         "messages": {
-          "description": "Current set of messages associated with the Supervisor Service on the vSphere Supervisor cluster.",
+          "description": "Current set of messages associated with the Supervisor Service on the vSphere Supervisor.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/VcenterNamespaceManagementSupervisorServicesClusterSupervisorServicesMessage"
@@ -48194,7 +48218,7 @@
           "type": "string"
         },
         "service_config": {
-          "description": "A generic key-value map for additional configuration parameters required during service upgrade. As an example, a third party operator might reference a private registry using parameters such as \"registryName\" for the registry name, \"registryUsername\" and \"registryPassword\" for the registry credentials.\nIf unset, no additional configuration parameters will be applied when upgrading a Supervisor Service in the vSphere Supervisor cluster.",
+          "description": "A generic key-value map for additional configuration parameters required during service upgrade. As an example, a third party operator might reference a private registry using parameters such as \"registryName\" for the registry name, \"registryUsername\" and \"registryPassword\" for the registry credentials.\nIf unset, no additional configuration parameters will be applied when upgrading a Supervisor Service in the vSphere Supervisor.",
           "type": "object",
           "additionalProperties": {
             "type": "string"
@@ -48932,17 +48956,17 @@
     },
     "VcenterNamespacesInstancesCreate": {
       "$ref": "#/definitions/VcenterNamespacesInstancesCreateSpec",
-      "description": "Specification for setting up the namespace."
+      "description": "The specification for setting up the namespace."
     },
     "VcenterNamespacesInstancesCreateSpec": {
       "type": "object",
       "properties": {
-        "namespace": {
-          "description": "Identifier of the namespace. This has DNS_LABEL restrictions as specified in . This must be an alphanumeric (a-z and 0-9) string and with maximum length of 63 characters and with the '-' character allowed anywhere except the first or last character. This name is unique across all Namespaces in this vCenter server. In this version, this maps to the name of a Kubernetes namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will be an identifier for the resource type: vcenter.namespaces.Instance.",
-          "type": "string"
-        },
         "cluster": {
           "description": "Identifier of the cluster on which the namespace is being created.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Identifier of the namespace. This has DNS_LABEL restrictions as specified in . This must be an alphanumeric (a-z and 0-9) string and with maximum length of 63 characters and with the '-' character allowed anywhere except the first or last character. This name is unique across all Namespaces in this vCenter server. In this version, this maps to the name of a Kubernetes namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will be an identifier for the resource type: vcenter.namespaces.Instance.",
           "type": "string"
         },
         "description": {
@@ -48968,7 +48992,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespaces.Instance.",
+          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -48988,15 +49012,15 @@
         }
       },
       "required": [
-        "namespace",
-        "cluster"
+        "cluster",
+        "namespace"
       ]
     },
     "VcenterNamespacesInstancesInfo": {
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier for the cluster hosting the namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier for the vSphere cluster hosting the namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "config_status": {
@@ -49037,7 +49061,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Networks associated with the namespace.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespaces.Instance.",
+          "description": "vSphere Networks associated with the namespace.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -49282,16 +49306,16 @@
     "VcenterNamespacesInstancesSummary": {
       "type": "object",
       "properties": {
+        "cluster": {
+          "description": "Identifier for the vSphere cluster hosting the namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "type": "string"
+        },
         "namespace": {
           "description": "Identifier of the namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will be an identifier for the resource type: vcenter.namespaces.Instance.",
           "type": "string"
         },
         "description": {
           "description": "Description of the namespace.",
-          "type": "string"
-        },
-        "cluster": {
-          "description": "Identifier for the cluster hosting the namespace.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "config_status": {
@@ -49308,9 +49332,9 @@
         }
       },
       "required": [
+        "cluster",
         "namespace",
         "description",
-        "cluster",
         "config_status",
         "stats"
       ]
@@ -49402,6 +49426,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "vm_service_spec": {
+          "description": "VM Service specification to be associated with the namespace template. Namespaces created using this template will have access to the virtual machine classes and Content Libraries specified in the NamespaceSelfService.ActivateTemplateSpec.vm-service-spec by default.\nIf unset, the namespaces created using this template will not have access to any virtual machine classes and Content Libraries by default.",
+          "$ref": "#/definitions/VcenterNamespacesInstancesVMServiceSpec"
         }
       },
       "required": [
@@ -49510,7 +49538,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization. vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization. vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -49522,6 +49550,10 @@
           "items": {
             "$ref": "#/definitions/VcenterNamespacesNamespaceTemplatesSubject"
           }
+        },
+        "vm_service_spec": {
+          "description": "VM Service specification to be associated with the namespace template. Namespaces created using this template will have access to the virtual machine classes and Content Libraries specified in the NamespaceTemplates.CreateSpec.vm-service-spec by default.\nIf unset, the namespaces created using this template will not have access to any virtual machine classes and Content Libraries by default.",
+          "$ref": "#/definitions/VcenterNamespacesInstancesVMServiceSpec"
         }
       },
       "required": [
@@ -49534,7 +49566,7 @@
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier for the cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier for the vSphere cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "template": {
@@ -49553,7 +49585,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -49565,6 +49597,10 @@
           "items": {
             "$ref": "#/definitions/VcenterNamespacesNamespaceTemplatesSubject"
           }
+        },
+        "vm_service_spec": {
+          "description": "Current set of virtual machine classes and Content Libraries associated with the template.\nThis field is optional because it was added in a newer version than its parent node.",
+          "$ref": "#/definitions/VcenterNamespacesInstancesVMServiceSpec"
         }
       },
       "required": [
@@ -49599,7 +49635,7 @@
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier for the cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier for the vSphere cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "template": {
@@ -49631,7 +49667,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -49643,6 +49679,10 @@
           "items": {
             "$ref": "#/definitions/VcenterNamespacesNamespaceTemplatesSubject"
           }
+        },
+        "vm_service_spec": {
+          "description": "VM Service specification to be associated with the namespace template. The virtual machine classes and Content Library associations of the template will be updated according to the NamespaceTemplates.UpdateSpec.vm-service-spec.\nIf unset, the virtual machine classes and Content Library associations of the template will not be modified.",
+          "$ref": "#/definitions/VcenterNamespacesInstancesVMServiceSpec"
         }
       }
     },
@@ -65218,6 +65258,27 @@
         "GROUP"
       ]
     },
+    "vcenter.namespaces.instances.VM_service_spec": {
+      "type": "object",
+      "properties": {
+        "content_libraries": {
+          "description": "Set of content libraries for use by the VM Service. The content libraries specified should exist in vSphere inventory.\nThis field is optional because it was added in a newer version than its parent node.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: content.Library. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: content.Library.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "vm_classes": {
+          "description": "Set of VirtualMachineClasses for use by the VM Service. The class names specified here should exist in vSphere inventory. If this field is empty in an updated specification, all VirtualMachineClasses that are currently associated with the namespace will be disassociated from it. \n NOTE: Any change in virtual machine classes associated with the namespace will not impact existing VMs.\n\nThis field is optional because it was added in a newer version than its parent node.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.VirtualMachineClass. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.VirtualMachineClass.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "vcenter.namespaces.instances.storage_spec": {
       "type": "object",
       "properties": {
@@ -65254,7 +65315,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization. vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization. vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -65266,6 +65327,10 @@
           "items": {
             "$ref": "#/definitions/vcenter.namespaces.namespace_templates.subject"
           }
+        },
+        "vm_service_spec": {
+          "description": "VM Service specification to be associated with the namespace template. Namespaces created using this template will have access to the virtual machine classes and Content Libraries specified in the NamespaceTemplates.CreateSpec.vm-service-spec by default.\nIf unset, the namespaces created using this template will not have access to any virtual machine classes and Content Libraries by default.",
+          "$ref": "#/definitions/vcenter.namespaces.instances.VM_service_spec"
         }
       },
       "required": [
@@ -65278,7 +65343,7 @@
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier for the cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier for the vSphere cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "template": {
@@ -65297,7 +65362,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Networks that this template captures and are associated with the namespace after namespace realization.\nThis field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -65309,6 +65374,10 @@
           "items": {
             "$ref": "#/definitions/vcenter.namespaces.namespace_templates.subject"
           }
+        },
+        "vm_service_spec": {
+          "description": "Current set of virtual machine classes and Content Libraries associated with the template.\nThis field is optional because it was added in a newer version than its parent node.",
+          "$ref": "#/definitions/vcenter.namespaces.instances.VM_service_spec"
         }
       },
       "required": [
@@ -65357,7 +65426,7 @@
       "type": "object",
       "properties": {
         "cluster": {
-          "description": "Identifier for the cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
+          "description": "Identifier for the vSphere cluster associated with namespace template.\nWhen clients pass a value of this structure as a parameter, the field must be an identifier for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier for the resource type: ClusterComputeResource.",
           "type": "string"
         },
         "template": {
@@ -65385,7 +65454,7 @@
           }
         },
         "networks": {
-          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: ClusterComputeResource.",
+          "description": "vSphere Namespaces network objects to be associated with the namespace. The values of this list need to reference names of pre-existing vcenter.namespace_management.Networks.Info structures.\nThe field must be left unset if the cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as the network provider, since the network(s) for this namespace will be managed by NSX-T Container Plugin. If field is unset when the cluster hosting the namespace uses VSPHERE_NETWORK as its network provider, the namespace will automatically be associated with the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network object reference.\nWhen clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type: vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will contain identifiers for the resource type: vcenter.namespace_management.Network.",
           "type": "array",
           "items": {
             "type": "string"
@@ -65397,6 +65466,10 @@
           "items": {
             "$ref": "#/definitions/vcenter.namespaces.namespace_templates.subject"
           }
+        },
+        "vm_service_spec": {
+          "description": "VM Service specification to be associated with the namespace template. The virtual machine classes and Content Library associations of the template will be updated according to the NamespaceTemplates.UpdateSpec.vm-service-spec.\nIf unset, the virtual machine classes and Content Library associations of the template will not be modified.",
+          "$ref": "#/definitions/vcenter.namespaces.instances.VM_service_spec"
         }
       }
     },

@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
+using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -38,11 +39,9 @@ namespace vspheresdk.Vcenter.Modules
             if (Rp != null) { request.AddQueryParameter("rp", Rp.ToString()); }
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VcenterOvfImportFlagInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VcenterOvfImportFlagInfoType>>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("If the resource pool associated with param.name rp does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
     }

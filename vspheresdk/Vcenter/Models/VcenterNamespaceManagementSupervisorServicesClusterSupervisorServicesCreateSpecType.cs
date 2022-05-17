@@ -35,7 +35,7 @@ namespace vspheresdk.Vcenter.Models
         /// party operator might reference a private registry using parameters such as "registryName" for the registry name,
         /// "registryUsername" and "registryPassword" for the registry credentials.
         /// If unset, no additional configuration parameters will be applied when installing a Supervisor Service in the vSphere
-        /// Supervisor cluster.
+        /// Supervisor.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "service_config")]

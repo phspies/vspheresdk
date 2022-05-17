@@ -26,12 +26,29 @@ namespace vspheresdk.Authentication
                 var message = "Login operation to " + GetLoginURL.ToString() + " did not complete successfully";
                 throw new vSphereException(message, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException);
             }
-            //add "vmware-api-session-id" to header of each call
             return response;
+        }
+        public static async Task<string> RetrieveAsync(RestClient sessionRestClient, CancellationToken _cancellationToken, int _timeout, int _retry)
+        {
+            StringBuilder GetLoginURL = new StringBuilder("/com/vmware/cis/session?action=get");
+            var request = new RestRequest
+            {
+                Method = Method.Post,
+                RequestFormat = DataFormat.Json,
+            };
+            request.Resource = GetLoginURL.ToString();
+
+            RestResponse<string> response = await sessionRestClient.ExecuteTaskAsyncWithPolicy<string>(request, _cancellationToken, _timeout, _retry);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var message = "Login operation to " + GetLoginURL.ToString() + " did not complete successfully";
+                throw new vSphereException(message, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException);
+            }
+            return response.Data;
         }
         public static async Task LogoutAsync(RestClient sessionRestClient, CancellationToken _cancellationToken, int _timeout, int _retry)
         {
-            StringBuilder GetLogoutURL = new StringBuilder("/api/session/destroy");
+            StringBuilder GetLogoutURL = new StringBuilder("/rest/com/vmware/cis/session");
             var request = new RestRequest
             {
                 RequestFormat = DataFormat.Json,

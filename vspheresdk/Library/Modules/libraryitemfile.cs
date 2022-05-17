@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
+using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -38,11 +39,9 @@ namespace vspheresdk.Library.Modules
             ListServiceURL.Replace("{library_item_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(LibraryItemId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<ContentLibraryItemFileInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ContentLibraryItemFileInfoType>>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if param.name libraryItemId refers to a library item that does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<ContentLibraryItemFileInfoType> GetAsync(string LibraryItemId, string Name)
@@ -59,11 +58,9 @@ namespace vspheresdk.Library.Modules
             if (Name != null) { request.AddQueryParameter("name", Name.ToString()); }
             request.Resource = GetServiceURL.ToString();
             RestResponse<ContentLibraryItemFileInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentLibraryItemFileInfoType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + GetServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if param.name libraryItemId refers to a library item that does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
     }

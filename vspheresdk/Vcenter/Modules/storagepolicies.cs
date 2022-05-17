@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
+using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -37,11 +38,13 @@ namespace vspheresdk.Vcenter.Modules
             if (Policies != null) { request.AddQueryParameter("policies", Policies.ToString()); }
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VcenterStoragePoliciesSummaryType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VcenterStoragePoliciesSummaryType>>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the Policies.FilterSpec contains a value that is not supported by the server.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 503) { throw new vSphereException("if the system is unable to communicate with a service to complete the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user doesnt have the required privileges.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if more than 1024 storage policies exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<VcenterStoragePoliciesCompatibilityInfoType> CheckCompatibilityAsync(string Policy, VcenterStoragePoliciesCheckCompatibilityType RequestBody)
@@ -58,11 +61,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CheckCompatibilityServiceURL.ToString();
             RestResponse<VcenterStoragePoliciesCompatibilityInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterStoragePoliciesCompatibilityInfoType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + CheckCompatibilityServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if input more than 1024 datastores.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the storage policy specified does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 503) { throw new vSphereException("if the system is unable to communicate with a service to complete the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user doesnt have the required privileges.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
     }

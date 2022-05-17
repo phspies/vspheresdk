@@ -12,16 +12,16 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespaceManagementClusterCompatibilityFilterSpecType 
     {
         /// <summary>
-        /// Compatibility criteria for matching the filter. If true, only clusters which are compatible for Namespaces match the
-        /// filter. If false, all clusters match the filter.
-        /// If unset, both compatible and incompatible clusters match the filter.
+        /// Set this flag to true to only list vSphere clusters that are currently compatible with the Namespaces feature. If set to
+        /// false, both compatible and incompatible vSphere clusters will be listed.
+        /// If unset, both compatible and incompatible vSphere clusters will be listed.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "compatible")]
         public bool? Compatible { get; set; }
         /// <summary>
-        /// The network provider whose networks will be considered. If unset, this will default to NSXT_CONTAINER_PLUGIN.
-        /// This field is optional because it was added in a newer version than its parent node.
+        /// The network provider whose networks will be considered.
+        /// If unset, this will default to NSXT_CONTAINER_PLUGIN.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "network_provider")]

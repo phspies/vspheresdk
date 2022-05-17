@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
+using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -39,11 +40,11 @@ namespace vspheresdk.Library.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = AddServiceURL.ToString();
             RestResponse<ContentLibraryItemUpdatesessionFileInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentLibraryItemUpdatesessionFileInfoType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + AddServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the content of the library item associated with the update session has been deleted from the storage backings see link LibraryModelstorageBackings associated with it.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the update session doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the caller doesnt have ContentLibrary.ReadStorage privilege on the library item of the update session and source type link SourceTypePULL is requested for a file or datastore source endpoint that is not HTTP or HTTPs based endpoint.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<List<ContentLibraryItemUpdatesessionFileInfoType>> ListAsync(string UpdateSessionId)
@@ -58,11 +59,9 @@ namespace vspheresdk.Library.Modules
             ListServiceURL.Replace("{update_session_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(UpdateSessionId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<ContentLibraryItemUpdatesessionFileInfoType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<ContentLibraryItemUpdatesessionFileInfoType>>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the update session doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task<ContentLibraryItemUpdatesessionFileInfoType> GetAsync(string UpdateSessionId, string FileName)
@@ -79,11 +78,10 @@ namespace vspheresdk.Library.Modules
             GetServiceURL.Replace("{file_name}", System.Uri.EscapeDataString(Helpers.ConvertToString(FileName, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<ContentLibraryItemUpdatesessionFileInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentLibraryItemUpdatesessionFileInfoType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + GetServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the update session doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the file doesnt exist in the library item associated with the update session.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task RemoveAsync(string UpdateSessionId, string FileName)
@@ -100,11 +98,10 @@ namespace vspheresdk.Library.Modules
             RemoveServiceURL.Replace("{file_name}", System.Uri.EscapeDataString(Helpers.ConvertToString(FileName, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = RemoveServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Delete operation to " + RemoveServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the update session doesnt exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the file doesnt exist in the library item associated with the update session.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
         public async Task<ContentLibraryItemUpdatesessionFileValidationResultType> ValidateAsync(string UpdateSessionId)
@@ -119,11 +116,10 @@ namespace vspheresdk.Library.Modules
             ValidateServiceURL.Replace("{update_session_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(UpdateSessionId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = ValidateServiceURL.ToString();
             RestResponse<ContentLibraryItemUpdatesessionFileValidationResultType> response = await restClient.ExecuteTaskAsyncWithPolicy<ContentLibraryItemUpdatesessionFileValidationResultType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + ValidateServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if no update session with the given identifier exists.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the update session is not in the link UpdateSessionModel.StateACTIVE state or if some of the files that will be uploaded by the client arent received correctly.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
     }

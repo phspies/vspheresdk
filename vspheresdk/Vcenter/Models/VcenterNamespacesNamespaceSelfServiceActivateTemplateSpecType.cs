@@ -56,5 +56,15 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         [JsonProperty(PropertyName = "networks")]
         public IList<string> Networks { get; set; }
+        /// <summary>
+        /// VM Service specification to be associated with the namespace template. Namespaces created using this template will have
+        /// access to the virtual machine classes and Content Libraries specified in the
+        /// NamespaceSelfService.ActivateTemplateSpec.vm-service-spec by default.
+        /// If unset, the namespaces created using this template will not have access to any virtual machine classes and Content
+        /// Libraries by default.
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "vm_service_spec")]
+        public VcenterNamespacesInstancesVmserviceSpecType VmServiceSpec { get; set; }
     }
 }

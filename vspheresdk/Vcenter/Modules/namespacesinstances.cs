@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Vcenter.Models;
+using vspheresdk.Vcenter.Models.Enums;
 
 namespace vspheresdk.Vcenter.Modules
 {
@@ -37,11 +38,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = CreateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + CreateServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("ifInstances.CreateSpec.cluster is not enabled for Namespaces or if the networks field is set when the Instances.CreateSpec.cluster hosting the namespace uses NSXT_CONTAINER_PLUGIN as its network provider or if the Supervisor cluster does not support customizable VM classes.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if Instances.CreateSpec.cluster is not registered on this vCenter server.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.Configure privilege or the namespace identifier begins with vmwaresystem prefix.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
         public async Task<List<VcenterNamespacesInstancesSummaryType>> ListAsync()
@@ -54,11 +57,11 @@ namespace vspheresdk.Vcenter.Modules
             };
             request.Resource = ListServiceURL.ToString();
             RestResponse<List<VcenterNamespacesInstancesSummaryType>> response = await restClient.ExecuteTaskAsyncWithPolicy<List<VcenterNamespacesInstancesSummaryType>>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + ListServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have System.Read privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task SetAsync(string Namespace, VcenterNamespacesInstancesSetType RequestBody = null)
@@ -74,11 +77,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = SetServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Put operation to " + SetServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if customizable VM classes are not suported for this Supervisor cluster.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if namespace with the name namespace could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.Configure privilege or the namespace identifier begins with vmwaresystem prefix.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
         public async Task<VcenterNamespacesInstancesInfoType> GetAsync(string Namespace)
@@ -93,11 +98,12 @@ namespace vspheresdk.Vcenter.Modules
             GetServiceURL.Replace("{namespace}", System.Uri.EscapeDataString(Helpers.ConvertToString(Namespace, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = GetServiceURL.ToString();
             RestResponse<VcenterNamespacesInstancesInfoType> response = await restClient.ExecuteTaskAsyncWithPolicy<VcenterNamespacesInstancesInfoType>(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Get operation to " + GetServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if namespace could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have System.Read privilege.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             return response.Data;
         }
         public async Task UpdateAsync(string Namespace, VcenterNamespacesInstancesUpdateType RequestBody = null)
@@ -113,11 +119,13 @@ namespace vspheresdk.Vcenter.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = UpdateServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Patch operation to " + UpdateServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if customizable VM classes are not suported for this Supervisor cluster.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if namespace with the name namespace could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.Configure privilege or the namespace identifier begins with vmwaresystem prefix.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
         public async Task DeleteAsync(string Namespace)
@@ -132,11 +140,13 @@ namespace vspheresdk.Vcenter.Modules
             DeleteServiceURL.Replace("{namespace}", System.Uri.EscapeDataString(Helpers.ConvertToString(Namespace, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = DeleteServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Delete operation to " + DeleteServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 500) { throw new vSphereException("if the system reports an error while responding to the request.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the associated Supervisor cluster is being restored from a backup. When a Supervisor cluster is restored theres a window of time during which the restored Supervisor clusters state is being synchronized back to vCenter. During that time namespace deletion is not allowed.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the specified namespace could not be located.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 401) { throw new vSphereException("if the user can not be authenticated.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 403) { throw new vSphereException("if the user does not have Namespaces.Configure privilege or the namespace identifier begins with vmwaresystem prefix.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
     }

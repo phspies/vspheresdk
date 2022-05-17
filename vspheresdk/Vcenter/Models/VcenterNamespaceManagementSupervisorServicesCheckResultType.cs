@@ -27,9 +27,9 @@ namespace vspheresdk.Vcenter.Models
         public VcenterNamespaceManagementSupervisorServicesVersionsContentType ContentType { get; set; }
         /// <summary>
         /// The information about the Supervisor Service version retrieved from the provided content as a result of validation
-        /// checks if the content is in the vSphere or Carvel application format.
-        /// If unset, the content is not in the vSphere application service format or the Carvel application package format, or the
-        /// SupervisorServices.CheckResult.status is INVALID.
+        /// checks if the content is in the vSphere application format.
+        /// If unset, the content is not in the vSphere application service format, or the SupervisorServices.CheckResult.status is
+        /// INVALID.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "vsphere_apps_check_result")]

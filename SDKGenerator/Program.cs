@@ -49,6 +49,8 @@ namespace SDK
             Helpers.Register(nameof(GetResponseName), GetResponseName);
             Helpers.Register(nameof(GetParameterPascalCase), GetParameterPascalCase);
             Helpers.Register(nameof(SetDefaultValue), SetDefaultValue);
+            Helpers.Register(nameof(GetEvaluateResponse), GetEvaluateResponse);
+
 
 
 
@@ -107,7 +109,7 @@ namespace SDK
                     {
                         currentEnum.EnumName = models.Single(x => x.Key.Equals(model.Key, StringComparison.Ordinal)).Value;
                     }
-   
+
 
                     currentEnum.Description = model.Value.Description;
                     foreach (var enumValue in model.Value.Enumeration)
@@ -146,7 +148,7 @@ namespace SDK
                 {
                     rootmodule = apiDoc.Key,
                     modules = tags.Select(x => x.pascalname),
-                }, Path.Combine(projectDirectory,$"{apiDoc.Key}Module.cs")); ;
+                }, Path.Combine(projectDirectory, $"{apiDoc.Key}Module.cs")); ;
 
 
             }
@@ -159,7 +161,30 @@ namespace SDK
             var test = models.Where(x => x.Value.Equals("VcenterVMsummary", StringComparison.InvariantCultureIgnoreCase));
         }
 
-
+        public static string RemoveSpecialCharacters(string str)
+        {
+            return Regex.Replace(str, "[^a-zA-Z0-9_. ]+", "", RegexOptions.Compiled);
+        }
+        private static void GetEvaluateResponse(RenderContext context, IList<object> arguments, IDictionary<string, object> options, RenderBlock fn, RenderBlock inverse)
+        {
+            int code = int.Parse((string)((DictionaryEntry)arguments[0]).Key);
+            OpenApiResponse response = (OpenApiResponse)((DictionaryEntry)arguments[0]).Value;
+            if (!(200 <= code && code <= 300))
+            {
+                context.Write("else if ((int)response.StatusCode == " + code + ") { throw new vSphereException(" + $"\"{ RemoveSpecialCharacters(response.Description)}\"" + ", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }");
+            }
+            else
+            {
+                if (String.IsNullOrWhiteSpace(response.Description)  && response.Schema == null)
+                {
+                    context.Write("if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }");
+                }
+                else
+                {
+                    context.Write("if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { return response.Data; }");
+                }
+            }
+        }
 
         private string ConvertToString(object value, System.Globalization.CultureInfo cultureInfo)
         {
@@ -597,7 +622,7 @@ namespace SDK
             {
 
             }
-            
+
             switch (jsonType.Type)
             {
                 case JsonObjectType.Boolean:

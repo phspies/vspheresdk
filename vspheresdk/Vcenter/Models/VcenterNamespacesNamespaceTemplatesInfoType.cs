@@ -12,7 +12,7 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespacesNamespaceTemplatesInfoType 
     {
         /// <summary>
-        /// Identifier for the cluster associated with namespace template.
+        /// Identifier for the vSphere cluster associated with namespace template.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
         /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
         /// for the resource type: ClusterComputeResource.
@@ -47,8 +47,8 @@ namespace vspheresdk.Vcenter.Models
         /// vSphere Networks that this template captures and are associated with the namespace after namespace realization.
         /// This field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.
         /// When clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type:
-        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers
-        /// for the resource type: ClusterComputeResource.
+        /// vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will
+        /// contain identifiers for the resource type: vcenter.namespace_management.Network.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "networks")]
@@ -61,5 +61,12 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         [JsonProperty(PropertyName = "permissions")]
         public Dictionary<string,VcenterNamespacesNamespaceTemplatesSubjectType> Permissions { get; set; }
+        /// <summary>
+        /// Current set of virtual machine classes and Content Libraries associated with the template.
+        /// This field is optional because it was added in a newer version than its parent node.
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "vm_service_spec")]
+        public VcenterNamespacesInstancesVmserviceSpecType VmServiceSpec { get; set; }
     }
 }

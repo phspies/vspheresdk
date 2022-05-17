@@ -171,9 +171,9 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "ephemeral_storage_policy")]
         public string? EphemeralStoragePolicy { get; set; }
         /// <summary>
-        /// Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides
-        /// support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.
-        /// If unset, it means the file volume support is not enabled on this Supervisor Cluster.
+        /// Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for
+        /// provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.
+        /// If unset, it means the file volume support is not enabled on this Supervisor.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "cns_file_config")]
@@ -245,8 +245,8 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "default_kubernetes_service_content_library")]
         public string? DefaultKubernetesServiceContentLibrary { get; set; }
         /// <summary>
-        /// Proxy configuration that is applied to the Supervisor Cluster. The proxy should be reachable from the management network
-        /// and is used for image pulling and container traffic exiting out of the Supervisor Cluster.
+        /// Proxy configuration that is applied to the Supervisor. The proxy should be reachable from the management network and is
+        /// used for image pulling and container traffic exiting out of the Supervisor.
         /// Note that the proxy password will be removed from the URLs as per Section 3.2.1 of RFC3986 security recommendation.
         /// This field is optional because it was added in a newer version than its parent node.
         /// </summary>

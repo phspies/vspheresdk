@@ -14,7 +14,7 @@ namespace vspheresdk
         public IReadOnlyCollection<HeaderParameter> Headers { get; private set; }
 
         public vSphereException(string message, int statusCode, string response, IReadOnlyCollection<HeaderParameter> headers, Exception innerException)
-            : base(message + " - " + innerException.innerExceptions<Exception>().Last().Message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response, innerException.innerExceptions<Exception>().Last().InnerException)
+            : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response, innerException.innerExceptions<Exception>().Last().InnerException)
         {
             StatusCode = statusCode;
             Response = response;
@@ -37,18 +37,21 @@ namespace vspheresdk
             Action<Exception> lambda = null;
             lambda = (x) =>
             {
-                var xt = x as T;
-                if (xt != null)
-                    rVal.Add(xt);
-
-                if (x.InnerException != null)
-                    lambda(x.InnerException);
-
-                var ax = x as AggregateException;
-                if (ax != null)
+                if (x != null)
                 {
-                    foreach (var aix in ax.InnerExceptions)
-                        lambda(aix);
+                    var xt = x as T;
+                    if (xt != null)
+                        rVal.Add(xt);
+
+                    if (x.InnerException != null)
+                        lambda(x.InnerException);
+
+                    var ax = x as AggregateException;
+                    if (ax != null)
+                    {
+                        foreach (var aix in ax.InnerExceptions)
+                            lambda(aix);
+                    }
                 }
             };
 

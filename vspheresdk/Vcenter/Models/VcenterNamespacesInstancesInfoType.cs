@@ -12,7 +12,7 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespacesInstancesInfoType 
     {
         /// <summary>
-        /// Identifier for the cluster hosting the namespace.
+        /// Identifier for the vSphere cluster hosting the namespace.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
         /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
         /// for the resource type: ClusterComputeResource.
@@ -68,8 +68,8 @@ namespace vspheresdk.Vcenter.Models
         /// vSphere Networks associated with the namespace.
         /// This field is unset if the cluster hosting this namespace uses NSXT_CONTAINER_PLUGIN as its network provider.
         /// When clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type:
-        /// vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will contain
-        /// identifiers for the resource type: vcenter.namespaces.Instance.
+        /// vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will
+        /// contain identifiers for the resource type: vcenter.namespace_management.Network.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "networks")]

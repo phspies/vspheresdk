@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.Library.Models;
+using vspheresdk.Library.Models.Enums;
 
 namespace vspheresdk.Library.Modules
 {
@@ -38,11 +39,10 @@ namespace vspheresdk.Library.Modules
             EvictServiceURL.Replace("{library_item_id}", System.Uri.EscapeDataString(Helpers.ConvertToString(LibraryItemId, System.Globalization.CultureInfo.InvariantCulture)));
             request.Resource = EvictServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + EvictServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item specified by param.name libraryItemId does not exist.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the content of the library item specified by param.name libraryItemId has been deleted from the storage backings see link LibraryModelstorageBackings associated with it. p For instance this term error is reported on evicting a library item in an ondemand subscribed library that was restored from backup and the library item was deleted after backup thus resulting in its content being deleted from the associated storage backings. In this scenario the metadata of the library item is present on a restore while its content has been deleted.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
         public async Task SyncAsync(string LibraryItemId, ContentLibrarySubscribedItemSyncType RequestBody)
@@ -59,11 +59,10 @@ namespace vspheresdk.Library.Modules
             request.AddJsonBody(RequestBody);
             request.Resource = SyncServiceURL.ToString();
             RestResponse response = await restClient.ExecuteTaskAsyncWithPolicy(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP Post operation to " + SyncServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+            if (200 <= (int)response.StatusCode && (int)response.StatusCode <= 300) { }
+            else if ((int)response.StatusCode == 404) { throw new vSphereException("if the library item specified by param.name libraryItemId could not be found.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else if ((int)response.StatusCode == 400) { throw new vSphereException("if the content of the library item specified by param.name libraryItemId has been deleted from the storage backings see link LibraryModelstorageBackings associated with it. p For instance this term error is reported on synchronizing a library item in a subscribed library that was restored from backup and the library item was deleted after backup thus resulting in its content being deleted from the associated storage backings. In this scenario the metadata of the library item is present on a restore while its content has been deleted.", (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); }
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             
         }
     }

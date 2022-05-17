@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.Net;
 using vspheresdk;
 using vspheresdk.{{rootmodule}}.Models;
+using vspheresdk.{{rootmodule}}.Models.Enums;
 
 namespace vspheresdk.{{rootmodule}}.Modules
 {
@@ -45,11 +46,10 @@ namespace vspheresdk.{{rootmodule}}.Modules
             {{/Item4.Parameters}}
             request.Resource = {{GetMethodName .}}ServiceURL.ToString();
             RestResponse{{GetOperationReturnType . "bare"}} response = await restClient.ExecuteTaskAsyncWithPolicy{{GetOperationReturnType . "bare"}}(request, cancellationToken, timeout, retry);
-            if (response.StatusCode != HttpStatusCode.OK)
-			{
-                var message = "HTTP {{GetOperationHttpMethod .}} operation to " + {{GetMethodName .}}ServiceURL.ToString() + " did not complete successfull";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content,  response.Headers, response.ErrorException);
-			}
+		    {{#each Item4.responses}}
+            {{GetEvaluateResponse .}}
+      	    {{/each Item4.responses}}
+            else { throw new vSphereException(response.ErrorMessage, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException); } 
             {{GetOperationReturnType . "return"}}
         }
         {{/operations}}

@@ -77,6 +77,10 @@ namespace vspheresdk
         {
             await AuthenticationHelper.LogoutAsync(sessionRestClient, cancellationToken, timeout, retry);
         }
+        public async Task<string> RetrieveAsync()
+        {
+            return await AuthenticationHelper.RetrieveAsync(sessionRestClient, cancellationToken, timeout, retry);
+        }
         {{#submodules}}
         public {{.}}SubModule {{.}}SubModule => new {{.}}SubModule(tokenRestClient, cancellationToken, timeout, retry);
         {{/submodules}}

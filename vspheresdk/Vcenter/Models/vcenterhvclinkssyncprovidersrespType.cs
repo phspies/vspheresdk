@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "value", Required = Required.AllowNull)]
-        public VcenterHvcLinksSyncProvidersInfoType Value { get; set; }
+        public VcenterHvcLinksSyncProvidersInfoTypeA Value { get; set; }
     }
 }

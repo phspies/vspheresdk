@@ -34,7 +34,7 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "config_status", Required = Required.AllowNull)]
         public VcenterNamespaceManagementSupervisorServicesClusterSupervisorServicesConfigStatusType ConfigStatus { get; set; }
         /// <summary>
-        /// Current set of messages associated with the Supervisor Service on the vSphere Supervisor cluster.
+        /// Current set of messages associated with the Supervisor Service on the vSphere Supervisor.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "messages", Required = Required.AllowNull)]

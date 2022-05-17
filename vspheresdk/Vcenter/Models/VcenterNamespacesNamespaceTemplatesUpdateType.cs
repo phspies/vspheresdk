@@ -37,8 +37,8 @@ namespace vspheresdk.Vcenter.Models
         /// the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network
         /// object reference.
         /// When clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type:
-        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will contain identifiers
-        /// for the resource type: ClusterComputeResource.
+        /// vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will
+        /// contain identifiers for the resource type: vcenter.namespace_management.Network.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "networks")]
@@ -51,5 +51,13 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         [JsonProperty(PropertyName = "permissions")]
         public Dictionary<string,VcenterNamespacesNamespaceTemplatesSubjectType> Permissions { get; set; }
+        /// <summary>
+        /// VM Service specification to be associated with the namespace template. The virtual machine classes and Content Library
+        /// associations of the template will be updated according to the NamespaceTemplates.UpdateSpec.vm-service-spec.
+        /// If unset, the virtual machine classes and Content Library associations of the template will not be modified.
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "vm_service_spec")]
+        public VcenterNamespacesInstancesVmserviceSpecType VmServiceSpec { get; set; }
     }
 }

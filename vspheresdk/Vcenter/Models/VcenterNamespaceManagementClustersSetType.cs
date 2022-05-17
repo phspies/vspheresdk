@@ -18,11 +18,10 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "size_hint", Required = Required.AllowNull)]
         public VcenterNamespaceManagementSizingHintType SizeHint { get; set; }
         /// <summary>
-        /// Optionally, you can edit the floating IP address that is assigned to the Supervisor Cluster in case the DHCP server
-        /// fails during the Supervisor Cluster enablement process. The field is only relevant when the DHCP mode of the Supervisor
-        /// Cluster management network is set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to
-        /// remediate a supervisor enablement failure in the case where it was detected that the DHCP server does not support DHCP
-        /// client identifiers.
+        /// Optionally, you can edit the floating IP address that is assigned to the Supervisor in case the DHCP server fails during
+        /// the Supervisor enablement process. The field is only relevant when the DHCP mode of the Supervisor management network is
+        /// set with Clusters.EnableSpec.master-management-network. Set this floating IP parameter to remediate a supervisor
+        /// enablement failure in the case where it was detected that the DHCP server does not support DHCP client identifiers.
         /// If unset, the existing effective management network floating IP will not be modified.
         /// </summary>
         /// </summary>
@@ -90,9 +89,9 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "ephemeral_storage_policy", Required = Required.AllowNull)]
         public string EphemeralStoragePolicy { get; set; }
         /// <summary>
-        /// Specification for configuring Cloud Native Storage file volume support on Supervisor Cluster. This feature provides
-        /// support for provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.
-        /// If unset, file volume support will not be enabled on this Supervisor Cluster.
+        /// Specification for configuring Cloud Native Storage file volume support on Supervisor. This feature provides support for
+        /// provisioning ReadWriteMany persistent volumes on this cluster and/or external clusters.
+        /// If unset, file volume support will not be enabled on this Supervisor.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "cns_file_config")]
@@ -149,10 +148,10 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "workload_ntp_servers")]
         public IList<string> WorkloadNtpServers { get; set; }
         /// <summary>
-        /// Proxy configuration that will be applied to the Supervisor Cluster. The proxy should be reachable from the management
-        /// network and will be used for image pulling and container traffic exiting out of the Supervisor Cluster. Modifying these
-        /// settings will result in a restart of the container runtime. Workloads might fail to pull their images for a short period
-        /// of time. There will be no effect on the currently running containers.
+        /// Proxy configuration that will be applied to the Supervisor. The proxy should be reachable from the management network
+        /// and will be used for image pulling and container traffic exiting out of the Supervisor. Modifying these settings will
+        /// result in a restart of the container runtime. Workloads might fail to pull their images for a short period of time.
+        /// There will be no effect on the currently running containers.
         /// If unset the settings will be inherited from the vCenter settings if available.
         /// </summary>
         /// </summary>

@@ -12,7 +12,7 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespaceManagementClusterCompatibilitySummaryType 
     {
         /// <summary>
-        /// Identifier of the cluster.
+        /// Identifier of the vSphere cluster.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
         /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
         /// for the resource type: ClusterComputeResource.
@@ -21,7 +21,8 @@ namespace vspheresdk.Vcenter.Models
         [JsonProperty(PropertyName = "cluster", Required = Required.AllowNull)]
         public string Cluster { get; set; }
         /// <summary>
-        /// Compatibility of this cluster.
+        /// Compatibility of this vSphere cluster. If false, the list of incompatibility issues will be given in the
+        /// ClusterCompatibility.Summary.incompatibility-reasons field.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "compatible", Required = Required.AllowNull)]

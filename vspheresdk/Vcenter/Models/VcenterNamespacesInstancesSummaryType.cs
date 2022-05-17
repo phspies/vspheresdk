@@ -12,6 +12,15 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespacesInstancesSummaryType 
     {
         /// <summary>
+        /// Identifier for the vSphere cluster hosting the namespace.
+        /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
+        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
+        /// for the resource type: ClusterComputeResource.
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "cluster", Required = Required.AllowNull)]
+        public string Cluster { get; set; }
+        /// <summary>
         /// Identifier of the namespace.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
         /// vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will be an
@@ -26,15 +35,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         [JsonProperty(PropertyName = "description", Required = Required.AllowNull)]
         public string Description { get; set; }
-        /// <summary>
-        /// Identifier for the cluster hosting the namespace.
-        /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
-        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
-        /// for the resource type: ClusterComputeResource.
-        /// </summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "cluster", Required = Required.AllowNull)]
-        public string Cluster { get; set; }
         /// <summary>
         /// Current setting for Instances.ConfigStatus.
         /// </summary>

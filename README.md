@@ -15,7 +15,6 @@ var testvm = await vsphere.VcenterSubModule.VMModule.GetAsync(vms[0].Vm);
 
 var resourcepools = await vsphere.VcenterSubModule.ResourcePoolModule.ListAsync();
 var rpdetails = await vsphere.VcenterSubModule.ResourcePoolModule.GetAsync(resourcepools[0].ResourcePool);
-
 ```
 
 ## Custom JsonSerializerSettings
@@ -37,6 +36,5 @@ vSphereClient vsphere = new vSphereClient(
         ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
         Converters = new List<JsonConverter>() { new Newtonsoft.Json.Converters.StringEnumConverter() }
     });
-
 ```
 

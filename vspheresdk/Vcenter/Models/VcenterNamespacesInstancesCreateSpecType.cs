@@ -12,6 +12,15 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespacesInstancesCreateSpecType 
     {
         /// <summary>
+        /// Identifier of the cluster on which the namespace is being created.
+        /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
+        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
+        /// for the resource type: ClusterComputeResource.
+        /// </summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "cluster", Required = Required.AllowNull)]
+        public string Cluster { get; set; }
+        /// <summary>
         /// Identifier of the namespace. This has DNS_LABEL restrictions as specified in . This must be an alphanumeric (a-z and
         /// 0-9) string and with maximum length of 63 characters and with the '-' character allowed anywhere except the first or
         /// last character. This name is unique across all Namespaces in this vCenter server. In this version, this maps to the name
@@ -23,15 +32,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         [JsonProperty(PropertyName = "namespace", Required = Required.AllowNull)]
         public string NamespaceProperty { get; set; }
-        /// <summary>
-        /// Identifier of the cluster on which the namespace is being created.
-        /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
-        /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
-        /// for the resource type: ClusterComputeResource.
-        /// </summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "cluster", Required = Required.AllowNull)]
-        public string Cluster { get; set; }
         /// <summary>
         /// Description for the namespace.
         /// If unset, no description is added to the namespace.
@@ -73,8 +73,8 @@ namespace vspheresdk.Vcenter.Models
         /// the cluster's Supervisor Primary Workload Network. The field currently accepts at most only 1 vSphere Namespaces network
         /// object reference.
         /// When clients pass a value of this structure as a parameter, the field must contain identifiers for the resource type:
-        /// vcenter.namespaces.Instance. When operations return a value of this structure as a result, the field will contain
-        /// identifiers for the resource type: vcenter.namespaces.Instance.
+        /// vcenter.namespace_management.Network. When operations return a value of this structure as a result, the field will
+        /// contain identifiers for the resource type: vcenter.namespace_management.Network.
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "networks")]

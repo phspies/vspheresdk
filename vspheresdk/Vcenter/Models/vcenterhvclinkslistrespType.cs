@@ -16,6 +16,6 @@ namespace vspheresdk.Vcenter.Models
         /// </summary>
         /// </summary>
         [JsonProperty(PropertyName = "value", Required = Required.AllowNull)]
-        public Dictionary<string,VcenterHvcLinksSummaryType> Value { get; set; }
+        public Dictionary<string,VcenterHvcLinksSummaryTypeA> Value { get; set; }
     }
 }

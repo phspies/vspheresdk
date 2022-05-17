@@ -12,7 +12,7 @@ namespace vspheresdk.Vcenter.Models
     public class VcenterNamespacesNamespaceTemplatesSummaryTypeA 
     {
         /// <summary>
-        /// Identifier for the cluster associated with namespace template.
+        /// Identifier for the vSphere cluster associated with namespace template.
         /// When clients pass a value of this structure as a parameter, the field must be an identifier for the resource type:
         /// ClusterComputeResource. When operations return a value of this structure as a result, the field will be an identifier
         /// for the resource type: ClusterComputeResource.
