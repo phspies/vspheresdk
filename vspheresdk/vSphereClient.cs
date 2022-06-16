@@ -13,16 +13,15 @@ namespace vspheresdk
         private RestClient tokenRestClient { get; set; }
         private RestClient sessionRestClient { get; set; }
         private CancellationToken cancellationToken;
-        private int timeout;
-        private int retry;
+        public int Timeout;
+        public int Retry;
         public LoginResponseType LoginResponseDetails;
 
         public vSphereClient(string Host, string Username, string Password, bool? RemoteCertificateValidation = true, JsonSerializerSettings? DefaultSerializationSettings = null, CancellationToken _cancellationToken = default(CancellationToken), int Port = 443, int _timeout = 100, int _retry = 2, string _defaultXAviVerion = null)
         {
             cancellationToken = _cancellationToken;
-            timeout = _timeout;
-            retry = _retry;
-
+            Timeout = _timeout;
+            Retry = _retry;
 
             var tokenUri = new UriBuilder(Host)
             {
@@ -66,7 +65,7 @@ namespace vspheresdk
         }
         public async Task<LoginResponseType> LoginAsync()
         {
-            RestResponse<LoginResponseType> response = await AuthenticationHelper.LoginAsync(sessionRestClient, cancellationToken, timeout, retry);
+            RestResponse<LoginResponseType> response = await AuthenticationHelper.LoginAsync(sessionRestClient, cancellationToken, Timeout, Retry);
             ArgumentNullException.ThrowIfNull(response.Data.Value);
      
             tokenRestClient.AddDefaultHeader("vmware-api-session-id", response.Data.Value);
@@ -75,20 +74,20 @@ namespace vspheresdk
         }
         public async Task LogoutAsync()
         {
-            await AuthenticationHelper.LogoutAsync(sessionRestClient, cancellationToken, timeout, retry);
+            await AuthenticationHelper.LogoutAsync(sessionRestClient, cancellationToken, Timeout, Retry);
         }
         public async Task<string> RetrieveAsync()
         {
-            return await AuthenticationHelper.RetrieveAsync(sessionRestClient, cancellationToken, timeout, retry);
+            return await AuthenticationHelper.RetrieveAsync(sessionRestClient, cancellationToken, Timeout, Retry);
         }
-        public ApplianceSubModule ApplianceSubModule => new ApplianceSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public CisSubModule CisSubModule => new CisSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public EsxSubModule EsxSubModule => new EsxSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public HvcSubModule HvcSubModule => new HvcSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public LibrarySubModule LibrarySubModule => new LibrarySubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public StatsSubModule StatsSubModule => new StatsSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public VapiSubModule VapiSubModule => new VapiSubModule(tokenRestClient, cancellationToken, timeout, retry);
-        public VcenterSubModule VcenterSubModule => new VcenterSubModule(tokenRestClient, cancellationToken, timeout, retry);
+        public ApplianceSubModule ApplianceSubModule => new ApplianceSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public CisSubModule CisSubModule => new CisSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public EsxSubModule EsxSubModule => new EsxSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public HvcSubModule HvcSubModule => new HvcSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public LibrarySubModule LibrarySubModule => new LibrarySubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public StatsSubModule StatsSubModule => new StatsSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public VapiSubModule VapiSubModule => new VapiSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
+        public VcenterSubModule VcenterSubModule => new VcenterSubModule(tokenRestClient, cancellationToken, Timeout, Retry);
 
     }
 }

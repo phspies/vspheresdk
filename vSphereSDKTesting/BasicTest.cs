@@ -16,7 +16,7 @@ namespace vSphereSDKTesting
         [Fact]
         public async void Test1()
         {
-            vSphereClient vsphere = new vSphereClient("vc01.lab.local", "administrator@vsphere.local", "VMware1!", false);
+            vSphereClient vsphere = new vSphereClient("vc01.lab.loca1l", "administrator@vsphere.local", "VMware1!", false);
             await vsphere.LoginAsync();
             var vms = await vsphere.VcenterSubModule.VMModule.ListAsync();
             var templateimage = await vsphere.VcenterSubModule.VMModule.GetAsync(vms.Single(x => x.Name.Equals("ubuntutemplate")).Vm);

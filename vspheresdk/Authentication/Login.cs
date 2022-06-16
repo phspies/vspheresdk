@@ -24,7 +24,7 @@ namespace vspheresdk.Authentication
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var message = "Login operation to " + GetLoginURL.ToString() + " did not complete successfully";
-                throw new vSphereException(message, (int)response.StatusCode, response.Content, response.Headers, response.ErrorException);
+                throw new vSphereException(message, (int)response.StatusCode, response.Content ?? response.ErrorMessage, response.Headers, response.ErrorException);
             }
             return response;
         }
